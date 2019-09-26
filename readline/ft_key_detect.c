@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:57:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/25 17:39:24 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:35:47 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	ft_key_detect(char *key, t_read *insert)
 	if (ft_isprint(key[0]) || key[0] == '\n')
 	{
 		ft_addtoline(key, insert);
-		//insert->curlinelen = ft_curlinelen(insert, insert->liney);
 		return (1);
 	}
 	if (ft_keyfer_moves(key, insert))

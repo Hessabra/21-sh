@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:27:17 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/25 13:34:49 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:36:58 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_cannonical_mod(void)
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSADRAIN, &term);
-
 }
 
 void	ft_syncwin_size(t_read *insert)

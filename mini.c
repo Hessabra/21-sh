@@ -192,13 +192,13 @@ int				main(void)
 		 	dfre(arg);
 		 }*/
 		try = ft_readline(try, &insert);
-		//ft_add_history(try, &insert);
 		if (try)
 		{
 			effectornot(&bs, try);
 			a.nbr_quot = nbr_quote(try, bs);
 			if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
 				quotiwhile(a.nbr_quot, &try, &bs, &insert);
+				if (ft_strcmp(try, ""))
 			ft_add_history(try, &insert);
 			if (synerr(try, bs))
 			{

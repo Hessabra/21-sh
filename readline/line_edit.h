@@ -97,4 +97,5 @@ void	ft_clear_screen(t_read *insert);
 void	ft_syncwin_size(t_read *insert);
 void    sigwinch_handler(int sig);
 void    ft_signal_handler(t_read *insert, t_read *g_insert);
+void	ft_cannonical_mod();
 #endif
