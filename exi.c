@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 22:11:15 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/24 21:30:23 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:57:12 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			exi(char **arg, char ***env)
 	{
 		if (arg[2])
 		{
-			ft_printf("Too many arguments...\n");
+			ft_putendl_fd("Too many arguments...", 2);
 			return (0);
 		}
 		i = 0;
@@ -36,7 +36,7 @@ int			exi(char **arg, char ***env)
 		{
 			if (ft_isdigit(arg[1][i]) == 0)
 			{
-				ft_printf("I need a number to proceed...\n");
+				ft_putendl_fd("I need a number to proceed...", 2);
 				racc(1, env, arg);
 			}
 			i++;

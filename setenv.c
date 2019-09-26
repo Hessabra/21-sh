@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:02:17 by hessabra          #+#    #+#             */
-/*   Updated: 2019/07/21 21:23:11 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:59:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ static int	racc2(char **arg)
 {
 	if (arg[1] && arg[2] && arg[3])
 	{
-		ft_printf("OwO... Sorry too much arguments\n");
+		ft_putendl_fd("OwO... Sorry too much arguments", 2);
 		return (1);
 	}
 	if (!ft_isalpha(arg[1][0]))
 	{
-		ft_printf("UwU... The starting char should be alpha only\n");
+		ft_putendl_fd("UwU... The starting char should be alpha only", 2);
 		return (1);
 	}
 	if (!ft_alnu(arg[1]))
 	{
-		ft_printf("Oups!! Variable name must only be with alphanumeric\n");
+		ft_putendl_fd("Oups! Variable name must only be with alphanumeric", 2);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 02:29:53 by hessabra          #+#    #+#             */
-/*   Updated: 2019/06/17 18:16:20 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:56:35 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@
 static void		racc1(char *ar, char *arg, int *y)
 {
 	if (ar)
-		ft_printf("Too much arguments...\n");
+		ft_putendl_fd("Too much arguments...", 2);
 	else
-		ft_printf("cd: string not in pwd: %s\n", arg);
+	{
+		ft_putstr_fd("cd: string not in pwd: ", 2);
+		ft_putendl_fd(arg, 2);
+	}
 	*y = 0;
 }
 
@@ -30,7 +33,7 @@ static void		racc2(char **env, int *y)
 	if ((x = ft_know(env, "HOME")) > -1)
 		if (chdir(env[x] + 5))
 		{
-			ft_printf("I can't change to home directory...");
+			ft_putendl_fd("I can't change to home directory...", 2);
 			*y = 0;
 		}
 }

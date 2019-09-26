@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 15:25:45 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:50:01 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token)
 		fd[i - start] = (int *)malloc(sizeof(int) * 2);
 		if (pipe(fd[i - start]) < 0)
 		{
-			ft_putstr("fail to pipe");
+			ft_putendl_fd("Fail to pipe", 2);
 			exit(0);
 		}
 		i++;
@@ -64,13 +64,13 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token)
 			if (i > start)
 				if (dup2(fd[i - start - 1][PIPE_OUT], 0) < 0)
 				{
-					ft_putstr("fail to dup2\n");
+					ft_putendl_fd("Fail to dup2", 2);
 					exit(0);
 				}
 			if (i == start || i + 1 <= a.x)
 				if (dup2(fd[i - start][PIPE_IN], 1) < 0)
 				{
-					ft_putstr("fail to dup2\n");
+					ft_putendl_fd("Fail to dup2", 2);
 					exit(0);
 				}
 			close_all(&fd, a.x);

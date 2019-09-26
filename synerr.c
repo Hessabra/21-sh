@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:31:07 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/21 21:07:33 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:51:30 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ static int        counred(char **str)
             in++;
         if ((in && out) || ((in == 2 || out == 2) && x > 1) || in > 2 || out > 2)
         {
-            ft_putstr("\nSyntax error near unexpected token `");
-            ft_putchar(**str);
-            ft_putstr("'\n");
+            ft_putstr_fd("\nSyntax error near unexpected token `", 2);
+            ft_putchar_fd(**str, 2);
+            ft_putstr_fd("'\n", 2);
             return (0);
         }
         (*str)++;
         if ((in || out) && **str == '\0')
         {
-            ft_putstr("\nSyntax error near unexpected token `newline'\n");
+            ft_putstr_fd("\nSyntax error near unexpected token `newline'\n", 2);
             return (0);
         }
         if ((in || out) && (**str == ';' || **str == '|'))

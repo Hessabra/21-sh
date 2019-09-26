@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:04:56 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 15:49:18 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:59:25 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char			**unstenv(char **arg, char ***env)
 	envi = (char **)malloc(sizeof(char *) * (lentab(*env) + 1));
 	if (!arg[1])
 	{
-		ft_printf("I need more arguments...\n");
+		ft_putendl_fd("I need more arguments...", 2);
 		free(envi);
 		return (*env);
 	}

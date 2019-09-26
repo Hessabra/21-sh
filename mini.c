@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 19:41:27 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 21:09:09 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token)
 	{
 		if (a.ppvr[i] == 1 || a.ppvr[i] == -4)
 		{
-			ft_putstr(a.arg[i][0]);
 			a.x = i;
 			while (ft_entier(a.ppvr[a.x]) == 1 || a.ppvr[a.x] == -4)
 				a.x++;
@@ -186,12 +185,13 @@ int				main(void)
 		signal(SIGINT, mansig);
 		path = NULL;
 		ft_putstr("\e[35;1mWhat can I do for you ;) >>\n\e[0m");
-	/*	if (t.i)
-		 {
-		 	t.i = 0;
-		 	dfre(arg);
-		 }*/
+		if (t.i)
+		{
+			t.i = 0;
+			dfre(arg);
+		}
 		try = ft_readline(try, &insert);
+		ft_add_history(try, &insert);
 		if (try)
 		{
 			effectornot(&bs, try);
@@ -206,7 +206,7 @@ int				main(void)
 				tmpbs = bs;
 				token = NULL;
 				a.arg = triplp(arg, bs, environ, a, &token);
-				ft_printf("\n");
+				ft_putstr("\n");
 				if (a.arg)
 				{
 					t.i = 1;
@@ -215,7 +215,7 @@ int				main(void)
 				}
 			}
 		}
-		// free(try);*/
+		// free(try);
 	}
 	return (0);
 }

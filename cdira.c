@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 10:56:44 by hessabra          #+#    #+#             */
-/*   Updated: 2019/04/28 23:41:21 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:42:54 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int				erro(char *arg)
 
 	lstat(arg, &td);
 	if (S_ISDIR(td.st_mode) && access(arg, R_OK))
-		ft_printf("cd: permission denied: ");
+		ft_putstr_fd("cd: permission denied: ", 2);
 	else if (S_ISREG(td.st_mode))
-		ft_printf("cd: Not a directory: ");
+		ft_putstr_fd("cd: Not a directory: ", 2);
 	else
-		ft_printf("cd: no such file or directory: ");
-	ft_printf("%s\n", arg);
+		ft_putstr_fd("cd: no such file or directory: ", 2);
+	ft_putendl_fd(arg, 2);
 	return (0);
 }
