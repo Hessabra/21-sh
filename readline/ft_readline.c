@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:21:08 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 16:00:43 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 19:46:00 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void    ft_printdetails(t_read *insert)
 	ft_putnbr_fd(insert->liney, insert->info);
 	ft_putstr_fd("insert->curlen ", insert->info);
 	ft_putnbr_fd(insert->curlinelen, insert->info);
-	ft_putstr_fd("insert->winsize ", insert->info);
-	ft_putnbr_fd(insert->winsize, insert->info);
+	ft_putstr_fd("insert->historyindex ", insert->info);
+	ft_putnbr_fd(insert->indexfor_history, insert->info);
 	ft_putchar_fd('\n', insert->info);
 }
 

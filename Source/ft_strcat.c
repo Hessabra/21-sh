@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/07 15:01:44 by hessabra          #+#    #+#             */
-/*   Updated: 2018/10/07 15:07:41 by hessabra         ###   ########.fr       */
+/*   Created: 2018/10/17 12:47:57 by helmanso          #+#    #+#             */
+/*   Updated: 2018/10/17 12:48:08 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 char	*ft_strcat(char *dest, const char *src)
 {
-	int		i;
-	int		j;
+	int i;
+	int j;
 
 	i = 0;
 	j = 0;
-	while (dest[i])
+	if (dest == src)
+		return (NULL);
+	while (dest[i] != '\0')
 		i++;
-	while (src[j])
+	while (src[j] != '\0')
 	{
 		dest[i] = src[j];
 		i++;

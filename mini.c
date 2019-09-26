@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 16:05:50 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 19:41:27 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ static t_quotis nbr_quote(char *arg, int *bs)
 int				main(void)
 { 
 	t_ppvr		a;
-	char		*try;
 	char		**arg;
 	char		*path;
 	t_dolor		t;
@@ -173,26 +172,28 @@ int				main(void)
 	int			**token;
 	int			*tmpbs;
 	t_read		insert;
+	char		*try;
 
 	environ = aloc(environ);
 	ft_setterm();
-	insert.history = (char **)malloc(sizeof(char *));
-//	insert.indexfor_history = 0;
+	insert.indexfor_history = 0;
 	t.i = 0;
+//	try = ft_strnew(0);
 	try = NULL;
+//	try = ft_strnew(0);
 	while (1)
 	{
 		signal(SIGINT, mansig);
 		path = NULL;
 		ft_putstr("\e[35;1mWhat can I do for you ;) >>\n\e[0m");
-		// if (t.i)
-		// {
-		// 	t.i = 0;
-		// 	dfre(arg);
-		// }
+	/*	if (t.i)
+		 {
+		 	t.i = 0;
+		 	dfre(arg);
+		 }*/
 		try = ft_readline(try, &insert);
-		ft_add_history(try, &insert);
-/*		if (try)
+		//ft_add_history(try, &insert);
+		if (try)
 		{
 			effectornot(&bs, try);
 			a.nbr_quot = nbr_quote(try, bs);
@@ -213,8 +214,8 @@ int				main(void)
 						return (1);
 				}
 			}
-		}*/
-		// free(try);
+		}
+		// free(try);*/
 	}
 	return (0);
 }

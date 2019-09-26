@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 11:23:16 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 16:51:50 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 19:22:32 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ typedef struct	s_splitbs
 	int			j;
 }				t_splitbs;
 
-int				ft_tablen(char **table);
-int         	ft_lentab(char **tabe);
 int         	ft_entier(int x);
 int         	ft_parite(int x);
 int				ft_max(int i, int j);
@@ -74,8 +72,8 @@ char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_itoa(int n);
 void			ft_putchar(char c);
-void			ft_putstr(char const *s);
-void			ft_putendl(char const *s);
+void			ft_putstr(char *s);
+void			ft_putendl(char *s);
 void			ft_putnbr(int n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
@@ -85,8 +83,6 @@ char			*ft_searchnreplace(char *str, int s, int r);
 char			**ft_split(char *str, char *s);
 char			**ft_split_whitespaces(char *str);
 char			**ft_splitbs(char *str, int *bs);
-char  			  **ft_addtotab(char **table, char *line);
-
 
 
 typedef struct	s_list
@@ -129,5 +125,6 @@ t_need			ft_pourcent(const char *format, int *i);
 int				get_next_line(const int fd, char **line);
 char			*ft_sub2char(char *str, int c);
 char        	*ft_freesub(char *str, unsigned int start, size_t lenth);
-
+char   			 **ft_addtotab(char **table, char *line);
+int             ft_tablen(char **table);
 #endif

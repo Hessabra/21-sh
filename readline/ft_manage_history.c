@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:00:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 15:56:07 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 19:43:17 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_history_back(t_read *insert)
 		return ;
 	else
 	{
-		if (insert->indexfor_history > 0)
+		if (insert->indexfor_history > 1)
 		{
 			ft_clear_screen(insert);
 			ft_addtoline(insert->history[insert->indexfor_history - 1], insert);

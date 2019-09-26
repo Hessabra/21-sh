@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 16:50:56 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 16:51:33 by hessabra         ###   ########.fr       */
+/*   Created: 2017/04/21 12:39:47 by sfranc            #+#    #+#             */
+/*   Updated: 2019/09/18 16:39:39 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tablen(char **table)
+int		ft_tablen(char **table)
 {
-	int	len;
+	int		len;
 
 	len = 0;
 	while (*(table + len))

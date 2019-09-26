@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_addtotab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 16:15:24 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 16:17:29 by hessabra         ###   ########.fr       */
+/*   Created: 2019/09/19 18:09:17 by helmanso          #+#    #+#             */
+/*   Updated: 2019/09/26 19:16:57 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**ft_addtotab(char **table, char *line)
 	int		i;
 
 	if (table)
-		len = ft_lentab(table) + 1;
+		len = ft_tablen(table) + 1;
 	else
 		len = 1;
 	if (!(new = (char**)malloc(sizeof(char*) * (len + 1))))
@@ -32,6 +32,7 @@ char	**ft_addtotab(char **table, char *line)
 		i++;
 	}
 	*(new + i) = ft_strdup(line);
-	free(table);
+//	free(table);
+//	ft_freetab(&table);
 	return (new);
 }

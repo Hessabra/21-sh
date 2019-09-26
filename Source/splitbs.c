@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 13:56:11 by hessabra          #+#    #+#             */
-/*   Updated: 2019/07/22 16:15:13 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/06/22 15:01:49 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		ft_count(char *str, int *bs)
         }
 		if (ft_is_whitespace(str[i]) && mark && flag == 1)
 			flag = 0;
-		if ((!ft_is_whitespace(str[i]) || mark == 0) && flag == 0)
+		if (!ft_is_whitespace(str[i]) && flag == 0)
 		{
 			nb++;
 			flag = 1;
@@ -92,7 +92,7 @@ char	**ft_splitbs(char *str, int *bs)
 	ij.i = 0;
 	*p = 0;
     lenarg = ft_count(str, bs);
-	tab_str = (char**)malloc(sizeof(char *) * (lenarg + 1));
+	tab_str = (char**)malloc(sizeof(char*) * (lenarg + 1));
 	if (tab_str)
 	{
 		while (ij.i < lenarg)

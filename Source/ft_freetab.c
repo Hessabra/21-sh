@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lentab.c                                        :+:      :+:    :+:   */
+/*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/04 17:17:56 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 16:49:58 by hessabra         ###   ########.fr       */
+/*   Created: 2019/01/07 11:30:18 by helmanso          #+#    #+#             */
+/*   Updated: 2019/01/14 12:44:28 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int         ft_lentab(char **tabe)
+void    ft_freetab(char ***table)
 {
-    int     i;
+    char **temp;
 
-    i = 0;
-    while (tabe[i])
-        i++;
-    return (i);
+    if (!table || !*table)
+        return ;
+    temp = *table;
+    while (*temp)
+        ft_strdel(&(*temp++));
+    free(*table);
+    *table = NULL;
 }

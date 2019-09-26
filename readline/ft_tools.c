@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 13:09:23 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 15:57:06 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:40:02 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ int		countbigy(char *buf)
 	int i;
 
 	i = 0;
-	while (*buf++)
+	while (*buf)
 	{
 		if (*buf == '\n')
 			i++;
+		buf++;
 	}
 	return (i);
 }
@@ -64,8 +65,6 @@ int		ft_totaly_count(t_read *insert)
 	y = 0;
 	if (insert->linelen == 0)
 		return (0);
-/*	if (insert->line[0] == '\n')
-		ft_do_termcap(CURSOR_UP);*/
 	while (index != insert->linelen)
 	{
 		x++;

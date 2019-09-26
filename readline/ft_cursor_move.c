@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 13:24:54 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 15:55:27 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/22 17:58:30 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ void	ft_movecursor_left(t_read *insert, char *buf)
 		else if (insert->liney > 0 && insert->linex == 0)
 		{
 			insert->liney--;
-			if (buf[0] == 127)
+			if (insert->liney == 0 && insert->line[0] == '\n')
+			{
+				insert->linex = 0;
+				i = 0;
+			}
+			else if (buf[0] == 127)
 				i = ft_deletemulti(insert);
 			else
 				i = ft_formove(insert);
