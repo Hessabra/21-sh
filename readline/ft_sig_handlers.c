@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:57:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 20:32:31 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 21:32:06 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	sigwinch_handler(int sig)
 void	sigint_handler(int sig)
 {
 	ft_clear_screen(g_insert);
+	prompt();
 	(void)sig;
 	if (g_insert->history)
 		g_insert->indexfor_history = ft_tablen(g_insert->history);

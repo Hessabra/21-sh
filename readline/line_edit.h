@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_edit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:14:45 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 18:31:49 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 22:47:19 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ft_do_termcap(char *termcap);
 int 	ft_totaly_count(t_read *insert);
 int		ft_curlinelen(t_read *insert, int liney);
 void	ft_movecursor_right(t_read *insert);
+void	ft_defult_term();
 void	ft_movecursor_left(t_read *insert, char *key);
 void	ft_delete_char(t_read *insert, char *key);
 int		ft_totaly_count(t_read *insert);
@@ -98,4 +99,5 @@ void	ft_syncwin_size(t_read *insert);
 void    sigwinch_handler(int sig);
 void    ft_signal_handler(t_read *insert, t_read *g_insert);
 void	ft_cannonical_mod();
+void	prompt();
 #endif

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:21:08 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 21:09:45 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 22:45:23 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	ft_defult_term()
 	term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSANOW, &term);
 }
+void	prompt()
+{
+	ft_putstr("\e[35;1mWhat can I do for you ;) >>\n\e[0m");
+}
 char	*ft_readline(char *line, t_read *insert)
 {
 	char	key[BUFF_SIZE];
@@ -43,19 +47,19 @@ char	*ft_readline(char *line, t_read *insert)
 	ft_setting(insert);
 	g_insert = insert;
 	ft_signal_handler(insert, g_insert);
+	prompt();
 	while (1)
 	{
 		ft_bzero(key, BUFF_SIZE);
 		ft_syncwin_size(insert);
-		ft_printdetails(insert);
 		if ((ret = read(0, &key, BUFF_SIZE)) == -1 ||
 				(key[0] == ENTER_KEY && key[1] == 0) ||
 				!ft_key_detect(key, insert))
 		{
 			ft_moveend(insert);
 			line = ft_strdup(insert->line);
-			if (!ft_strcmp(line, "cat"))
-				ft_defult_term();
+			// if (!ft_strcmp(line, "cat"))
+			// 	ft_defult_term();
 			ft_strdel(&insert->line);
 			ft_strdel(&insert->topast);
 			return (line);

@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_manage_history.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:00:01 by helmanso          #+#    #+#             */
-<<<<<<< Updated upstream
 /*   Updated: 2019/09/26 19:43:17 by helmanso         ###   ########.fr       */
-=======
-/*   Updated: 2019/09/26 16:21:25 by hessabra         ###   ########.fr       */
->>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +37,7 @@ void	ft_history_back(t_read *insert)
 		return ;
 	else
 	{
-<<<<<<< Updated upstream
 		if (insert->indexfor_history > 1)
-=======
-		ft_putstr_fd("\n insert->indexfor_history   ", 2);
-		ft_putnbr_fd(insert->indexfor_history, 2);
-		if (insert->indexfor_history > 0)
->>>>>>> Stashed changes
 		{
 			ft_clear_screen(insert);
 			ft_addtoline(insert->history[insert->indexfor_history - 1], insert);

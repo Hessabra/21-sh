@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 21:09:09 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 22:52:46 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token)
 			pid = fork();
 			if (pid == 0)
 			{
+				if (ft_strequ(a.arg[i][0], "cat") || ft_strequ(a.arg[i][0], "wc"))
+					ft_defult_term();
 				if (!execve2(a.arg[i], *environ, path))
 					return (1);
 			}
@@ -177,19 +179,16 @@ int				main(void)
 	ft_setterm();
 	insert.indexfor_history = 0;
 	t.i = 0;
-//	try = ft_strnew(0);
 	try = NULL;
-//	try = ft_strnew(0);
 	while (1)
 	{
-		signal(SIGINT, mansig);
+		// signal(SIGINT, mansig);
 		path = NULL;
-		ft_putstr("\e[35;1mWhat can I do for you ;) >>\n\e[0m");
-		if (t.i)
-		{
-			t.i = 0;
-			dfre(arg);
-		}
+		// if (t.i)
+		// {
+		// 	t.i = 0;
+		// 	dfre(arg);
+		// }
 		try = ft_readline(try, &insert);
 		ft_add_history(try, &insert);
 		if (try)

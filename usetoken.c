@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/24 21:32:24 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 22:49:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,8 @@ void            usered(char **args, int *token, char ***env)
     }
     if (cmd != NULL)
     {
+        if (ft_strequ(cmd[0], "cat") || ft_strequ(cmd[0], "wc"))
+            ft_defult_term();
         if ((ft_strequ(cmd[0], "exit") || ft_strequ(cmd[0], "cd") ||
         ft_strequ(cmd[0], "setenv") || ft_strequ(cmd[0], "unsetenv") ||
         ft_strequ(cmd[0], "echo")) && racco1(cmd, env))
