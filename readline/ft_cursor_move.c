@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 13:24:54 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/22 17:59:13 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:55:27 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_movecursor_left(t_read *insert, char *buf)
 {
 	int i;
 
+	i = 0;
 	if (insert->index > 0)
 	{
 		if (!insert->liney || (insert->linex && insert->liney))
@@ -67,7 +68,7 @@ void	ft_movecursor_left(t_read *insert, char *buf)
 	}
 }
 
-void	ft_movecursor_right(t_read *insert, char *buf)
+void	ft_movecursor_right(t_read *insert)
 {
 	if (insert->index < insert->linelen)
 	{

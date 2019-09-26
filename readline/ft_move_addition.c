@@ -6,25 +6,25 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:31:58 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/22 14:56:02 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:56:19 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_edit.h"
 
-void	ft_movecursor_next_word(t_read *insert, char *key)
+void	ft_movecursor_next_word(t_read *insert)
 {
 	int i;
 
 	i = insert->index;
 	while (insert->line[i] && insert->line[i] != ' ')
 	{
-		ft_movecursor_right(insert, key);
+		ft_movecursor_right(insert);
 		i++;
 	}
 	while (insert->line[i] && insert->line[i] == ' ')
 	{
-		ft_movecursor_right(insert, key);
+		ft_movecursor_right(insert);
 		i++;
 	}
 }
@@ -50,10 +50,10 @@ void	ft_movecursor_back_word(t_read *insert, char *key)
 		i--;
 	}
 	if (i > 0)
-		ft_movecursor_right(insert, key);
+		ft_movecursor_right(insert);
 }
 
-void	ft_movecursor_up(t_read *insert, char *key)
+void	ft_movecursor_up(t_read *insert)
 {
 	int i;
 	int j;
@@ -62,23 +62,23 @@ void	ft_movecursor_up(t_read *insert, char *key)
 
 	if (insert->liney == 0)
 	{
-		ft_movestart(insert, key);
+		ft_movestart(insert);
 		return ;
 	}
 	tmpx = insert->linex;
 	tmpy = insert->liney - 1;
 	j = ft_curlinelen(insert, insert->liney) + 1;
 	i = ft_curlinelen(insert, insert->liney - 1);
-	ft_movestart(insert, key);
+	ft_movestart(insert);
 	while (insert->liney < tmpy)
-		ft_movecursor_right(insert, key);
+		ft_movecursor_right(insert);
 	if (j > i && tmpx > i)
 		tmpx = i;
 	while (tmpx--)
-		ft_movecursor_right(insert, key);
+		ft_movecursor_right(insert);
 }
 
-void	ft_movecursor_down(t_read *insert, char *key)
+void	ft_movecursor_down(t_read *insert)
 {
 	int i;
 	int j;
@@ -87,18 +87,18 @@ void	ft_movecursor_down(t_read *insert, char *key)
 
 	if (insert->liney == insert->totaly)
 	{
-		ft_moveend(insert, key);
+		ft_moveend(insert);
 		return ;
 	}
 	tmpx = insert->linex;
 	tmpy = insert->liney + 1;
 	j = ft_curlinelen(insert, insert->liney) + 1;
 	i = ft_curlinelen(insert, insert->liney + 1);
-	ft_movecursor_right(insert, key);
+	ft_movecursor_right(insert);
 	while (insert->liney < tmpy)
-		ft_movecursor_right(insert, key);
+		ft_movecursor_right(insert);
 	if (j > i && tmpx > i)
 		tmpx = i;
 	while (tmpx--)
-		ft_movecursor_right(insert, key);
+		ft_movecursor_right(insert);
 }

@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 12:51:44 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/22 14:55:42 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:55:56 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ char	*ft_addinput(char *buf, t_read *insert)
 
 void	ft_addtoline(char *buf, t_read *insert)
 {
-	char	*tmpline;
-	int		index;
 	int		i;
 
 	i = ft_strlen(buf);
@@ -70,5 +68,5 @@ void	ft_addtoline(char *buf, t_read *insert)
 	insert->totaly = ft_totaly_count(insert);
 	ft_cursor_lastpos(insert);
 	while (i--)
-		ft_movecursor_right(insert, buf);
+		ft_movecursor_right(insert);
 }

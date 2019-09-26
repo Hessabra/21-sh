@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 13:09:23 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/22 14:56:26 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:57:06 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_curlinelen(t_read *insert, int liney)
 	return (insert->curlinelen = x);
 }
 
-int		countbigy(char *buf, t_read *insert)
+int		countbigy(char *buf)
 {
 	int i;
 
@@ -64,6 +64,8 @@ int		ft_totaly_count(t_read *insert)
 	y = 0;
 	if (insert->linelen == 0)
 		return (0);
+/*	if (insert->line[0] == '\n')
+		ft_do_termcap(CURSOR_UP);*/
 	while (index != insert->linelen)
 	{
 		x++;
@@ -76,7 +78,7 @@ int		ft_totaly_count(t_read *insert)
 		}
 		index++;
 	}
-	y += countbigy(insert->line, insert);
+	y += countbigy(insert->line);
 	return (y);
 }
 

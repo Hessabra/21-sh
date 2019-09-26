@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 15:39:35 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 16:05:50 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int				main(void)
 	environ = aloc(environ);
 	ft_setterm();
 	insert.history = (char **)malloc(sizeof(char *));
-	insert.indexfor_history = 0;
+//	insert.indexfor_history = 0;
 	t.i = 0;
 	try = NULL;
 	while (1)
@@ -192,7 +192,7 @@ int				main(void)
 		// }
 		try = ft_readline(try, &insert);
 		ft_add_history(try, &insert);
-		if (try)
+/*		if (try)
 		{
 			effectornot(&bs, try);
 			a.nbr_quot = nbr_quote(try, bs);
@@ -213,7 +213,7 @@ int				main(void)
 						return (1);
 				}
 			}
-		}
+		}*/
 		// free(try);
 	}
 	return (0);

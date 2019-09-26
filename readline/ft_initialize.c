@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:27:17 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/22 14:55:29 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:55:42 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,25 @@ void	ft_cannonical_mod(void)
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ICANON);
 	term.c_lflag &= ~(ECHO);
+	term.c_lflag |= (ISIG);
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSANOW, &term) == -1)
-		ft_putstr("Unable to set terminal");
+	tcsetattr(0, TCSADRAIN, &term);
+
 }
 
-void	ft_setting(t_read *insert)
+void	ft_syncwin_size(t_read *insert)
 {
 	struct winsize ws;
 
 	ioctl(0, TIOCGWINSZ, &ws);
+	insert->winsize = ws.ws_col;
+}
+
+void	ft_setting(t_read *insert)
+{
 	insert->line = ft_memalloc(LINE_MAX);
 	insert->topast = ft_memalloc(LINE_MAX);
-	insert->winsize = ws.ws_col;
 	insert->linex = 0;
 	insert->liney = 0;
 	insert->linelen = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_edit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:14:45 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/22 15:15:52 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:58:13 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <termcap.h>
 # include <fcntl.h>
 # include "../Source/libft.h"
-# define BUFF_SIZE 1000
-# define LINE_MAX  4096
+# define BUFF_SIZE 4000
+# define LINE_MAX  9000
 # define ENTER_KEY 10
 # define MOVE_RIGHT (key[2] == 67 && key[1] == 91 && key[0] == 27)
 # define MOVE_LEFT (key[2] == 68 && key[1] == 91 && key[0] == 27)
@@ -47,7 +47,6 @@
 # define CURSOR_LEFT "le"
 # define CURSOR_CORNER "cr"
 # define DELETE_AFTER_CURSOR "cd"
-
 typedef	struct	s_read
 {
 	char	*line;
@@ -66,7 +65,7 @@ typedef	struct	s_read
 	int		indexfor_history;
 
 }				t_read;
-
+t_read *g_insert;
 void	ft_setting(t_read *insert);
 void	ft_cannonical_mod(void);
 void	ft_setterm();
@@ -74,23 +73,28 @@ int		ft_key_detect(char *key, t_read *insert);
 void    ft_addtoline(char *key, t_read *insert);
 void	ft_do_termcap(char *termcap);
 int 	ft_totaly_count(t_read *insert);
-void	ft_movecursor_right(t_read *insert, char *key);
 int		ft_curlinelen(t_read *insert, int liney);
-void	ft_movecursor_right(t_read *insert, char *key);
+void	ft_movecursor_right(t_read *insert);
 void	ft_movecursor_left(t_read *insert, char *key);
 void	ft_delete_char(t_read *insert, char *key);
 int		ft_totaly_count(t_read *insert);
 void    ft_cursor_lastpos(t_read *insert);
 void    ft_remove_line(t_read *insert);
-void    ft_movecursor_down(t_read *insert, char *key);
-void    ft_movecursor_up(t_read *insert, char *key);
+void    ft_movecursor_down(t_read *insert);
+void    ft_movecursor_up(t_read *insert);
 void    ft_movecursor_back_word(t_read *insert, char *key);
-void	ft_movecursor_next_word(t_read *insert, char *key);
-void    ft_movestart(t_read *insert, char *key);
-void	ft_moveend(t_read *insert, char *key);
-void	ft_copy(t_read *insert, char *key);
-void	ft_cut(t_read *insert, char *key);
+void	ft_movecursor_next_word(t_read *insert);
+void    ft_movestart(t_read *insert);
+void	ft_moveend(t_read *insert);
+void	ft_copy(t_read *insert);
+void	ft_cut(t_read *insert);
 void    ft_history_back(t_read *insert);
 void    ft_history_forwad(t_read *insert);
 void    ft_add_history(char *line, t_read *insert);
+void	ft_delete_onechar(t_read *insert);
+void	sigint_handler(int sig);
+void	ft_clear_screen(t_read *insert);
+void	ft_syncwin_size(t_read *insert);
+void    sigwinch_handler(int sig);
+void    ft_signal_handler(t_read *insert, t_read *g_insert);
 #endif

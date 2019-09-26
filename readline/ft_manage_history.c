@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_manage_history.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:00:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/22 17:47:29 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:56:07 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_history_back(t_read *insert)
 		return ;
 	else
 	{
-		if (insert->indexfor_history > 1)
+		if (insert->indexfor_history > 0)
 		{
 			ft_clear_screen(insert);
 			ft_addtoline(insert->history[insert->indexfor_history - 1], insert);
@@ -52,7 +52,13 @@ void	ft_history_forwad(t_read *insert)
 		return ;
 	else
 	{
-		if (insert->indexfor_history < ft_lentab(insert->history) - 1)
+		if (insert->indexfor_history == ft_tablen(insert->history) - 1)
+		{
+			ft_clear_screen(insert);
+			ft_setting(insert);
+			insert->indexfor_history++;
+		}
+		if (insert->indexfor_history < ft_tablen(insert->history) - 1)
 		{
 			ft_clear_screen(insert);
 			insert->indexfor_history++;
