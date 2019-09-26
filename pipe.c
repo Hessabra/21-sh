@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/19 16:40:53 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:25:45 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			close_all(int ***fd, int x)
 	}
 }
 
-void			mainpipe(t_ppvr a, char **env, int start)
+void			mainpipe(t_ppvr a, char **env, int start, int **token)
 {
 	pid_t		exec_pid;
 	int 		i;
@@ -74,14 +74,17 @@ void			mainpipe(t_ppvr a, char **env, int start)
 					exit(0);
 				}
 			close_all(&fd, a.x);
-			if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
-				ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv")))
-					execve2(a.arg[i], env, path);
+			if (a.ppvr[i] == -4)
+				usered(a.arg[i], token[i], &env);
+			else
+				if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
+					ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv")))
+						execve2(a.arg[i], env, path);
 			exit(0);
 		}
 		else
 			i++;
 	}
-	waitpid(exec_pid, &status, 0);
 	close_all(&fd, a.x);
+	waitpid(exec_pid, &status, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/24 13:44:50 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:24:23 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			racco1(char **arg, char ***env);
 int			racco3(char **arg, char ***env);
 int         spaceornot(char *str);
 char        *mixed2(char *str, int **bs, char **env);
-void		mainpipe(t_ppvr a, char **env, int i);
+void		mainpipe(t_ppvr a, char **env, int i, int **token);
 t_quotis	quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert);
 void        usered(char **args, int *token, char ***env);
 

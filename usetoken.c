@@ -6,13 +6,13 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/24 16:16:54 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/24 21:32:24 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-# define PIPE_OUT 0
-# define PIPE_IN 1
+# define PIPE_WRITE 1
+# define PIPE_READ 0
 
 int         cmdcl(char **args, int *token, int c)
 {
@@ -100,15 +100,15 @@ int         checkfd(int fd, char *amb, int x)
     return(1);
 }
 
-char            *here_doc(char *end, int token, char **env, int fd)
+char            *here_doc(char *end, int token, char **env)
 {
     char        *buff;
-    int         len_buff;
     t_read      insert;
     char        *new;
 
     new = ft_strdup("");
     ft_putstr(">>\n");
+    buff = NULL;
     while ((buff = ft_readline(buff, &insert)))
     {
         if (ft_strequ(buff, end))
@@ -125,6 +125,24 @@ char            *here_doc(char *end, int token, char **env, int fd)
     return (new);
 }
 
+void            getnresetfd(int i)
+{
+    static int  fd[3];
+
+    if (i == 0)
+    {
+        fd[0] = dup(0);
+        fd[1] = dup(1);
+        fd[2] = dup(2);
+    }
+    else if (i == 1)
+    {
+        dup2(fd[0], 0);
+        dup2(fd[1], 1);
+        dup2(fd[2], 2);
+    }
+}
+
 void            usered(char **args, int *token, char ***env)
 {
     int         fd;
@@ -132,7 +150,6 @@ void            usered(char **args, int *token, char ***env)
     int         fdhd;
     int         i;
     int         fd_p[2];
-    pid_t       pid;
     pid_t       pid_fork;
     char        *path;
     char        **cmd;
@@ -143,103 +160,97 @@ void            usered(char **args, int *token, char ***env)
     k.i = 0;
     k.x = 0;
     cmd = usetoken(args, &token);
-    if ((pid = fork()) == 0)
+    new = NULL;
+
+    getnresetfd(0);
+    while (args[i])
     {
-        new = NULL;
-        while (args[i])
+        fd = 1;
+        zappi(token, &i);
+        (token[i] >= 6 && token[i] <= 8) ? (fd = 0) : fd;
+        if (token[i] == 9)
         {
-            fd = 1;
-            zappi(token, &i);
-            (token[i] >= 6 && token[i] <= 8) ? (fd = 0) : fd;
-            if (token[i] == 9)
-            {
-                fd = ft_atoi(args[i]);
-                i++;
-            }
-            if (token[i] == 8 && token[i + 1] == 11)
-                checkfd(fd, args[i + 1], 1);
-            else if (token[i] >= 1 && token[i] <= 4)
-            {
-                if (token[i + 1] == 11 && token[i] != 4
-                    && (fdw = open(args[i + 1], O_WRONLY | O_CREAT | O_TRUNC,
-                    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
-                    ft_putstr_fd("File error\n", 2);
-                else if (token[i + 1] == 11 && token[i] == 4
-                    && (fdw = open(args[i + 1], O_WRONLY | O_CREAT | O_APPEND,
-                    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
-                    ft_putstr_fd("File error\n", 2);
-                else
-                {
-                    (token[i + 1] == 10) ? fdw = ft_atoi(args[i + 1]) : fdw;
-                    if (token[i] == 1 || token[i] == 2 || token[i] == 4)
-                        dup2(fdw, fd);
-                    if (token[i] == 3)
-                    {
-                        dup2(fdw, 1);
-                        dup2(fdw, 2);
-                    }
-                    if (token[i] == 5)
-                        close(fd);
-                }
-            }
-            else if (token[i] >= 6 && token[i] <= 8)
-            {
-                if (token[i] == 6 && (fdw = open(args[i + 1], O_RDONLY)) == -1)
-                    ft_putstr_fd("File error\n", 2);
-                (token[i] == 8) ? fdw = ft_atoi(args[i + 1]) : fdw;
-                if (token[i] != 7 && !checkfd(fdw, NULL, 0))
-                    dup2(fdw, fd);
-                if (token[i] == 7)
-                {
-                    if (new != NULL)
-                        free(new);
-                    fdhd = fd;
-                    new = here_doc(args[i + 1], token[i + 1], *env, fd);
-                }
-            }
+            fd = ft_atoi(args[i]);
             i++;
         }
-        if (cmd != NULL)
+        if (token[i] == 8 && token[i + 1] == 11)
+            checkfd(fd, args[i + 1], 1);
+        else if (token[i] >= 1 && token[i] <= 5)
         {
-            if ((ft_strequ(cmd[0], "exit") || ft_strequ(cmd[0], "cd") ||
-            ft_strequ(cmd[0], "setenv") || ft_strequ(cmd[0], "unsetenv") ||
-            ft_strequ(cmd[0], "echo")) && racco1(cmd, env))
-                racco3(cmd, env);
+            if (token[i + 1] == 11 && token[i] != 4
+                && (fdw = open(args[i + 1], O_WRONLY | O_CREAT | O_TRUNC,
+                S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+                ft_putstr_fd("File error\n", 2);
+            else if (token[i + 1] == 11 && token[i] == 4
+                && (fdw = open(args[i + 1], O_WRONLY | O_CREAT | O_APPEND,
+                S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+                ft_putstr_fd("File error\n", 2);
             else
             {
-                if (new)
-                    if (pipe(fd_p) < 0)
-                    {
-                        ft_putstr_fd("\nOoupsy pipe c \n", 2);
-                        exit(1);
-                    }
-                pid_fork = fork();
-                if (pid_fork == 0)
+                (token[i + 1] == 10) ? fdw = ft_atoi(args[i + 1]) : fdw;
+                if (token[i] == 1 || token[i] == 2 || token[i] == 4)
+                    dup2(fdw, fd);
+                if (token[i] == 3)
                 {
-                    if (new)
-                    {
-                        close(fd_p[PIPE_OUT]);
-                        dup2(fd_p[PIPE_IN], fdhd);
-                        close(fd_p[PIPE_IN]);
-                    }
-                    path = NULL;
-                    execve2(cmd, *env, path);
-                    exit(0);
+                    dup2(fdw, 1);
+                    dup2(fdw, 2);
                 }
-                else
-                {
-                    if (new)
-                    {
-                        close(fd_p[PIPE_IN]);
-                        write(fd_p[PIPE_OUT], new, ft_strlen(new));
-                        close(fd_p[PIPE_OUT]);
-                    }
-                    wait(NULL);
-                }
+                if (token[i] == 5)
+                    close(fd);
             }
         }
-        exit(0);
+        else if (token[i] >= 6 && token[i] <= 8)
+        {
+            if (token[i] == 6 && (fdw = open(args[i + 1], O_RDONLY)) == -1)
+                ft_putstr_fd("File error\n", 2);
+            (token[i] == 8) ? fdw = ft_atoi(args[i + 1]) : fdw;
+            if (token[i] != 7 && !checkfd(fdw, NULL, 0))
+                dup2(fdw, fd);
+            if (token[i] == 7)
+            {
+                if (new != NULL)
+                    free(new);
+                fdhd = fd;
+                new = here_doc(args[i + 1], token[i + 1], *env);
+            }
+        }
+        i++;
     }
-    else
-        wait(NULL);
+    if (cmd != NULL)
+    {
+        if ((ft_strequ(cmd[0], "exit") || ft_strequ(cmd[0], "cd") ||
+        ft_strequ(cmd[0], "setenv") || ft_strequ(cmd[0], "unsetenv") ||
+        ft_strequ(cmd[0], "echo")) && racco1(cmd, env))
+            racco3(cmd, env);
+        else
+        {
+            if (new)
+                if (pipe(fd_p) < 0)
+                {
+                    ft_putstr_fd("\nOoupsy pipe c \n", 2);
+                    exit(1);
+                }
+            pid_fork = fork();
+            if (pid_fork == 0)
+            {
+                if (new)
+                {
+                    close(fd_p[PIPE_WRITE]);
+                    close(0);
+                    dup2(fd_p[PIPE_READ], 0);
+                }
+                path = NULL;
+                execve2(cmd, *env, path);
+                exit(0);
+            }
+            else
+            {
+                close(fd_p[PIPE_READ]);
+                ft_putstr_fd(new, fd_p[PIPE_WRITE]);
+                close(fd_p[PIPE_WRITE]);
+                waitpid(pid_fork, NULL, 0);
+            }
+        }
+    }
+    getnresetfd(1);
 }

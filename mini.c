@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/23 19:02:51 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:24:18 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,24 +102,22 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token)
 			a.x = i;
 			while (ft_entier(a.ppvr[a.x]) == 1 || a.ppvr[a.x] == -4)
 				a.x++;
-			pid = fork();
-			if (pid == 0)
-			{
-				mainpipe(a, *environ, i);
-				exit(0);
-			}
-			else
-				waitpid(pid, NULL, 0);
+			// pid = fork();
+			// if (pid == 0)
+			// {
+				mainpipe(a, *environ, i, token);
+				// exit(0);
+			// }
+			// else
+				// waitpid(pid, NULL, 0);
 			i = a.x;
-			if ((ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
-				ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv") ||
-				ft_strequ(a.arg[i][0], "echo")) && racco1(a.arg[i], environ))
-					racco3(a.arg[i], environ);
+			// if ((ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
+			// 	ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv") ||
+			// 	ft_strequ(a.arg[i][0], "echo")) && racco1(a.arg[i], environ))
+			// 		racco3(a.arg[i], environ);
 		}
 		else if (a.ppvr[i] == -3)
-		{
 			usered(a.arg[i], token[i], environ);
-		}
 		else if (racco1(a.arg[i], environ) && racco3(a.arg[i], environ) && a.arg[i][0])
 		{
 			pid = fork();

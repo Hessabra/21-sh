@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:56:01 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/23 19:37:53 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/25 19:16:50 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,9 +161,6 @@ char **quotyline(char *arg, int **bs, char **env, t_quotis nbr_quot)
 		while (args[nbr_quot.s])
 		{
 			args[nbr_quot.s] = line(args[nbr_quot.s], env, bs, 0);
-			ft_putstr("\n");
-			ft_putstr(args[nbr_quot.s]);
-			ft_putstr("\n");
 			nbr_quot.s++;
 		}
 		nbr_quot.s = 0;
