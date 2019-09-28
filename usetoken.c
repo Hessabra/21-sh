@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 22:49:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/28 22:36:59 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int         cmdcl(char **args, int *token, int c)
 
     i = 0;
     result = 0;
-
     while (args[i])
     {
         if (token[i] == c)
@@ -36,6 +35,7 @@ void        chack(char **args, int **token)
     int    i;
 
     i = 0;
+
     while (args[i])
     {
         if ((*token)[i] == 10 && !isint(args[i]))
@@ -82,19 +82,19 @@ int         checkfd(int fd, char *amb, int x)
 {
     if (x == 0 && read(fd, NULL, 0) == -1)
     {
-        ft_putstr_fd("21sh: fd: bad file descriptor\n", 2);
+        ft_putstr_fd("21sh: fd: bad file descriptor", 2);
         return (0);
     }
     else if (x == 2 && write(fd, NULL, 0) == -1)
     {
-        ft_putstr_fd("21sh: fd: bad file descriptor\n", 2);
+        ft_putendl_fd("21sh: fd: bad file descriptor", 2);
         return (0);
     }
     else if (x == 1)
     {
         ft_putstr_fd("21sh: ", 2);
         ft_putstr_fd(amb, 2);
-        ft_putstr_fd(": ambiguous redirect\n", 2);
+        ft_putendl_fd(": ambiguous redirect", 2);
         return (0);
     }
     return(1);
@@ -149,6 +149,7 @@ void            usered(char **args, int *token, char ***env)
     int         fdw;
     int         fdhd;
     int         i;
+    int         error;
     int         fd_p[2];
     pid_t       pid_fork;
     char        *path;
@@ -156,15 +157,18 @@ void            usered(char **args, int *token, char ***env)
     char        *new;
     t_dolore    k;
 
+
+    getnresetfd(0);
+    
     i = 0;
     k.i = 0;
     k.x = 0;
+    error = 0;
     cmd = usetoken(args, &token);
     new = NULL;
-
-    getnresetfd(0);
     while (args[i])
     {
+        // dprintf(2, "\n args[%d] is %s with token == %d\n", i, args[i], token[i]);
         fd = 1;
         zappi(token, &i);
         (token[i] >= 6 && token[i] <= 8) ? (fd = 0) : fd;
@@ -173,21 +177,25 @@ void            usered(char **args, int *token, char ***env)
             fd = ft_atoi(args[i]);
             i++;
         }
-        if (token[i] == 8 && token[i + 1] == 11)
+        if (token[i] == 8 && token[i + 1] == 11 && (error = 1))
             checkfd(fd, args[i + 1], 1);
         else if (token[i] >= 1 && token[i] <= 5)
         {
             if (token[i + 1] == 11 && token[i] != 4
                 && (fdw = open(args[i + 1], O_WRONLY | O_CREAT | O_TRUNC,
-                S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+                S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1 && (error = 1))
                 ft_putstr_fd("File error\n", 2);
             else if (token[i + 1] == 11 && token[i] == 4
                 && (fdw = open(args[i + 1], O_WRONLY | O_CREAT | O_APPEND,
-                S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+                S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1 && (error = 1))
                 ft_putstr_fd("File error\n", 2);
             else
             {
-                (token[i + 1] == 10) ? fdw = ft_atoi(args[i + 1]) : fdw;
+                if (token[i + 1] == 10)
+                {
+                    fdw = ft_atoi(args[i + 1]);
+                    (!checkfd(fdw, NULL, 0)) ? error = 1 : fd;
+                }
                 if (token[i] == 1 || token[i] == 2 || token[i] == 4)
                     dup2(fdw, fd);
                 if (token[i] == 3)
@@ -198,13 +206,14 @@ void            usered(char **args, int *token, char ***env)
                 if (token[i] == 5)
                     close(fd);
             }
+            (!checkfd(fd, NULL, 2)) ? error = 1 : fd;
         }
         else if (token[i] >= 6 && token[i] <= 8)
         {
-            if (token[i] == 6 && (fdw = open(args[i + 1], O_RDONLY)) == -1)
+            if (token[i] == 6 && (fdw = open(args[i + 1], O_RDONLY)) == -1 && (error = 1))
                 ft_putstr_fd("File error\n", 2);
             (token[i] == 8) ? fdw = ft_atoi(args[i + 1]) : fdw;
-            if (token[i] != 7 && !checkfd(fdw, NULL, 0))
+            if (token[i] != 7)
                 dup2(fdw, fd);
             if (token[i] == 7)
             {
@@ -213,10 +222,11 @@ void            usered(char **args, int *token, char ***env)
                 fdhd = fd;
                 new = here_doc(args[i + 1], token[i + 1], *env);
             }
+            (!checkfd(fd, NULL, 0) || !checkfd(fdw, NULL, 2)) ? error = 1 : fd;
         }
         i++;
     }
-    if (cmd != NULL)
+    if (!error && cmd != NULL)
     {
         if (ft_strequ(cmd[0], "cat") || ft_strequ(cmd[0], "wc"))
             ft_defult_term();

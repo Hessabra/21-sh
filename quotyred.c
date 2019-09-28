@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 20:26:56 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/28 23:10:17 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int     		nbr_arg2(char *str, int *bs)
 		
 		if (marq == 1 && (str[j] == '>' || str[j] == '<'))
 		{
-			if (str[j - 1] != ' ' && str[j - 1] != '\t' && str[j - 1] != '\n')
+			if (j > 0 && str[j - 1] != ' ' && str[j - 1] != '\t' && str[j - 1] != '\n')
 				result++;
 			if (str[j + 1] == str[j])
 			{
@@ -183,7 +183,10 @@ static int			len_arg2(char *arg, int *bs, int m, int **tok)
 				(*tok)[m] = 10;
 		}
 		if (arg[i] && arg[i] != ' ' && arg[i] != '\t' && arg[i] != '\n')
-			((arg[i] == '>' || arg[i] == '<') && hd == 1) ? (*tok)[m] = 9 : (*tok)[m];
+		{
+			((arg[i] == '>' || arg[i] == '<') && hd == 1 && (*tok)[m] < 10) ? (*tok)[m] = 9 : (*tok)[m];
+		
+		}
 	}
 	return(i * mixed);
 }
@@ -195,6 +198,8 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	int				len_ar;
 	int				*token;
 
+	while (*arg < 33)
+		arg++;
 	nbr_ar = nbr_arg2(arg, *bs);
 	token = (int *)malloc(sizeof(int) * (nbr_ar + 1));
 	*args = (char **)malloc(sizeof(char *) * (nbr_ar + 1));
@@ -232,6 +237,13 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	
 	(*args)[i] = NULL;
 	token[i] = -1;
+	i = 0;
+	while (token[i] > -1)
+	{
+		ft_putnbr_fd(token[i], 2);
+		ft_putchar_fd('\n', 2);
+		i++;
+	}
 	return (token);
 }
 

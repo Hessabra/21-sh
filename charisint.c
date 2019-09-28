@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 21:12:19 by hessabra          #+#    #+#             */
-/*   Updated: 2019/07/23 21:14:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/28 21:01:59 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int     isint(char *str)
 {
-    while (*str)
+    int i;
+
+    i = 0;
+    while (str[i])
     {
-        if (*str > 57 || *str < 48)
+        if (str[i] > 57 || str[i] < 48)
             return (0);
-        str++;
+        i++;
     }
     return (1);
 }

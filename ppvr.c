@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:06:18 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/19 16:48:54 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/28 23:15:07 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ char	**ft_ppvr(char *str, int *bs, int **ppvr)
 			while (ij.j < len)
 				tab_str[ij.i][(ij.j)++] = str[(*p)++];
 			tab_str[ij.i][ij.j] = '\0';
-            if (ft_entier((*ppvr)[ippvr]) == 1 || ft_entier((*ppvr)[ippvr])  == 2 || ft_entier((*ppvr)[ippvr])  == 3)
+            if (ft_entier((*ppvr)[ippvr]) == 1 || ft_entier((*ppvr)[ippvr])  == 2 || (*ppvr)[ippvr] == -3 || (*ppvr)[ippvr] == -4)
                 (*p)++;
             else if (ft_entier((*ppvr)[ippvr])  == 4)
                 *p += 2;

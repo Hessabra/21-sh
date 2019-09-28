@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 22:52:46 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/28 21:32:18 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token)
 	i = 0;
 	while (a.arg[i])
 	{
-		if (a.ppvr[i] == 1 || a.ppvr[i] == -4)
+		if (ft_entier(a.ppvr[i]) == 1 || a.ppvr[i] == -4)
 		{
 			a.x = i;
 			while (ft_entier(a.ppvr[a.x]) == 1 || a.ppvr[a.x] == -4)
@@ -115,7 +115,7 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token)
 			// 	ft_strequ(a.arg[i][0], "echo")) && racco1(a.arg[i], environ))
 			// 		racco3(a.arg[i], environ);
 		}
-		else if (a.ppvr[i] == -3)
+		else if (a.ppvr[i] == -3 || a.ppvr[i] == -2)
 			usered(a.arg[i], token[i], environ);
 		else if (racco1(a.arg[i], environ) && racco3(a.arg[i], environ) && a.arg[i][0])
 		{
@@ -174,47 +174,57 @@ int				main(void)
 	int			*tmpbs;
 	t_read		insert;
 	char		*try;
+	pid_t		pid;
 
-	environ = aloc(environ);
-	ft_setterm();
-	insert.indexfor_history = 0;
-	t.i = 0;
-	try = NULL;
-	while (1)
-	{
-		// signal(SIGINT, mansig);
-		path = NULL;
-		// if (t.i)
-		// {
-		// 	t.i = 0;
-		// 	dfre(arg);
-		// }
-		try = ft_readline(try, &insert);
-		ft_add_history(try, &insert);
-		if (try)
+	// pid = fork();
+	// if (pid == 0)
+	// {
+		environ = aloc(environ);
+		ft_setterm();
+		insert.indexfor_history = 0;
+		t.i = 0;
+		try = NULL;
+		while (1)
 		{
-			effectornot(&bs, try);
-			a.nbr_quot = nbr_quote(try, bs);
-			if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
-				quotiwhile(a.nbr_quot, &try, &bs, &insert);
-				if (ft_strcmp(try, ""))
+			// signal(SIGINT, mansig);
+			path = NULL;
+			// if (t.i)
+			// {
+			// 	t.i = 0;
+			// 	dfre(arg);
+			// }
+			try = ft_readline(try, &insert);
 			ft_add_history(try, &insert);
-			if (synerr(try, bs))
+			if (try)
 			{
-				arg = ft_ppvr(try, bs, &a.ppvr);
-				tmpbs = bs;
-				token = NULL;
-				a.arg = triplp(arg, bs, environ, a, &token);
-				ft_putstr("\n");
-				if (a.arg)
+				effectornot(&bs, try);
+				a.nbr_quot = nbr_quote(try, bs);
+				if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
+					quotiwhile(a.nbr_quot, &try, &bs, &insert);
+					if (ft_strcmp(try, ""))
+				ft_add_history(try, &insert);
+				if (synerr(try, bs))
 				{
-					t.i = 1;
-					if (racc4(a, &environ, &t, path, token))
-						return (1);
+					arg = ft_ppvr(try, bs, &a.ppvr);
+					tmpbs = bs;
+					token = NULL;
+					a.arg = triplp(arg, bs, environ, a, &token);
+					ft_putstr("\n");
+					if (a.arg)
+					{
+						t.i = 1;
+						if (racc4(a, &environ, &t, path, token))
+							return (1);
+					}
 				}
 			}
+			free(try);
 		}
-		// free(try);
-	}
+	// }
+	// else
+	// {
+	// 	wait(NULL);
+	// }
+	
 	return (0);
 }

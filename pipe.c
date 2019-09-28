@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 20:50:01 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/28 22:37:33 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token)
 
 	path = NULL;
 	i = start;
-	
 	fd = (int **)malloc(sizeof(int *) * a.x);
 
 	a.x += start;
@@ -74,8 +73,11 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token)
 					exit(0);
 				}
 			close_all(&fd, a.x);
-			if (a.ppvr[i] == -4)
+			if (a.ppvr[i] == -4 || a.ppvr[i] == -3)
+			{
+				dprintf(2 , "\nThis is token %d == %d\n", i, token[i][0]);
 				usered(a.arg[i], token[i], &env);
+			}
 			else
 				if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
 					ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv")))
