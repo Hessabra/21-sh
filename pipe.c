@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/28 22:37:33 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/29 02:42:39 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			close_all(int ***fd, int x)
 	}
 }
 
-void			mainpipe(t_ppvr a, char **env, int start, int **token)
+void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert)
 {
 	pid_t		exec_pid;
 	int 		i;
@@ -76,7 +76,7 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token)
 			if (a.ppvr[i] == -4 || a.ppvr[i] == -3)
 			{
 				dprintf(2 , "\nThis is token %d == %d\n", i, token[i][0]);
-				usered(a.arg[i], token[i], &env);
+				usered(a.arg[i], token[i], &env, insert);
 			}
 			else
 				if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_edit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:14:45 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 22:47:19 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/29 01:06:59 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef	struct	s_read
 	int		info;
 	char	**history;
 	int		indexfor_history;
+	int		is_quote;
 
 }				t_read;
 t_read *g_insert;

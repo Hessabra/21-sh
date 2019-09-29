@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/28 21:32:18 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/29 02:42:25 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		execve2(char **arg, char **environ, char *path)
 	return (1);
 }
 
-int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token)
+int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_read insert)
 {
 	int			i;
 
@@ -104,7 +104,7 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token)
 			pid = fork();
 			if (pid == 0)
 			{
-				mainpipe(a, *environ, i, token);
+				mainpipe(a, *environ, i, token, insert);
 				exit(0);
 			}
 			else
@@ -116,7 +116,7 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token)
 			// 		racco3(a.arg[i], environ);
 		}
 		else if (a.ppvr[i] == -3 || a.ppvr[i] == -2)
-			usered(a.arg[i], token[i], environ);
+			usered(a.arg[i], token[i], environ, insert);
 		else if (racco1(a.arg[i], environ) && racco3(a.arg[i], environ) && a.arg[i][0])
 		{
 			pid = fork();
@@ -170,6 +170,7 @@ int				main(void)
 	t_dolor		t;
 	extern char	**environ;
 	int			*bs;
+	int			j;
 	int			**token;
 	int			*tmpbs;
 	t_read		insert;
@@ -184,8 +185,10 @@ int				main(void)
 		insert.indexfor_history = 0;
 		t.i = 0;
 		try = NULL;
+		insert.is_quote = 0;
 		while (1)
 		{
+			j = 1;
 			// signal(SIGINT, mansig);
 			path = NULL;
 			// if (t.i)
@@ -193,17 +196,17 @@ int				main(void)
 			// 	t.i = 0;
 			// 	dfre(arg);
 			// }
+			prompt();
 			try = ft_readline(try, &insert);
-			ft_add_history(try, &insert);
 			if (try)
 			{
 				effectornot(&bs, try);
 				a.nbr_quot = nbr_quote(try, bs);
 				if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
-					quotiwhile(a.nbr_quot, &try, &bs, &insert);
-					if (ft_strcmp(try, ""))
-				ft_add_history(try, &insert);
-				if (synerr(try, bs))
+					j = quotiwhile(a.nbr_quot, &try, &bs, &insert);
+				if (ft_strcmp(try, ""))
+					ft_add_history(try, &insert);
+				if (j && synerr(try, bs))
 				{
 					arg = ft_ppvr(try, bs, &a.ppvr);
 					tmpbs = bs;
@@ -213,7 +216,7 @@ int				main(void)
 					if (a.arg)
 					{
 						t.i = 1;
-						if (racc4(a, &environ, &t, path, token))
+						if (racc4(a, &environ, &t, path, token, insert))
 							return (1);
 					}
 				}

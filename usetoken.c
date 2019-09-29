@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/28 22:36:59 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/29 02:45:55 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,9 @@ int         checkfd(int fd, char *amb, int x)
     return(1);
 }
 
-char            *here_doc(char *end, int token, char **env)
+char            *here_doc(char *end, int token, char **env, t_read insert)
 {
     char        *buff;
-    t_read      insert;
     char        *new;
 
     new = ft_strdup("");
@@ -143,7 +142,7 @@ void            getnresetfd(int i)
     }
 }
 
-void            usered(char **args, int *token, char ***env)
+void            usered(char **args, int *token, char ***env, t_read insert)
 {
     int         fd;
     int         fdw;
@@ -220,7 +219,7 @@ void            usered(char **args, int *token, char ***env)
                 if (new != NULL)
                     free(new);
                 fdhd = fd;
-                new = here_doc(args[i + 1], token[i + 1], *env);
+                new = here_doc(args[i + 1], token[i + 1], *env, insert);
             }
             (!checkfd(fd, NULL, 0) || !checkfd(fdw, NULL, 2)) ? error = 1 : fd;
         }

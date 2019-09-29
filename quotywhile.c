@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotywhile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:25:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 16:24:35 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/29 01:33:22 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_quotis 	nbr_quote2(char *arg, int *bs, char c)
 	}
 	return (nbrs);
 }
-t_quotis		quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
+int		quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 {
 	t_quotis    help;
 	char        *buff;
@@ -65,6 +65,13 @@ t_quotis		quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 
 	while (!ft_parite(last.s) || !ft_parite(last.d))
 	{
+		if (insert->is_quote == -1)
+		{
+			insert->is_quote = 0;
+			return (0);
+		}
+		else 
+			insert->is_quote = 1;
 		if (!ft_parite(last.d))
 			ft_printf("\nDquote>>\n");
 		else
@@ -79,10 +86,11 @@ t_quotis		quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 			last.n += help.n;
 			last.s += help.s;
 			
-			buff = ft_jandf(buff, "\n", 1, 0);
+			if (!ft_parite(last.s) || !ft_parite(last.d))
+				buff = ft_jandf(buff, "\n", 1, 0);
 			*arg = ft_jandf(*arg, buff, 0, 1);
 		}
         *bs = jointetoile(*bs, tmbs);
 	}
-	return (last);
+	return (1);
 }

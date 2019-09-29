@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_delect_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:58 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 20:36:42 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/09/29 02:14:35 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,12 @@ void	ft_remove_one(t_read *insert)
 
 void	ft_delete_onechar(t_read *insert)
 {
-	if (insert->linelen == 0)
+	if (insert->linelen == 0 && insert->is_quote == 1)
+	{
+		ioctl(0, TIOCSTI, "\12");
+		insert->is_quote = -1;
+	}
+	else if (insert->linelen == 0)
 		exit(0);
 	if (insert->index >= 0 && insert->index < insert->linelen)
 	{

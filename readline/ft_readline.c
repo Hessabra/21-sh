@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:21:08 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 22:45:23 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/29 02:37:44 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_printdetails(t_read *insert)
 {
-	insert->info = open("/dev/ttys004", O_RDWR);
+	insert->info = open("/dev/ttys001", O_RDWR);
 	ft_putstr_fd("insert->x-> ", insert->info);
 	ft_putnbr_fd(insert->linex, insert->info);
 	ft_putstr_fd("insert->y-> ", insert->info);
@@ -47,7 +47,6 @@ char	*ft_readline(char *line, t_read *insert)
 	ft_setting(insert);
 	g_insert = insert;
 	ft_signal_handler(insert, g_insert);
-	prompt();
 	while (1)
 	{
 		ft_bzero(key, BUFF_SIZE);
@@ -56,6 +55,7 @@ char	*ft_readline(char *line, t_read *insert)
 				(key[0] == ENTER_KEY && key[1] == 0) ||
 				!ft_key_detect(key, insert))
 		{
+			ft_printdetails(insert);
 			ft_moveend(insert);
 			line = ft_strdup(insert->line);
 			// if (!ft_strcmp(line, "cat"))
