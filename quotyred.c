@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/28 23:10:17 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/30 03:15:37 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,17 +198,16 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	int				len_ar;
 	int				*token;
 
-	while (*arg < 33)
+	while (*arg && *arg < 33)
 		arg++;
 	nbr_ar = nbr_arg2(arg, *bs);
 	token = (int *)malloc(sizeof(int) * (nbr_ar + 1));
 	*args = (char **)malloc(sizeof(char *) * (nbr_ar + 1));
 
 	i = 0;
-
 	while (*arg && i < nbr_ar)
 	{
-		while (*arg == ' ' || *arg == '\t' || *arg == '\n')
+		while (*arg && *arg < 33)
 			arg++;
 		len_ar = len_arg2(arg, *bs, i, &token);
 		(*args)[i] = (char *)malloc(sizeof(char) * (len_ar + 1));
@@ -219,9 +218,7 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 		if (token[i] == 1 && (len_ar < 0 || *arg == 34 || *arg == 39))
 			token[i] = 0;
 		if (len_ar < 0)
-		{
 			(*args)[i] = mixed((*args)[i], bs, env);
-		}
 		else
 		{
 			if (*arg == 34)
@@ -234,7 +231,6 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 		i++;
 		arg += ft_entier(len_ar);
 	}
-	
 	(*args)[i] = NULL;
 	token[i] = -1;
 	i = 0;

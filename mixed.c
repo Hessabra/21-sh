@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 20:57:21 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/23 19:30:06 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/30 03:15:18 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,12 @@ char        *mixed(char *str, int **bs, char **env)
     char    *new;
     char    **tmp;
     int     i;
+    int     nbr_pa;
     
-    tmp = (char **)malloc(sizeof(char *) * (nbrparts(str, *bs) + 1));
+    nbr_pa = nbrparts(str, *bs);
+    tmp = (char **)malloc(sizeof(char *) * (nbr_pa + 1));
     splity(str, &tmp, bs, env);
+    tmp[nbr_pa] = NULL;
     new = ft_strdup("");
     i = 0;
     while (tmp[i])
@@ -117,6 +120,7 @@ char        *mixed(char *str, int **bs, char **env)
         new = ft_jandf(new, tmp[i], 1, 1);
         i++;
     }
-    free(tmp);
+    //free error ''''''>''''
+    //    free(tmp);
     return (new);
 }

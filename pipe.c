@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/29 02:42:39 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/30 00:25:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert)
 
 	path = NULL;
 	i = start;
-	fd = (int **)malloc(sizeof(int *) * a.x);
+	fd = (int **)malloc(sizeof(int *) * (a.x - start));
 
-	a.x += start;
+	// a.x += start;
 
 	while (i < a.x)
 	{
@@ -66,18 +66,15 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert)
 					ft_putendl_fd("Fail to dup2", 2);
 					exit(0);
 				}
-			if (i == start || i + 1 <= a.x)
+			if (i < a.x)
 				if (dup2(fd[i - start][PIPE_IN], 1) < 0)
 				{
 					ft_putendl_fd("Fail to dup2", 2);
 					exit(0);
 				}
-			close_all(&fd, a.x);
-			if (a.ppvr[i] == -4 || a.ppvr[i] == -3)
-			{
-				dprintf(2 , "\nThis is token %d == %d\n", i, token[i][0]);
+			close_all(&fd, a.x - start);
+			if (a.ppvr[i] == -4 || a.ppvr[i] == -3 || a.ppvr[i] == -2)
 				usered(a.arg[i], token[i], &env, insert);
-			}
 			else
 				if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
 					ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv")))
@@ -87,6 +84,6 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert)
 		else
 			i++;
 	}
-	close_all(&fd, a.x);
+	close_all(&fd, a.x - start);
 	waitpid(exec_pid, &status, 0);
 }

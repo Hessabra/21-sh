@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/29 02:45:55 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/30 02:01:07 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,9 @@ void            usered(char **args, int *token, char ***env, t_read insert)
                 if (token[i + 1] == 10)
                 {
                     fdw = ft_atoi(args[i + 1]);
-                    (!checkfd(fdw, NULL, 0)) ? error = 1 : fd;
+                    (!checkfd(fdw, NULL, 2)) ? error = 1 : fd;
                 }
+                (token[i] != 5 && !checkfd(fd, NULL, 0)) ? error = 1 : fd;
                 if (token[i] == 1 || token[i] == 2 || token[i] == 4)
                     dup2(fdw, fd);
                 if (token[i] == 3)
@@ -205,13 +206,13 @@ void            usered(char **args, int *token, char ***env, t_read insert)
                 if (token[i] == 5)
                     close(fd);
             }
-            (!checkfd(fd, NULL, 2)) ? error = 1 : fd;
         }
         else if (token[i] >= 6 && token[i] <= 8)
         {
             if (token[i] == 6 && (fdw = open(args[i + 1], O_RDONLY)) == -1 && (error = 1))
                 ft_putstr_fd("File error\n", 2);
             (token[i] == 8) ? fdw = ft_atoi(args[i + 1]) : fdw;
+             (!checkfd(fd, NULL, 2) || (token[i] != 6 && !checkfd(fdw, NULL, 0))) ? error = 1 : fd;
             if (token[i] != 7)
                 dup2(fdw, fd);
             if (token[i] == 7)
@@ -221,17 +222,16 @@ void            usered(char **args, int *token, char ***env, t_read insert)
                 fdhd = fd;
                 new = here_doc(args[i + 1], token[i + 1], *env, insert);
             }
-            (!checkfd(fd, NULL, 0) || !checkfd(fdw, NULL, 2)) ? error = 1 : fd;
         }
         i++;
     }
     if (!error && cmd != NULL)
     {
-        if (ft_strequ(cmd[0], "cat") || ft_strequ(cmd[0], "wc"))
+        if (ft_strequ(cmd[0], "cat") || ft_strequ(cmd[0], "wc") || ft_strequ(cmd[0], "sort"))
             ft_defult_term();
         if ((ft_strequ(cmd[0], "exit") || ft_strequ(cmd[0], "cd") ||
-        ft_strequ(cmd[0], "setenv") || ft_strequ(cmd[0], "unsetenv") ||
-        ft_strequ(cmd[0], "echo")) && racco1(cmd, env))
+            ft_strequ(cmd[0], "setenv") || ft_strequ(cmd[0], "unsetenv"))
+            && racco1(cmd, env))
             racco3(cmd, env);
         else
         {
