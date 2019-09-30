@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/30 02:01:07 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:26:54 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ void            usered(char **args, int *token, char ***env, t_read insert)
             if (token[i] == 6 && (fdw = open(args[i + 1], O_RDONLY)) == -1 && (error = 1))
                 ft_putstr_fd("File error\n", 2);
             (token[i] == 8) ? fdw = ft_atoi(args[i + 1]) : fdw;
-             (!checkfd(fd, NULL, 2) || (token[i] != 6 && !checkfd(fdw, NULL, 0))) ? error = 1 : fd;
+             (!checkfd(fd, NULL, 2) || (token[i] > 7 && !checkfd(fdw, NULL, 0))) ? error = 1 : fd;
             if (token[i] != 7)
                 dup2(fdw, fd);
             if (token[i] == 7)

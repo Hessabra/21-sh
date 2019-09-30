@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:56:01 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/30 04:26:39 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/30 04:28:28 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ static int		lenthargs(char *arg, int *bs, int m)
 	// return (i * mixed);
 	static int start = 0;
 	int		i;
-	int		j;
 	int		hd;
 	int		mixed;
 	
