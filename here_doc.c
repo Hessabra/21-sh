@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/01 21:11:30 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/01 22:57:43 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,8 @@ char            *here_doc(char *end, int token, char **env, t_read insert)
     return (new);
 }
 
-char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env)
+char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read insert)
 {
-	t_read	insert;
 	char	**strings;
 	char	*stop_heredo;
 	int		isdolar;

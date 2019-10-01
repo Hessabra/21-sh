@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/01 21:20:19 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 00:49:26 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_rea
 	int			i;
 	char		**string_heredoc;
 
-	string_heredoc = use_heredoc(a.ppvr, token, a.arg, *environ);
+	string_heredoc = use_heredoc(a.ppvr, token, a.arg, *environ, insert);
 	i = 0;
 	while (a.arg[i])
 	{
@@ -106,11 +106,14 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_rea
 			pid = fork();
 			if (pid == 0)
 			{
-				mainpipe(a, *environ, i, token, insert, &string_heredoc);
+				mainpipe(a, *environ, i, token, &string_heredoc);
 				exit(0);
 			}
 			else
+			{
 				waitpid(pid, NULL, 0);
+				string_heredoc += ft_makesure(a.ppvr, token, i, a.x + 1);
+			}
 			i = a.x;
 			// if ((ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
 			// 	ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv") ||
@@ -118,7 +121,7 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_rea
 			// 		racco3(a.arg[i], environ);
 		}
 		else if (a.ppvr[i] == -3 || a.ppvr[i] == -2)
-			usered(a.arg[i], token[i], environ, insert, &string_heredoc);
+			usered(a.arg[i], token[i], environ, &string_heredoc);
 		else if (racco1(a.arg[i], environ) && racco3(a.arg[i], environ) && a.arg[i][0])
 		{
 			pid = fork();
@@ -177,7 +180,7 @@ int				main(void)
 	int			*tmpbs;
 	t_read		insert;
 	char		*try;
-	pid_t		pid;
+	// pid_t		pid;
 
 	// pid = fork();
 	// if (pid == 0)

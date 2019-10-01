@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/01 21:30:52 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 00:46:40 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,7 @@ void			close_all(int ***fd, int x)
 	}
 }
 
-int				makesure(int ppvr, int *token)
-{
-	if (ppvr < -1 && ppvr > -5)
-	{
-		while (*token > -1)
-		{
-			if (*token == 7)
-				return (1);
-			token++;
-		}
-	}
-	return (1);
-}
-
-void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert, char ***string_heredoc)
+void			mainpipe(t_ppvr a, char **env, int start, int **token, char ***string_heredoc)
 {
 	pid_t		exec_pid;
 	int 		i;
@@ -73,6 +59,7 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert, cha
 		if (exec_pid == 0)
 		{
 			
+				dprintf(2 ,"\n test == oups **string_heredoc == %s \n", **string_heredoc);
 			if (i > start)
 			{
 				if (dup2(fd[i - start - 1][PIPE_OUT], 0) < 0)
@@ -90,12 +77,8 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert, cha
 			close_all(&fd, a.x - start);
 			if (a.ppvr[i] == -4 || a.ppvr[i] == -3 || a.ppvr[i] == -2)
 			{
-				// if (makesure(a.ppvr[i], token[i]))
-				// {
-				// 	close(0);
-				// 	close(1);
-				// }
-				usered(a.arg[i], token[i], &env, insert, string_heredoc);
+				*string_heredoc += ft_makesure(a.ppvr, token, start, i);
+				usered(a.arg[i], token[i], &env, string_heredoc);
 			}
 			else
 				if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
@@ -108,4 +91,5 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert, cha
 	}
 	close_all(&fd, a.x - start);
 	waitpid(exec_pid, &status, 0);
+
 }

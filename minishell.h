@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/01 21:19:09 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 00:32:12 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_ppvr
 
 pid_t       pid;
 
+int			ft_makesure(int *ppvr, int **token, int start, int index_now);
 int         *applyint(int **tabe, int x);
 char        **quotyred(char *arg, int **bs, char **env, t_quotis nbr_quot, int **token);
 int         *jointetoile(int *a, int *b);
@@ -90,12 +91,12 @@ int			execve2(char **arg, char **environ, char *path);
 int			pipey(int nbr_pipe, char ***arg, char **env);
 int			racco1(char **arg, char ***env);
 int			racco3(char **arg, char ***env);
-char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env);
+char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read insert);
 int         spaceornot(char *str);
 char        *mixed2(char *str, int **bs, char **env);
-void		mainpipe(t_ppvr a, char **env, int i, int **token, t_read insert, char ***string_heredoc);
+void		mainpipe(t_ppvr a, char **env, int i, int **token, char ***string_heredoc);
 int			quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert);
 void        getnresetfd(int i);
-void        usered(char **args, int *token, char ***env, t_read insert, char ***string_heredoc);
+void        usered(char **args, int *token, char ***env, char ***string_heredoc);
 
 #endif
