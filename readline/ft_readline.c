@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:21:08 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/29 02:37:44 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/09/30 22:07:53 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ char	*ft_readline(char *line, t_read *insert)
 		if ((ret = read(0, &key, BUFF_SIZE)) == -1 ||
 				(key[0] == ENTER_KEY && key[1] == 0) ||
 				!ft_key_detect(key, insert))
+				
 		{
-			ft_printdetails(insert);
+			// ft_printdetails(insert);
 			ft_moveend(insert);
 			line = ft_strdup(insert->line);
 			// if (!ft_strcmp(line, "cat"))

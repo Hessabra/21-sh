@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/30 18:26:54 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/01 21:16:23 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int         checkfd(int fd, char *amb, int x)
 {
     if (x == 0 && read(fd, NULL, 0) == -1)
     {
-        ft_putstr_fd("21sh: fd: bad file descriptor", 2);
+        ft_putendl_fd("21sh: fd: bad file descriptor", 2);
         return (0);
     }
     else if (x == 2 && write(fd, NULL, 0) == -1)
@@ -100,30 +100,6 @@ int         checkfd(int fd, char *amb, int x)
     return(1);
 }
 
-char            *here_doc(char *end, int token, char **env, t_read insert)
-{
-    char        *buff;
-    char        *new;
-
-    new = ft_strdup("");
-    ft_putstr(">>\n");
-    buff = NULL;
-    while ((buff = ft_readline(buff, &insert)))
-    {
-        if (ft_strequ(buff, end))
-            break ;
-        new = ft_jandf(new, buff, 1, 1);
-        ft_putstr("\n>>\n");
-    }
-    ft_putchar('\n');
-    free(buff);
-    buff = new;
-    if (token == 12)
-        new = dolor2(new, env);
-    free(buff);
-    return (new);
-}
-
 void            getnresetfd(int i)
 {
     static int  fd[3];
@@ -139,14 +115,16 @@ void            getnresetfd(int i)
         dup2(fd[0], 0);
         dup2(fd[1], 1);
         dup2(fd[2], 2);
+        close(fd[0]);
+        close(fd[1]);
+        close(fd[2]);
     }
 }
 
-void            usered(char **args, int *token, char ***env, t_read insert)
+void            usered(char **args, int *token, char ***env, t_read insert, char ***string_heredoc)
 {
     int         fd;
     int         fdw;
-    int         fdhd;
     int         i;
     int         error;
     int         fd_p[2];
@@ -166,8 +144,7 @@ void            usered(char **args, int *token, char ***env, t_read insert)
     cmd = usetoken(args, &token);
     new = NULL;
     while (args[i])
-    {
-        // dprintf(2, "\n args[%d] is %s with token == %d\n", i, args[i], token[i]);
+    {  
         fd = 1;
         zappi(token, &i);
         (token[i] >= 6 && token[i] <= 8) ? (fd = 0) : fd;
@@ -193,9 +170,9 @@ void            usered(char **args, int *token, char ***env, t_read insert)
                 if (token[i + 1] == 10)
                 {
                     fdw = ft_atoi(args[i + 1]);
-                    (!checkfd(fdw, NULL, 2)) ? error = 1 : fd;
+                    // (!checkfd(fdw, NULL, 2)) ? error = 1 : fd;
                 }
-                (token[i] != 5 && !checkfd(fd, NULL, 0)) ? error = 1 : fd;
+                // (token[i] != 5 && !checkfd(fd, NULL, 0)) ? error = 1 : fd;
                 if (token[i] == 1 || token[i] == 2 || token[i] == 4)
                     dup2(fdw, fd);
                 if (token[i] == 3)
@@ -209,18 +186,17 @@ void            usered(char **args, int *token, char ***env, t_read insert)
         }
         else if (token[i] >= 6 && token[i] <= 8)
         {
+            dprintf(2, "\n args[%d] is %s with token == %d\n", i, args[i], token[i]);
             if (token[i] == 6 && (fdw = open(args[i + 1], O_RDONLY)) == -1 && (error = 1))
                 ft_putstr_fd("File error\n", 2);
             (token[i] == 8) ? fdw = ft_atoi(args[i + 1]) : fdw;
-             (!checkfd(fd, NULL, 2) || (token[i] > 7 && !checkfd(fdw, NULL, 0))) ? error = 1 : fd;
+            //  (!checkfd(fd, NULL, 2) || (token[i] > 7 && !checkfd(fdw, NULL, 0))) ? error = 1 : fd;
             if (token[i] != 7)
                 dup2(fdw, fd);
             if (token[i] == 7)
             {
-                if (new != NULL)
-                    free(new);
-                fdhd = fd;
-                new = here_doc(args[i + 1], token[i + 1], *env, insert);
+                new = **string_heredoc;
+                (*string_heredoc)++;
             }
         }
         i++;

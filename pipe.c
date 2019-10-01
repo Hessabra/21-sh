@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/30 00:25:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/01 21:30:52 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,21 @@ void			close_all(int ***fd, int x)
 	}
 }
 
-void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert)
+int				makesure(int ppvr, int *token)
+{
+	if (ppvr < -1 && ppvr > -5)
+	{
+		while (*token > -1)
+		{
+			if (*token == 7)
+				return (1);
+			token++;
+		}
+	}
+	return (1);
+}
+
+void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert, char ***string_heredoc)
 {
 	pid_t		exec_pid;
 	int 		i;
@@ -39,9 +53,8 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert)
 	path = NULL;
 	i = start;
 	fd = (int **)malloc(sizeof(int *) * (a.x - start));
-
+	getnresetfd(0);
 	// a.x += start;
-
 	while (i < a.x)
 	{
 		fd[i - start] = (int *)malloc(sizeof(int) * 2);
@@ -54,18 +67,20 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert)
 	}
 
 	i = start;
-
 	while (i <= a.x)
 	{
 		exec_pid = fork();
 		if (exec_pid == 0)
 		{
+			
 			if (i > start)
+			{
 				if (dup2(fd[i - start - 1][PIPE_OUT], 0) < 0)
 				{
 					ft_putendl_fd("Fail to dup2", 2);
 					exit(0);
 				}
+			}
 			if (i < a.x)
 				if (dup2(fd[i - start][PIPE_IN], 1) < 0)
 				{
@@ -74,7 +89,14 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, t_read insert)
 				}
 			close_all(&fd, a.x - start);
 			if (a.ppvr[i] == -4 || a.ppvr[i] == -3 || a.ppvr[i] == -2)
-				usered(a.arg[i], token[i], &env, insert);
+			{
+				// if (makesure(a.ppvr[i], token[i]))
+				// {
+				// 	close(0);
+				// 	close(1);
+				// }
+				usered(a.arg[i], token[i], &env, insert, string_heredoc);
+			}
 			else
 				if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
 					ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv")))
