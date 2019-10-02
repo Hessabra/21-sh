@@ -6,17 +6,17 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 17:22:02 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/28 23:12:29 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 03:42:26 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char        ***triplp(char **arg, int *bs, char **env, t_ppvr a, int ***token)
+char		***triplp(char **arg, int *bs, char **env, t_ppvr a, int ***token)
 {
-	int     i;
-	int     lentab;
-	char    ***tabe;
+	int		i;
+	int		lentab;
+	char	***tabe;
 
 	lentab = ft_tablen(arg);
 	tabe = (char ***)malloc(sizeof(char **) * (lentab + 1));

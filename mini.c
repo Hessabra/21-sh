@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 01:44:58 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/02 03:45:06 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		execve2(char **arg, char **environ, char *path)
 {
 	int			x;
 	char		*tmp;
-	
+
 	x = ft_know(environ, "PATH");
 	if (!(path = checking(arg[0], (environ[x]) + 5, x)) && arg[0])
 	{
@@ -89,7 +89,7 @@ int		execve2(char **arg, char **environ, char *path)
 	return (1);
 }
 
-int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_read insert)
+int				racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_read insert)
 {
 	int			i;
 	char		**string_heredoc;
@@ -115,10 +115,6 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_rea
 				string_heredoc += ft_makesure(a.ppvr, token, i, a.x + 1);
 			}
 			i = a.x;
-			// if ((ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
-			// 	ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv") ||
-			// 	ft_strequ(a.arg[i][0], "echo")) && racco1(a.arg[i], environ))
-			// 		racco3(a.arg[i], environ);
 		}
 		else if (a.ppvr[i] == -3 || a.ppvr[i] == -2)
 			usered(a.arg[i], token[i], environ, &string_heredoc);
@@ -139,7 +135,7 @@ int		racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_rea
 	}
 	return (0);
 }
-static t_quotis nbr_quote(char *arg, int *bs)
+static t_quotis	nbr_quote(char *arg, int *bs)
 {
 	t_quotis	nbrs;
 	int			mark;
@@ -185,53 +181,47 @@ int				main(void)
 	// pid = fork();
 	// if (pid == 0)
 	// {
-		environ = aloc(environ);
-		ft_setterm();
-		insert.indexfor_history = 0;
-		t.i = 0;
-		try = NULL;
-		insert.is_quote = 0;
-		while (1)
+	environ = aloc(environ);
+	ft_setterm();
+	insert.indexfor_history = 0;
+	t.i = 0;
+	try = NULL;
+	insert.is_quote = 0;
+	while (1)
+	{
+		j = 1;
+		path = NULL;
+		prompt();
+		try = ft_readline(try, &insert);
+		if (try)
 		{
-			j = 1;
-			// signal(SIGINT, mansig);
-			path = NULL;
-			// if (t.i)
-			// {
-			// 	t.i = 0;
-			// 	dfre(arg);
-			// }
-			prompt();
-			try = ft_readline(try, &insert);
-			if (try)
+			effectornot(&bs, try);
+			a.nbr_quot = nbr_quote(try, bs);
+			if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
+				j = quotiwhile(a.nbr_quot, &try, &bs, &insert);
+			ft_add_history(try, &insert);
+			if (j && synerr(try, bs))
 			{
-				effectornot(&bs, try);
-				a.nbr_quot = nbr_quote(try, bs);
-				if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
-					j = quotiwhile(a.nbr_quot, &try, &bs, &insert);
-					ft_add_history(try, &insert);
-				if (j && synerr(try, bs))
+				arg = ft_ppvr(try, bs, &a.ppvr);
+				tmpbs = bs;
+				token = NULL;
+				a.arg = triplp(arg, bs, environ, a, &token);
+				ft_putstr("\n");
+				if (a.arg)
 				{
-					arg = ft_ppvr(try, bs, &a.ppvr);
-					tmpbs = bs;
-					token = NULL;
-					a.arg = triplp(arg, bs, environ, a, &token);
-					ft_putstr("\n");
-					if (a.arg)
-					{
-						t.i = 1;
-						if (racc4(a, &environ, &t, path, token, insert))
-							return (1);
-					}
+					t.i = 1;
+					if (racc4(a, &environ, &t, path, token, insert))
+						return (1);
 				}
 			}
-			free(try);
 		}
+		free(try);
+	}
 	// }
 	// else
 	// {
 	// 	wait(NULL);
 	// }
-	
+
 	return (0);
 }

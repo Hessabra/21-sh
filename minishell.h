@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 00:32:12 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 03:21:17 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <fcntl.h>
+# define PIPE_WRITE 1
+# define PIPE_READ 0
 
 typedef struct	s_dolore
 {

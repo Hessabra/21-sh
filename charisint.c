@@ -6,22 +6,22 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 21:12:19 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/28 21:01:59 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 04:03:04 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int     isint(char *str)
+int		isint(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] > 57 || str[i] < 48)
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] > 57 || str[i] < 48)
+			return (0);
+		i++;
+	}
+	return (1);
 }

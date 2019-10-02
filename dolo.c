@@ -6,24 +6,24 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 21:53:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/07/31 23:09:54 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 03:55:30 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int ft_aln(char str)
+static int	ft_aln(char str)
 {
 	if (!(ft_isalnum(str)) && str != '_')
 		return (0);
 	return (1);
 }
 
-static void racc1(char **fin, char **env, char *s, t_dolor *t)
+static void	racc1(char **fin, char **env, char *s, t_dolor *t)
 {
-	char *var;
-	int k;
-	int j;
+	char	*var;
+	int		k;
+	int		j;
 
 	(t->i)++;
 	var = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
@@ -42,10 +42,10 @@ static void racc1(char **fin, char **env, char *s, t_dolor *t)
 	free(var);
 }
 
-static int racc2(char **fin, char **env, char *s, t_dolor t)
+static int	racc2(char **fin, char **env, char *s, t_dolor t)
 {
-	char *var;
-	int j;
+	char	*var;
+	int		j;
 
 	if (!(s[t.i + 1]) || s[t.i + 1] == '/')
 	{
@@ -70,7 +70,7 @@ static int racc2(char **fin, char **env, char *s, t_dolor t)
 	return (1);
 }
 
-static void racc3(char **fin, char **env, char *s, t_dolor *t)
+static void	racc3(char **fin, char **env, char *s, t_dolor *t)
 {
 	if (t->i == 0)
 	{
@@ -98,7 +98,6 @@ char			*dolor1(char *s, char **env, int **bs, int quot)
 	backslash = 1;
 	while (s[t.i])
 	{
-		// ft_putchar(s[t.i]);
 		backslash = 1;
 		if (s[t.i] == 92)
 		{

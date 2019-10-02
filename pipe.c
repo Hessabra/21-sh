@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 02:21:15 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/02 03:03:08 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, char ***string_her
 	i = start;
 	fd = (int **)malloc(sizeof(int *) * (a.x - start));
 	getnresetfd(0);
-	// a.x += start;
 	while (i < a.x)
 	{
 		fd[i - start] = (int *)malloc(sizeof(int) * 2);

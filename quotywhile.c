@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:25:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/30 18:28:02 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 04:14:24 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static t_quotis 	nbr_quote2(char *arg, int *bs, char c)
 {
-	t_quotis	nbrs;
-	int			mark;
-	int			start;
+	t_quotis		nbrs;
+	int				mark;
+	int				start;
 
 	nbrs.s = 0;
 	nbrs.d = 0;
@@ -57,11 +57,11 @@ static t_quotis 	nbr_quote2(char *arg, int *bs, char c)
 	}
 	return (nbrs);
 }
-int		quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
+int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 {
-	t_quotis    help;
-	char        *buff;
-    int         *tmbs;
+	t_quotis	help;
+	char		*buff;
+    int			*tmbs;
 
 	while (!ft_parite(last.s) || !ft_parite(last.d))
 	{
@@ -81,11 +81,9 @@ int		quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 		if (buff)
 		{
 			help = nbr_quote2(buff, tmbs, (!ft_parite(last.s)) ? 39 : 34);
-
 			last.d += help.d;
 			last.n += help.n;
-			last.s += help.s;
-			
+			last.s += help.s;		
 			if (!ft_parite(last.s) || !ft_parite(last.d))
 				buff = ft_jandf(buff, "\n", 1, 0);
 			*arg = ft_jandf(*arg, buff, 0, 1);

@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 01:53:17 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/02 04:11:27 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			how_many_heredoc(int *ppvr, int **token)
 			j = 0;
 			while (token[i][j] > -1)
 			{
-				(token[i][j] == 7) ? count++ : count; 
+				(token[i][j] == 7) ? count++ : count;
 				j++;
 			}
 		}
@@ -47,42 +47,42 @@ int			stop_heredoc(int *token, char **arg, char **stop_heredo)
 	return (token[i]);
 }
 
-char            *here_doc(char *end, int token, char **env, t_read insert)
+char		*here_doc(char *end, int token, char **env, t_read insert)
 {
-    char        *buff;
-    char        *new;
+	char	*buff;
+	char	*new;
 
-    new = ft_strdup("");
-    ft_putstr(">>\n");
-    buff = NULL;
+	new = ft_strdup("");
+	ft_putstr(">>\n");
+	buff = NULL;
 	if (insert.is_quote == -1)
 	{
 		insert.is_quote = 0;
 		return (0);
 	}
-	else 
+	else
 		insert.is_quote = 1;
-    while ((buff = ft_readline(buff, &insert)))
-    {
+	while ((buff = ft_readline(buff, &insert)))
+	{
 		if (insert.is_quote == -1)
 		{
 			insert.is_quote = 0;
 			return (0);
 		}
-		else 
+		else
 			insert.is_quote = 1;
-        if (ft_strequ(buff, end))
-            break ;
-        new = ft_jandf(new, buff, 1, 1);
-	ft_putstr_fd("\n>>\n", 2);
-    }
-    ft_putchar('\n');
-    free(buff);
-    buff = new;
-    if (token == 12)
-        new = dolor2(new, env);
-    free(buff);
-    return (new);
+		if (ft_strequ(buff, end))
+			break ;
+		new = ft_jandf(new, buff, 1, 1);
+		ft_putstr_fd("\n>>\n", 2);
+	}
+	ft_putchar('\n');
+	free(buff);
+	buff = new;
+	if (token == 12)
+		new = dolor2(new, env);
+	free(buff);
+	return (new);
 }
 
 char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read insert)

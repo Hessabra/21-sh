@@ -6,58 +6,58 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/30 03:15:37 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 03:29:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void        zaapi(char *str, int *i, int **bs, char c)
+static void			zaapi(char *str, int *i, int **bs, char c)
 {
-    (*i)++;
-    while (str[*i] && str[*i] != c)
-    {
-        if (c != 39 && str[*i] == 92)
-        {
-            *i += ft_entier(**bs) - 1;
-            (**bs > 0) ? (*i)++ : *i;
-            (*i)++;
-        }
-       (*i)++;
-    }
+	(*i)++;
+	while (str[*i] && str[*i] != c)
+	{
+		if (c != 39 && str[*i] == 92)
+		{
+			*i += ft_entier(**bs) - 1;
+			(**bs > 0) ? (*i)++ : *i;
+			(*i)++;
+		}
+		(*i)++;
+	}
 }
 
-static void        	zaapin(char *str, int *i, int **bs)
+static void			zaapin(char *str, int *i, int **bs)
 {
-    while (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != '\n'
-		&& str[*i] != '>' && str[*i] != 34 && str[*i] != 39
-		&& !ft_strnequ(str + *i, "&>", 2) && str[*i] != '<')
-    {
-        if (str[*i] == 92)
-        {
-            *i += ft_entier(**bs) - 1;
-            (**bs > 0) ? (*i)++ : *i;
-            (*i)++;
-        }
-       (*i)++;
-    }
+	while (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != '\n'
+			&& str[*i] != '>' && str[*i] != 34 && str[*i] != 39
+			&& !ft_strnequ(str + *i, "&>", 2) && str[*i] != '<')
+	{
+		if (str[*i] == 92)
+		{
+			*i += ft_entier(**bs) - 1;
+			(**bs > 0) ? (*i)++ : *i;
+			(*i)++;
+		}
+		(*i)++;
+	}
 }
 
-static int     		nbr_arg2(char *str, int *bs)
+static int			nbr_arg2(char *str, int *bs)
 {
-    int result;
-    int marq;
-    int j;
-    int i;
+	int				result;
+	int				marq;
+	int				j;
+	int				i;
 
-    result = 0;
-    i = -1;
-    j = 0;
-    marq = 1;
-    while(str[j])
-    {
-        i = 1;
-		
+	result = 0;
+	i = -1;
+	j = 0;
+	marq = 1;
+	while(str[j])
+	{
+		i = 1;
+
 		if (marq == 1 && (str[j] == '>' || str[j] == '<'))
 		{
 			if (j > 0 && str[j - 1] != ' ' && str[j - 1] != '\t' && str[j - 1] != '\n')
@@ -71,37 +71,37 @@ static int     		nbr_arg2(char *str, int *bs)
 				result++;
 			marq = 1;
 		}
-        if (str[j] == 92)
-        {
-            (*bs > 0) ? i = 0 : i;
-            j += ft_entier(*bs);
-            bs++;
-        }
-        if (str[j] == 39 || str[j] == 34)
-        {
-            if (marq == 1 && (str[j] == 39 || (str[j] == 34 && i)))
-                marq = 0;
-            else if (str[j] == 39 || (str[j] == 34 && i))
-                marq = 1;
-        }
-        if (i && str[j] && (str[j] == ' ' && marq) && str[j + 1] && str[j + 1] > 32)
-            result++;
-        j++;
-    }
-    if (i != -1)
-        result++;
-    return (result);
+		if (str[j] == 92)
+		{
+			(*bs > 0) ? i = 0 : i;
+			j += ft_entier(*bs);
+			bs++;
+		}
+		if (str[j] == 39 || str[j] == 34)
+		{
+			if (marq == 1 && (str[j] == 39 || (str[j] == 34 && i)))
+				marq = 0;
+			else if (str[j] == 39 || (str[j] == 34 && i))
+				marq = 1;
+		}
+		if (i && str[j] && (str[j] == ' ' && marq) && str[j + 1] && str[j + 1] > 32)
+			result++;
+		j++;
+	}
+	if (i != -1)
+		result++;
+	return (result);
 }
 
 static int			len_arg2(char *arg, int *bs, int m, int **tok)
 {
-	static int start = 0;
-	static int	mark = 0;
-	int		i;
-	int		j;
-	int		hd;
-	int		mixed;
-	
+	static int		start = 0;
+	static int		mark = 0;
+	int				i;
+	int				j;
+	int				hd;
+	int				mixed;
+
 	(*tok)[m] = 0;
 	mixed = 1;
 	(m == 0) ? start = 0 : start;
@@ -157,7 +157,7 @@ static int			len_arg2(char *arg, int *bs, int m, int **tok)
 	{
 		hd = 1;
 		while (arg[i] && arg[i] != ' ' && arg[i] != '\t' && arg[i] != '\n'
-		&& arg[i] != '>' && !ft_strnequ(arg + i, "&>", 2) && arg[i] != '<')
+				&& arg[i] != '>' && !ft_strnequ(arg + i, "&>", 2) && arg[i] != '<')
 		{
 			if ((i == 0 || arg[i - 1] > 32) && (arg[i] == 34 || arg[i] == 39))
 			{
@@ -185,7 +185,7 @@ static int			len_arg2(char *arg, int *bs, int m, int **tok)
 		if (arg[i] && arg[i] != ' ' && arg[i] != '\t' && arg[i] != '\n')
 		{
 			((arg[i] == '>' || arg[i] == '<') && hd == 1 && (*tok)[m] < 10) ? (*tok)[m] = 9 : (*tok)[m];
-		
+
 		}
 	}
 	return(i * mixed);
@@ -247,11 +247,11 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
  *  In the first case I should make another spliting functions
  *  that takes into consideration the '\' (ascii code 92)
  * 	>>>> DONE
-*/
- 
-char           		 **quotyred(char *arg, int **bs, char **env, t_quotis nbr_quot, int **token)
+ */
+
+char				**quotyred(char *arg, int **bs, char **env, t_quotis nbr_quot, int **token)
 {
-	char        **args;
+	char			**args;
 
 	nbr_quot.d = 0;
 	*token = alloc_args(arg, &args, env, bs);
