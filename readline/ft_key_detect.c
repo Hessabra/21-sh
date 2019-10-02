@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_detect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:57:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 20:35:47 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/02 01:58:50 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int	ft_key_moves(char *key, t_read *insert)
 		ft_movecursor_left(insert, key);
 	else if (MOVE_UP)
 		ft_movecursor_up(insert);
-	else if (MOVE_DOWN)
+	else if (MV_DWN)
 		ft_movecursor_down(insert);
 	else if (MOVE_START)
 		ft_movestart(insert);
 	else if (MOVE_END)
 		ft_moveend(insert);
-	else if (MOVE_NEXT_WORD)
+	else if (MV_NEXT)
 		ft_movecursor_next_word(insert);
-	else if (MOVE_BACK_WORD)
+	else if (MV_BACK)
 		ft_movecursor_back_word(insert, key);
 	else
 		return (0);

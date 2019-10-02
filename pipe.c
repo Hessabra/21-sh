@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 00:46:40 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 02:21:15 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, char ***string_her
 		exec_pid = fork();
 		if (exec_pid == 0)
 		{
-			
-				dprintf(2 ,"\n test == oups **string_heredoc == %s \n", **string_heredoc);
 			if (i > start)
 			{
 				if (dup2(fd[i - start - 1][PIPE_OUT], 0) < 0)

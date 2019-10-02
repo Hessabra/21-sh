@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/01 22:57:43 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 01:53:17 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,26 @@ char            *here_doc(char *end, int token, char **env, t_read insert)
     new = ft_strdup("");
     ft_putstr(">>\n");
     buff = NULL;
+	if (insert.is_quote == -1)
+	{
+		insert.is_quote = 0;
+		return (0);
+	}
+	else 
+		insert.is_quote = 1;
     while ((buff = ft_readline(buff, &insert)))
     {
+		if (insert.is_quote == -1)
+		{
+			insert.is_quote = 0;
+			return (0);
+		}
+		else 
+			insert.is_quote = 1;
         if (ft_strequ(buff, end))
             break ;
         new = ft_jandf(new, buff, 1, 1);
-        ft_putstr_fd("\n>>\n", 2);
+	ft_putstr_fd("\n>>\n", 2);
     }
     ft_putchar('\n');
     free(buff);

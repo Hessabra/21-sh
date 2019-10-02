@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 00:49:26 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 01:44:58 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,6 @@ int				main(void)
 				a.nbr_quot = nbr_quote(try, bs);
 				if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
 					j = quotiwhile(a.nbr_quot, &try, &bs, &insert);
-				if (ft_strcmp(try, ""))
 					ft_add_history(try, &insert);
 				if (j && synerr(try, bs))
 				{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:21:08 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/30 22:07:53 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 02:07:26 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_printdetails(t_read *insert)
 {
-	insert->info = open("/dev/ttys001", O_RDWR);
+	insert->info = open("/dev/ttys002", O_RDWR);
 	ft_putstr_fd("insert->x-> ", insert->info);
 	ft_putnbr_fd(insert->linex, insert->info);
 	ft_putstr_fd("insert->y-> ", insert->info);
@@ -26,19 +26,22 @@ void	ft_printdetails(t_read *insert)
 	ft_putchar_fd('\n', insert->info);
 }
 
-void	ft_defult_term()
+void	ft_defult_term(void)
 {
 	struct termios term;
+
 	tcgetattr(0, &term);
 	term.c_lflag |= (ICANON | ECHO);
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSANOW, &term);
 }
-void	prompt()
+
+void	prompt(void)
 {
 	ft_putstr("\e[35;1mWhat can I do for you ;) >>\n\e[0m");
 }
+
 char	*ft_readline(char *line, t_read *insert)
 {
 	char	key[BUFF_SIZE];
@@ -54,13 +57,9 @@ char	*ft_readline(char *line, t_read *insert)
 		if ((ret = read(0, &key, BUFF_SIZE)) == -1 ||
 				(key[0] == ENTER_KEY && key[1] == 0) ||
 				!ft_key_detect(key, insert))
-				
 		{
-			// ft_printdetails(insert);
 			ft_moveend(insert);
 			line = ft_strdup(insert->line);
-			// if (!ft_strcmp(line, "cat"))
-			// 	ft_defult_term();
 			ft_strdel(&insert->line);
 			ft_strdel(&insert->topast);
 			return (line);

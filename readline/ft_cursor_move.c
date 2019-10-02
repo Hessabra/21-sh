@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cursor_move.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 13:24:54 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 20:35:38 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/02 02:04:56 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ int		ft_formove(t_read *insert)
 	return (i);
 }
 
+int		ft_fornor(t_read *insert)
+{
+	int	i;
+
+	insert->linex = 0;
+	i = 0;
+	return (i);
+}
+
 void	ft_movecursor_left(t_read *insert, char *buf)
 {
 	int i;
@@ -57,10 +66,7 @@ void	ft_movecursor_left(t_read *insert, char *buf)
 		{
 			insert->liney--;
 			if (insert->liney == 0 && insert->line[0] == '\n')
-			{
-				insert->linex = 0;
-				i = 0;
-			}
+				ft_fornor(insert);
 			else if (buf[0] == 127)
 				i = ft_deletemulti(insert);
 			else
