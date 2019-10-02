@@ -6,7 +6,7 @@
 /*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:09:17 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 19:16:57 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/02 01:10:51 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,5 @@ char	**ft_addtotab(char **table, char *line)
 		i++;
 	}
 	*(new + i) = ft_strdup(line);
-//	free(table);
-//	ft_freetab(&table);
 	return (new);
 }

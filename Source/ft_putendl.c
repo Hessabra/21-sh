@@ -6,13 +6,13 @@
 /*   By: hessabra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 03:15:23 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 19:23:01 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/02 01:24:41 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl(char  *s)
+void	ft_putendl(char *s)
 {
 	if (s == NULL)
 		return ;

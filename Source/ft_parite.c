@@ -6,15 +6,15 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:15:31 by hessabra          #+#    #+#             */
-/*   Updated: 2019/06/11 18:29:19 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 01:14:32 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int         ft_parite(int x)
+int		ft_parite(int x)
 {
-    if (x % 2)
-        return (0);
-    return (1);
+	if (x % 2)
+		return (0);
+	return (1);
 }

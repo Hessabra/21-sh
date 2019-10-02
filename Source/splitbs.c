@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 13:56:11 by hessabra          #+#    #+#             */
-/*   Updated: 2019/06/22 15:01:49 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 01:24:15 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,23 @@ static int		ft_is_whitespace(char c)
 
 static int		ft_count(char *str, int *bs)
 {
-	int		i;
-	int		nb;
-	int		flag;
-    int     mark;
+	int			i;
+	int			nb;
+	int			flag;
+	int			mark;
 
 	i = 0;
 	nb = 0;
 	flag = 0;
-	while (str[i])
+	while (str[i] && (mark = 1))
 	{
-        mark = 1;
-        if (str[i] == 92)
-        {
-            (*bs > 0) ? mark = 0: mark;
-            i+= ft_entier(*bs);
-            bs++;
-        }
-		if (ft_is_whitespace(str[i]) && mark && flag == 1)
-			flag = 0;
+		if (str[i] == 92)
+		{
+			(*bs > 0) ? mark = 0 : mark;
+			i += ft_entier(*bs);
+			bs++;
+		}
+		(ft_is_whitespace(str[i]) && mark && flag == 1) ? flag = 0 : flag;
 		if (!ft_is_whitespace(str[i]) && flag == 0)
 		{
 			nb++;
@@ -52,26 +50,26 @@ static int		ft_count(char *str, int *bs)
 
 static int		ft_size(char *str, int p, int **bs)
 {
-	int		i;
-    int     mark;
+	int			i;
+	int			mark;
 
 	i = p;
 	while (str[i] && (!ft_is_whitespace(str[i]) || !mark))
-    {
-        mark = 1;
-        if (str[i] == 92)
-        {
-            (**bs > 0) ? mark = 0: mark;
-            i+= ft_entier(**bs);
-            (*bs)++;
-        }
-        else
-            i++;
-    }
-    return (i - p);
+	{
+		mark = 1;
+		if (str[i] == 92)
+		{
+			(**bs > 0) ? mark = 0 : mark;
+			i += ft_entier(**bs);
+			(*bs)++;
+		}
+		else
+			i++;
+	}
+	return (i - p);
 }
 
-static void	ft_pos(char *str, int *p)
+static void		ft_pos(char *str, int *p)
 {
 	while (str[*p])
 	{
@@ -81,23 +79,22 @@ static void	ft_pos(char *str, int *p)
 	}
 }
 
-char	**ft_splitbs(char *str, int *bs)
+char			**ft_splitbs(char *str, int *bs)
 {
-	t_splitbs ij;
-	int		len;
-    int     lenarg;
-	int		p[1];
-	char	**tab_str;
+	t_splitbs	ij;
+	int			len;
+	int			lenarg;
+	int			p[1];
+	char		**tab_str;
 
 	ij.i = 0;
 	*p = 0;
-    lenarg = ft_count(str, bs);
+	lenarg = ft_count(str, bs);
 	tab_str = (char**)malloc(sizeof(char*) * (lenarg + 1));
 	if (tab_str)
 	{
-		while (ij.i < lenarg)
+		while (ij.i < lenarg && !(ij.j = 0))
 		{
-			ij.j = 0;
 			ft_pos(str, p);
 			len = ft_size(str, *p, &bs);
 			tab_str[ij.i] = (char*)malloc(sizeof(char) * (len + 1));

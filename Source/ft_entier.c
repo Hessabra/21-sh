@@ -6,15 +6,15 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:42:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/06/14 14:43:31 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 01:12:22 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int         ft_entier(int x)
+int			ft_entier(int x)
 {
-    if (x < 0)
-        x = -1 * x;
-    return (x);
+	if (x < 0)
+		x = -1 * x;
+	return (x);
 }
