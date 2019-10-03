@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/04 00:19:17 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:38:48 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char		*here_doc(int token, char *end, char **env, t_read insert)
 	ft_putstr(">>\n");
 	buff = NULL;
 	g_ctrl_dsig = 1;
-	while ((g_ctrl_dsig && g_herdoc_sig) && (buff = ft_readline(buff, &insert)))
+	while ((buff = ft_readline(buff, &insert)) && g_ctrl_dsig && g_herdoc_sig)
 	{
 		if (ft_strequ(buff, end))
 			break ;
