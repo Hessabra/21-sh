@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:21:08 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/03 16:54:22 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:17:01 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ char	*ft_readline(char *line, t_read *insert)
 			ft_strdel(&insert->line);
 			return (line);
 		}
-	/*	ft_putnbr(key[0]);
-		ft_putnbr(key[1]);
-		ft_putnbr(key[2]);
-		ft_putnbr(key[3]);*/
 		insert->curlinelen = ft_curlinelen(insert, insert->liney);
 	}
 }

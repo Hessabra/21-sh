@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:14:45 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/03 17:17:20 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:19:36 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ typedef	struct	s_read
 }				t_read;
 
 t_read			*g_insert;
-pid_t       	pid_cmd;
-
-int				herdoc_sig;
-int				ctrl_dsig;
+pid_t			g_pid_cmd;
+int				g_herdoc_sig;
+int				g_ctrl_dsig;
+int				g_is_pipe;
 void			ft_setting(t_read *insert);
 void			ft_cannonical_mod(void);
 void			ft_setterm();

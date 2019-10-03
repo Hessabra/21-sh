@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:58 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/03 17:00:36 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:19:17 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ void	ft_remove_one(t_read *insert)
 
 void	ft_delete_onechar(t_read *insert)
 {
-	if (insert->linelen == 0 && ctrl_dsig)
+	if (insert->linelen == 0 && g_ctrl_dsig)
 	{
 		ioctl(0, TIOCSTI, "\12");
-		ctrl_dsig = 0;
+		g_ctrl_dsig = 0;
 	}
-	else if (insert->linelen == 0 && ctrl_dsig == 0)
+	else if (insert->linelen == 0 && g_ctrl_dsig == 0)
 		exit(0);
 	if (insert->index >= 0 && insert->index < insert->linelen)
 	{

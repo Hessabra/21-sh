@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:57:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/03 17:17:48 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:19:32 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,12 @@ void	sigwinch_handler(int sig)
 
 void	sigint_handler(int sig)
 {
-	if (pid_cmd != 0)
-	{
-	//	ioctl(0, TIOCSTI, "\12");
+	if (g_pid_cmd != 0 && g_is_pipe)
 		ft_putchar('\n');
-		return ;
-	}
-	if (herdoc_sig == 1)
+	else if (g_herdoc_sig == 1 && g_is_pipe)
 	{
-		herdoc_sig = 0;
+		g_herdoc_sig = 0;
 		ioctl(0, TIOCSTI, "\12");
-		return ;
 	}
 	else
 	{
@@ -61,7 +56,6 @@ void	sigint_handler(int sig)
 		g_insert->curlinelen = 0;
 		g_insert->tmplinex = 0;
 		g_insert->index = 0;
-		ft_putchar('\n');
 		(void)sig;
 		if (g_insert->history)
 			g_insert->indexfor_history = ft_tablen(g_insert->history);

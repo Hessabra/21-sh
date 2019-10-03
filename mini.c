@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/03 17:09:48 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:19:32 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,25 +95,28 @@ int				racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_r
 	char		**string_heredoc;
 
 	string_heredoc = use_heredoc(a.ppvr, token, a.arg, *environ, insert);
-	if (herdoc_sig)
+	if (g_herdoc_sig)
 	{
 		i = 0;
 		while (a.arg[i])
 		{
+			g_is_pipe = 1;
 			if (ft_entier(a.ppvr[i]) == 1 || a.ppvr[i] == -4)
 			{
+				g_is_pipe = 0;
 				a.x = i;
 				while (ft_entier(a.ppvr[a.x]) == 1 || a.ppvr[a.x] == -4)
 					a.x++;
-				pid_cmd = fork();
-				if (pid_cmd == 0)
+				g_pid_cmd = fork();
+				if (g_pid_cmd == 0)
 				{
 					mainpipe(a, *environ, i, token, &string_heredoc);
+					wait(NULL);
 					exit(0);
 				}
 				else
 				{
-					waitpid(pid_cmd, NULL, 0);
+					waitpid(g_pid_cmd, NULL, 0);
 					string_heredoc += ft_makesure(a.ppvr, token, i, a.x + 1);
 				}
 				i = a.x;
@@ -122,8 +125,8 @@ int				racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_r
 				usered(a.arg[i], token[i], environ, &string_heredoc);
 			else if (racco1(a.arg[i], environ) && racco3(a.arg[i], environ) && a.arg[i][0])
 			{
-				pid_cmd = fork();
-				if (pid_cmd == 0)
+				g_pid_cmd = fork();
+				if (g_pid_cmd == 0)
 				{
 					if (ft_strequ(a.arg[i][0], "cat") || ft_strequ(a.arg[i][0], "wc"))
 						ft_defult_term();
@@ -189,12 +192,13 @@ int				main(void)
 	insert.indexfor_history = 0;
 	t.i = 0;
 	try = NULL;
-	ctrl_dsig = 0;
+	g_ctrl_dsig = 0;
 	insert.topast = ft_memalloc(LINE_MAX);
 	while (1)
 	{
-		pid_cmd = 0;
-		herdoc_sig = 1;
+		g_is_pipe = 1;
+		g_pid_cmd = 0;
+		g_herdoc_sig = 1;
 		j = 1;
 		path = NULL;
 		prompt();

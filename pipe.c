@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/03 16:57:46 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/03 23:38:51 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,13 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, char ***string_her
 				usered(a.arg[i], token[i], &env, string_heredoc);
 			}
 			else
+			{
+				if (ft_strequ(a.arg[i][0], "cat") || ft_strequ(a.arg[i][0], "wc"))
+						ft_defult_term();
 				if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
 					ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv")))
 						execve2(a.arg[i], env, path);
+			}
 			exit(0);
 		}
 		else

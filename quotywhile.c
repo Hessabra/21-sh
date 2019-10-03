@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:25:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/03 17:16:26 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:19:17 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
     int			*tmbs;
 
 	*arg = ft_jandf(*arg, "\n", 1, 0);
-	ctrl_dsig = 1;
-	while ((ctrl_dsig && herdoc_sig) && (!ft_parite(last.s) || !ft_parite(last.d)))
+	g_ctrl_dsig = 1;
+	while ((g_ctrl_dsig && g_herdoc_sig) && (!ft_parite(last.s) || !ft_parite(last.d)))
 	{
 		if (!ft_parite(last.d))
 			ft_printf("\nDquote>>\n");
@@ -72,7 +72,7 @@ int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 			ft_printf("\nQuote>>\n");
 		buff = ft_readline(buff, insert);
         effectornot(&tmbs, buff);
-		if (buff && ctrl_dsig)
+		if (buff && g_ctrl_dsig)
 		{
 			help = nbr_quote2(buff, tmbs, (!ft_parite(last.s)) ? 39 : 34);
 			last.d += help.d;

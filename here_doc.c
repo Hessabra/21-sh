@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/03 15:56:01 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:19:17 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,15 @@ char		*here_doc(int token, char *end, char **env, t_read insert)
 	new = ft_strdup("");
 	ft_putstr(">>\n");
 	buff = NULL;
-	ctrl_dsig = 1;
-	while ((ctrl_dsig && herdoc_sig) && (buff = ft_readline(buff, &insert)))
+	g_ctrl_dsig = 1;
+	while ((g_ctrl_dsig && g_herdoc_sig) && (buff = ft_readline(buff, &insert)))
 	{
 		if (ft_strequ(buff, end))
 			break ;
 		new = ft_jandf(new, buff, 1, 1);
 		new = ft_jandf(new, "\n", 1, 0);
-		ft_putstr_fd("\n>>\n", 2);
+		if (g_herdoc_sig)
+			ft_putstr_fd("\n>>\n", 2);
 	}
 	ft_putchar('\n');
 	//free(buff);
@@ -88,7 +89,7 @@ char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read inse
 		strings[nbr] = NULL;
 		i = 0;
 		j = 0;
-		while (herdoc_sig && i < nbr)
+		while (g_herdoc_sig && i < nbr)
 		{
 			while (ppvr[j] > -1)
 				j++;
