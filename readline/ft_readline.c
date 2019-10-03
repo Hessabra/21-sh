@@ -6,25 +6,11 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:21:08 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/02 02:07:26 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/03 16:54:22 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_edit.h"
-
-void	ft_printdetails(t_read *insert)
-{
-	insert->info = open("/dev/ttys002", O_RDWR);
-	ft_putstr_fd("insert->x-> ", insert->info);
-	ft_putnbr_fd(insert->linex, insert->info);
-	ft_putstr_fd("insert->y-> ", insert->info);
-	ft_putnbr_fd(insert->liney, insert->info);
-	ft_putstr_fd("insert->curlen ", insert->info);
-	ft_putnbr_fd(insert->curlinelen, insert->info);
-	ft_putstr_fd("insert->historyindex ", insert->info);
-	ft_putnbr_fd(insert->indexfor_history, insert->info);
-	ft_putchar_fd('\n', insert->info);
-}
 
 void	ft_defult_term(void)
 {
@@ -61,9 +47,12 @@ char	*ft_readline(char *line, t_read *insert)
 			ft_moveend(insert);
 			line = ft_strdup(insert->line);
 			ft_strdel(&insert->line);
-			ft_strdel(&insert->topast);
 			return (line);
 		}
+	/*	ft_putnbr(key[0]);
+		ft_putnbr(key[1]);
+		ft_putnbr(key[2]);
+		ft_putnbr(key[3]);*/
 		insert->curlinelen = ft_curlinelen(insert, insert->liney);
 	}
 }

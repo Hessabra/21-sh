@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:21:17 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 23:57:13 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ typedef struct	s_ppvr
 	int		x;
 	t_quotis    nbr_quot;
 }				t_ppvr;
-
-pid_t       pid;
 
 int			ft_makesure(int *ppvr, int **token, int start, int index_now);
 int         *applyint(int **tabe, int x);

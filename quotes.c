@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:56:01 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:39:30 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:27:37 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,6 @@ static int			lenthargs(char *arg, int *bs, int m)
 	return(i * mixed);
 }
 
-/*
- * This function allocates in a double pointer that we've sent in the parame-
- * ters depending on quotes no quotes saving at the same time wheteir the 
- * input rgument used to have quotes on them or not with 1 for quotes and 0 
- * for not and in the ned there is -1 to mark the end.
- */
-
 static void			allocatequote(char *arg, char ***args, char **env, int **bs)
 {
 	int				i;
@@ -90,7 +83,6 @@ static void			allocatequote(char *arg, char ***args, char **env, int **bs)
 		arg++;
 	nbr_ar = nbr_arg(arg, *bs);
 	*args = (char **)malloc(sizeof(char *) * (nbr_ar + 1));
-
 	i = 0;
 	while (*arg && i < nbr_ar)
 	{
@@ -119,12 +111,6 @@ static void			allocatequote(char *arg, char ***args, char **env, int **bs)
 	(*args)[i] = NULL;
 }
 
-/* 
- *  In the first case I should make another spliting functions
- *  that takes into consideration the '\' (ascii code 92)
- * 	>>>> DONE
- */
-
 char			**quotyline(char *arg, int **bs, char **env, t_quotis nbr_quot)
 {
 	char		**args;
@@ -141,6 +127,5 @@ char			**quotyline(char *arg, int **bs, char **env, t_quotis nbr_quot)
 	}
 	else
 		allocatequote(arg, &args, env, bs);
-
 	return (args);
 }

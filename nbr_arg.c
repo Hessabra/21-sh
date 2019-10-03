@@ -6,11 +6,20 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/18 18:13:48 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:04:37 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:54:20 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	racc(int marq, char str, int i)
+{
+	if (marq == 1 && (str == 39 || (str == 34 && i)))
+		return (0);
+	if (str == 39 || (str == 34 && i))
+		return (1);
+	return (marq);
+}
 
 int			nbr_arg(char *str, int *bs)
 {
@@ -23,9 +32,8 @@ int			nbr_arg(char *str, int *bs)
 	i = -1;
 	j = 0;
 	marq = 1;
-	while(str[j])
+	while (str[j] && (i = 1))
 	{
-		i = 1;
 		if (str[j] == 92)
 		{
 			(*bs > 0) ? i = 0 : i;
@@ -33,17 +41,11 @@ int			nbr_arg(char *str, int *bs)
 			bs++;
 		}
 		if (str[j] == 39 || str[j] == 34)
-		{
-			if (marq == 1 && (str[j] == 39 || (str[j] == 34 && i)))
-				marq = 0;
-			else if (str[j] == 39 || (str[j] == 34 && i))
-				marq = 1;
-		}
-		if (i && str[j] && (str[j] == ' ' && marq) && str[j + 1] && str[j + 1] > 32)
-			result++;
+			marq = racc(marq, str[j], i);
+		(i && str[j] && (str[j] == ' ' && marq) && str[j + 1] &&
+		 str[j + 1] > 32) ? result++ : result;
 		j++;
 	}
-	if (i != -1)
-		result++;
+	(i != -1) ? result++ : result;
 	return (result);
 }

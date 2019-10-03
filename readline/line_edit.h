@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:14:45 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/02 02:01:49 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/03 17:17:20 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@
 # define MOVE_END (key[2] == 70 && key[1] == 91 && key[0] == 27)
 # define MV_NEXT (key[3] == 67 && key[2] == 91 && key[1] == 27 && key[0] == 27)
 # define MV_BACK (key[3] == 68 && key[2] == 91 && key[1] == 27 && key[0] == 27)
-# define PAST (key[0] == 9)
-# define COPY (key[0] == 11 || key[0] == 16)
+# define PAST (key[0] == 16)
+# define COPY (key[0] == 21)
+# define COPY2 (key[0] == 9)
+# define COPY3 (key[0] == 12)
 # define CUT (key[0] == 24)
 # define DELETE (key[0] == 127)
 # define HISTORY_MOVE_BACK (key[2] == 65 && key[1] == 91 && key[0] == 27)
@@ -67,7 +69,12 @@ typedef	struct	s_read
 	int		is_quote;
 
 }				t_read;
+
 t_read			*g_insert;
+pid_t       	pid_cmd;
+
+int				herdoc_sig;
+int				ctrl_dsig;
 void			ft_setting(t_read *insert);
 void			ft_cannonical_mod(void);
 void			ft_setterm();
@@ -89,7 +96,7 @@ void			ft_movecursor_back_word(t_read *insert, char *key);
 void			ft_movecursor_next_word(t_read *insert);
 void			ft_movestart(t_read *insert);
 void			ft_moveend(t_read *insert);
-void			ft_copy(t_read *insert);
+void			ft_copy(t_read *insert, char *key);
 void			ft_cut(t_read *insert);
 void			ft_history_back(t_read *insert);
 void			ft_history_forwad(t_read *insert);

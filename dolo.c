@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 21:53:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:55:30 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:55:06 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	racc3(char **fin, char **env, char *s, t_dolor *t)
 
 char			*dolor1(char *s, char **env, int **bs, int quot)
 {
-	t_dolor 	t;
+	t_dolor		t;
 	char		*fin;
 	int			backslash;
 	int			markdown;
@@ -103,7 +103,9 @@ char			*dolor1(char *s, char **env, int **bs, int quot)
 		{
 			backslash = 0;
 			markdown = ft_entier(**bs) / 2;
-			if (quot == 2 && (ft_entier(**bs) % 2) && s[t.i + ft_entier(**bs)] != '"' && s[t.i + ft_entier(**bs)] != '$')
+			if (quot == 2 && (ft_entier(**bs) % 2) &&
+					s[t.i + ft_entier(**bs)] != '"' &&
+					s[t.i + ft_entier(**bs)] != '$')
 				markdown++;
 			while (backslash < markdown)
 			{

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:06:18 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:13:18 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:21:06 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int		ft_count(char *str, int *bs)
 			nb++;
 		else if (str[i] == 92)
 		{
-			i+= ft_entier(*bs) - 1;
+			i += ft_entier(*bs) - 1;
 			(*bs > 0 && (str[i + 1] != 39)) ? i++ : i;
 			bs++;
 		}
@@ -69,7 +69,7 @@ static int		ft_size(char *str, int p, int **bs, int *ppvr)
 			zaapi(str, &i, bs, str[i]);
 		if (str[i] == 92)
 		{
-			i+= ft_entier(**bs) - 1;
+			i += ft_entier(**bs) - 1;
 			(**bs > 0 && str[i + 1] != 39) ? i++ : i;
 			(*bs)++;
 		}
@@ -107,10 +107,10 @@ char			**ft_ppvr(char *str, int *bs, int **ppvr)
 				tab_str[ij.i][(ij.j)++] = str[(*p)++];
 			tab_str[ij.i][ij.j] = '\0';
 			if (ft_entier((*ppvr)[ippvr]) == 1 ||
-					ft_entier((*ppvr)[ippvr])  == 2 ||
+					ft_entier((*ppvr)[ippvr]) == 2 ||
 					(*ppvr)[ippvr] == -3 || (*ppvr)[ippvr] == -4)
 				(*p)++;
-			else if (ft_entier((*ppvr)[ippvr])  == 4)
+			else if (ft_entier((*ppvr)[ippvr]) == 4)
 				*p += 2;
 			(ij.i)++;
 			ippvr++;

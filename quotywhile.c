@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotywhile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:25:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:14:24 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/03 17:16:26 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 static t_quotis 	nbr_quote2(char *arg, int *bs, char c)
 {
-	t_quotis		nbrs;
+	t_quotis		nbr;
 	int				mark;
 	int				start;
 
-	nbrs.s = 0;
-	nbrs.d = 0;
-	nbrs.n = 0;
+	nbr.s = 0;
+	nbr.d = 0;
+	nbr.n = 0;
 	start = 0;
-
 	while (*arg)
 	{
 		mark = 1;
@@ -32,7 +31,6 @@ static t_quotis 	nbr_quote2(char *arg, int *bs, char c)
 			arg += ft_entier(*bs);
 			bs++;
 		}
-		
 		if (*arg && !start && *arg == c)
 		{
 			if (c == 39)
@@ -40,45 +38,41 @@ static t_quotis 	nbr_quote2(char *arg, int *bs, char c)
 			else if (c == 34 && mark)
 				start = -1;
 		}
-		else if (start && *arg && *arg == 39 && ft_parite(nbrs.d))
-			(nbrs.s)++;
-		else if (start && mark && *arg && *arg == 34 && ft_parite(nbrs.s))
-			(nbrs.d)++;
-		else if (start && mark && *arg && ft_parite(nbrs.d) && ft_parite(nbrs.s))
-			(nbrs.n)+=2;
+		else if (start && *arg && *arg == 39 && ft_parite(nbr.d))
+			(nbr.s)++;
+		else if (start && mark && *arg && *arg == 34 && ft_parite(nbr.s))
+			(nbr.d)++;
+		else if (start && mark && *arg && ft_parite(nbr.d) && ft_parite(nbr.s))
+			(nbr.n) += 2;
 		arg++;
 	}
 	if (start)
 	{
 		if (c == 39)
-			nbrs.s++;
+			nbr.s++;
 		else if (c == 34 && mark)
-			nbrs.d++;
+			nbr.d++;
 	}
-	return (nbrs);
+	return (nbr);
 }
+
 int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 {
 	t_quotis	help;
 	char		*buff;
     int			*tmbs;
 
-	while (!ft_parite(last.s) || !ft_parite(last.d))
+	*arg = ft_jandf(*arg, "\n", 1, 0);
+	ctrl_dsig = 1;
+	while ((ctrl_dsig && herdoc_sig) && (!ft_parite(last.s) || !ft_parite(last.d)))
 	{
-		if (insert->is_quote == -1)
-		{
-			insert->is_quote = 0;
-			return (0);
-		}
-		else 
-			insert->is_quote = 1;
 		if (!ft_parite(last.d))
 			ft_printf("\nDquote>>\n");
 		else
 			ft_printf("\nQuote>>\n");
 		buff = ft_readline(buff, insert);
         effectornot(&tmbs, buff);
-		if (buff)
+		if (buff && ctrl_dsig)
 		{
 			help = nbr_quote2(buff, tmbs, (!ft_parite(last.s)) ? 39 : 34);
 			last.d += help.d;

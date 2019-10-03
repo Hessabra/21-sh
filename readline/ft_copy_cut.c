@@ -3,20 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_cut.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:51:06 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 18:31:59 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/03 17:10:51 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_edit.h"
 
-void	ft_copy(t_read *insert)
+void	ft_copy(t_read *insert, char *key)
 {
 	ft_bzero(insert->topast, 4096);
+	if (COPY)
+	insert->topast = ft_strsub(insert->line, 0, insert->index);
+	else if (COPY2)
 	insert->topast = ft_strncpy(insert->topast, insert->line +
 				insert->index, insert->linelen - insert->index);
+	else if (COPY3)
+	insert->topast = ft_strdup(insert->line);
 }
 
 void	ft_cut(t_read *insert)

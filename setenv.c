@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:02:17 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 20:59:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:26:03 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,4 @@ void		stenv(char **arg, char ***env)
 		else
 			racc1(&(*env), tmp, x);
 	}
-
 }

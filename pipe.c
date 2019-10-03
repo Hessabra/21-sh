@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:03:08 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/03 16:57:46 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "pipe.h"
-# define PIPE_OUT 0
-# define PIPE_IN 1
 
 void			close_all(int ***fd, int x)
 {
@@ -50,7 +48,6 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, char ***string_her
 		}
 		i++;
 	}
-
 	i = start;
 	while (i <= a.x)
 	{
@@ -59,14 +56,14 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, char ***string_her
 		{
 			if (i > start)
 			{
-				if (dup2(fd[i - start - 1][PIPE_OUT], 0) < 0)
+				if (dup2(fd[i - start - 1][0], 0) < 0)
 				{
 					ft_putendl_fd("Fail to dup2", 2);
 					exit(0);
 				}
 			}
 			if (i < a.x)
-				if (dup2(fd[i - start][PIPE_IN], 1) < 0)
+				if (dup2(fd[i - start][1], 1) < 0)
 				{
 					ft_putendl_fd("Fail to dup2", 2);
 					exit(0);
@@ -88,5 +85,4 @@ void			mainpipe(t_ppvr a, char **env, int start, int **token, char ***string_her
 	}
 	close_all(&fd, a.x - start);
 	waitpid(exec_pid, &status, 0);
-
 }

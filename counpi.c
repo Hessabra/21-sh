@@ -6,20 +6,29 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 18:21:45 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:59:53 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:36:12 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	erro(char c)
+{
+	ft_putstr_fd("\nSyntax error near unexpected token `", 2);
+	ft_putchar_fd(c, 2);
+	ft_putstr_fd("'\n", 2);
+}
 
 int			counpi(char **str)
 {
 	int		pi;
 	int		i;
 	int		x;
+	int		err;
 
 	i = 0;
 	pi = 0;
+	err = 1;
 	while (**str && (**str < 33 || **str == 124 || **str == 38))
 	{
 		if (**str == '|')
@@ -27,25 +36,14 @@ int			counpi(char **str)
 			pi++;
 			x = i;
 		}
-		if ((pi && **str == 38) || (pi == 2 && x > 1))
-		{
-			ft_putstr_fd("\nSyntax error near unexpected token `", 2);
-			ft_putchar_fd(**str, 2);
-			ft_putstr_fd("'\n", 2);
-			return (0);
-		}
-		if (pi > 1)
-		{
+		if (((pi && **str == 38) || (pi == 2 && x > 1)) && !(err == 0))
+			erro(**str);
+		else if (pi > 1 && !(err == 0))
 			ft_putstr_fd("\nLogical operator.. Not to it yet\n", 2);
-			return (0);
-		}
 		(*str)++;
-		if (pi && **str == '\0')
-		{
+		if (err && pi && **str == '\0' && !(err = 0))
 			ft_putstr_fd("\nSyntax error near unexpected token `newline'\n", 2);
-			return (0);
-		}
 		i++;
 	}
-	return (1);
+	return (err);
 }

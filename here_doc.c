@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:11:27 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/03 15:56:01 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			stop_heredoc(int *token, char **arg, char **stop_heredo)
 	return (token[i]);
 }
 
-char		*here_doc(char *end, int token, char **env, t_read insert)
+char		*here_doc(int token, char *end, char **env, t_read insert)
 {
 	char	*buff;
 	char	*new;
@@ -55,33 +55,21 @@ char		*here_doc(char *end, int token, char **env, t_read insert)
 	new = ft_strdup("");
 	ft_putstr(">>\n");
 	buff = NULL;
-	if (insert.is_quote == -1)
+	ctrl_dsig = 1;
+	while ((ctrl_dsig && herdoc_sig) && (buff = ft_readline(buff, &insert)))
 	{
-		insert.is_quote = 0;
-		return (0);
-	}
-	else
-		insert.is_quote = 1;
-	while ((buff = ft_readline(buff, &insert)))
-	{
-		if (insert.is_quote == -1)
-		{
-			insert.is_quote = 0;
-			return (0);
-		}
-		else
-			insert.is_quote = 1;
 		if (ft_strequ(buff, end))
 			break ;
 		new = ft_jandf(new, buff, 1, 1);
+		new = ft_jandf(new, "\n", 1, 0);
 		ft_putstr_fd("\n>>\n", 2);
 	}
 	ft_putchar('\n');
-	free(buff);
+	//free(buff);
 	buff = new;
 	if (token == 12)
 		new = dolor2(new, env);
-	free(buff);
+	//free(buff);
 	return (new);
 }
 
@@ -89,24 +77,23 @@ char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read inse
 {
 	char	**strings;
 	char	*stop_heredo;
-	int		isdolar;
-	int		nbr_heredoc;
+	int		nbr;
 	int		i;
 	int		j;
 
-	nbr_heredoc = how_many_heredoc(ppvr, token);
-	if (nbr_heredoc)
+	nbr = how_many_heredoc(ppvr, token);
+	if (nbr)
 	{
-		strings = (char **)malloc(sizeof(char *) * (nbr_heredoc + 1));
-		strings[nbr_heredoc] = NULL;
+		strings = (char **)malloc(sizeof(char *) * (nbr + 1));
+		strings[nbr] = NULL;
 		i = 0;
 		j = 0;
-		while (i < nbr_heredoc)
+		while (herdoc_sig && i < nbr)
 		{
 			while (ppvr[j] > -1)
 				j++;
-			isdolar = stop_heredoc(token[j], arg[j], &stop_heredo);
-			strings[i] = here_doc(stop_heredo, isdolar, env, insert);
+			strings[i] = here_doc(stop_heredoc(token[j], arg[j], &stop_heredo),
+					stop_heredo, env, insert);
 			j++;
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:29:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:30:23 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int			nbr_arg2(char *str, int *bs)
 	i = -1;
 	j = 0;
 	marq = 1;
-	while(str[j])
+	while (str[j])
 	{
 		i = 1;
 
@@ -184,8 +184,8 @@ static int			len_arg2(char *arg, int *bs, int m, int **tok)
 		}
 		if (arg[i] && arg[i] != ' ' && arg[i] != '\t' && arg[i] != '\n')
 		{
-			((arg[i] == '>' || arg[i] == '<') && hd == 1 && (*tok)[m] < 10) ? (*tok)[m] = 9 : (*tok)[m];
-
+			((arg[i] == '>' || arg[i] == '<') && hd == 1 &&
+			 (*tok)[m] < 10) ? (*tok)[m] = 9 : (*tok)[m];
 		}
 	}
 	return(i * mixed);
@@ -203,7 +203,6 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	nbr_ar = nbr_arg2(arg, *bs);
 	token = (int *)malloc(sizeof(int) * (nbr_ar + 1));
 	*args = (char **)malloc(sizeof(char *) * (nbr_ar + 1));
-
 	i = 0;
 	while (*arg && i < nbr_ar)
 	{
@@ -233,13 +232,6 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	}
 	(*args)[i] = NULL;
 	token[i] = -1;
-	i = 0;
-	while (token[i] > -1)
-	{
-		ft_putnbr_fd(token[i], 2);
-		ft_putchar_fd('\n', 2);
-		i++;
-	}
 	return (token);
 }
 

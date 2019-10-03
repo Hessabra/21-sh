@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:39:21 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:07:30 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 04:38:44 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,8 @@ void		effectornot(int **n, char *s)
 	*n = (int *)malloc(sizeof(int) * findingtimes(s) + 1);
 	while (s[i])
 	{
-		while (s[i] && s[i] == 92)
-		{
-			count++;
+		while (s[i] && s[i] == 92 && (count++))
 			i++;
-		}
 		if (count)
 		{
 			if (!(count % 2))

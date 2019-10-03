@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 20:57:21 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:52:45 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:13:25 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,9 @@ static void	splity(char *str, char ***tmp, int **bs, char **env)
 		(*str == 39) ? quot = 1 : quot;
 		(*str == 34) ? quot = 2 : quot;
 		if (quot == 0)
-		{
-			(*tmp)[i] = ft_strsub(str, 0, rem);   
-		}
+			(*tmp)[i] = ft_strsub(str, 0, rem);
 		else
-		{
 			(*tmp)[i] = ft_strsub(str, 1, rem);
-		}
 		(*tmp)[i] = line((*tmp)[i], env, bs, quot);
 		i++;
 		str += rem2;

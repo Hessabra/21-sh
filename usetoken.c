@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:20:46 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/02 05:55:53 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ void			usered(char **args, int *token, char ***env, char ***string_heredoc)
 	t_dolore	k;
 
 	getnresetfd(0);
-
 	i = 0;
 	k.i = 0;
 	k.x = 0;
@@ -182,7 +181,6 @@ void			usered(char **args, int *token, char ***env, char ***string_heredoc)
 		}
 		else if (token[i] >= 6 && token[i] <= 8)
 		{
-			dprintf(2, "\n args[%d] is %s with token == %d\n", i, args[i], token[i]);
 			if (token[i] == 6 && (fdw = open(args[i + 1], O_RDONLY)) == -1 && (error = 1))
 				ft_putstr_fd("File error\n", 2);
 			if (token[i] == 8)

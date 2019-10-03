@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:57:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/02 01:58:50 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/03 17:10:55 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	ft_key_moves(char *key, t_read *insert)
 int	ft_keyfer_moves(char *key, t_read *insert)
 {
 	insert->curlinelen = ft_curlinelen(insert, insert->liney);
-	if (COPY)
-		ft_copy(insert);
+	if (COPY || COPY2 || COPY3)
+		ft_copy(insert, key);
 	if (CUT)
 		ft_cut(insert);
 	else if (DELETE)
