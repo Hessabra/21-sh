@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 22:00:56 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 00:22:19 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,37 @@ int			how_many_heredoc(int *ppvr, int **token)
 	return (count);
 }
 
-int			stop_heredoc(int *token, char **arg, char **stop_heredo)
+int			nbr_heredocppvr(int *token)
+{
+	int		result;
+
+	result = 0;
+	while (*token != -1)
+	{
+		if (*token == 7)
+			result++;
+		token++;
+	}
+	return (result);
+}
+
+int			stop_heredoc(int *token, char **arg, char **stop_heredo, int nbr)
 {
 	int		i;
+	int		j;
 
 	i = 0;
-	while (ft_entier(token[i]) != 12 && token[i] != -1)
+	j = 0;
+	while (ft_entier(token[i]) != 12)
+	{
 		i++;
+		if (ft_entier(token[i]) == 12)
+		{
+			j++;
+			if (j < nbr)
+				i++;
+		}
+	}
 	*stop_heredo = arg[i];
 	return (token[i]);
 }
@@ -74,6 +98,8 @@ char		*here_doc(int token, char *end, char **env, t_read insert)
 	return (new);
 }
 
+
+
 char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read insert)
 {
 	t_heredoc	h;
@@ -89,15 +115,19 @@ char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read inse
 		strings[h.nbr] = NULL;
 		i = 0;
 		j = 0;
+		h.fct = 0;
 		while (g_herdoc_sig && i < h.nbr)
 		{
 			while (ppvr[j] > -1)
+				j++;
+			h.fct++;
+			h.token = stop_heredoc(token[j], arg[j], &stop_heredo, h.fct);
+			strings[i] = here_doc(h.token, stop_heredo, env, insert);
+			if (h.fct == nbr_heredocppvr(token[j]))
 			{
+				h.fct = 0;
 				j++;
 			}
-			h.token = stop_heredoc(token[j], arg[j], &stop_heredo);
-			strings[i] = here_doc(h.token, stop_heredo, env, insert);
-			j++;
 			i++;
 		}
 		return (strings);

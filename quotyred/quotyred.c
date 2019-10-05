@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotyred.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 21:07:04 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 00:22:30 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,9 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	}
 	(*args)[i] = NULL;
 	token[i] = -1;
-	
+	int	j = 0;
+	while (token[j] != -1)
+		j++;
 	return (token);
 }
 
