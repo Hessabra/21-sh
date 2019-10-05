@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/04 00:38:48 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/05 19:25:39 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,25 +76,25 @@ char		*here_doc(int token, char *end, char **env, t_read insert)
 
 char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read insert)
 {
+	t_heredoc	h;
 	char	**strings;
 	char	*stop_heredo;
-	int		nbr;
 	int		i;
 	int		j;
 
-	nbr = how_many_heredoc(ppvr, token);
-	if (nbr)
+	h.nbr = how_many_heredoc(ppvr, token);
+	if (h.nbr)
 	{
-		strings = (char **)malloc(sizeof(char *) * (nbr + 1));
-		strings[nbr] = NULL;
+		strings = (char **)malloc(sizeof(char *) * (h.nbr + 1));
+		strings[h.nbr] = NULL;
 		i = 0;
 		j = 0;
-		while (g_herdoc_sig && i < nbr)
+		while (g_herdoc_sig && i < h.nbr)
 		{
 			while (ppvr[j] > -1)
 				j++;
-			strings[i] = here_doc(stop_heredoc(token[j], arg[j], &stop_heredo),
-					stop_heredo, env, insert);
+			h.token = stop_heredoc(token[j], arg[j], &stop_heredo);
+			strings[i] = here_doc(h.token, stop_heredo, env, insert);
 			j++;
 			i++;
 		}

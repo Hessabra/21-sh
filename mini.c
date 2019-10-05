@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/04 00:19:32 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/05 19:27:31 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ int		execve2(char **arg, char **environ, char *path)
 	return (1);
 }
 
-int				racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_read insert)
+int				racc4(t_ppvr a, char ***env, t_dolor *t, char *path, int **token, t_read insert)
 {
 	int			i;
 	char		**string_heredoc;
 
-	string_heredoc = use_heredoc(a.ppvr, token, a.arg, *environ, insert);
+	string_heredoc = use_heredoc(a.ppvr, token, a.arg, *env, insert);
 	if (g_herdoc_sig)
 	{
 		i = 0;
@@ -110,7 +110,7 @@ int				racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_r
 				g_pid_cmd = fork();
 				if (g_pid_cmd == 0)
 				{
-					mainpipe(a, *environ, i, token, &string_heredoc);
+					mainpipe(a, *env, i, token, &string_heredoc);
 					wait(NULL);
 					exit(0);
 				}
@@ -122,15 +122,17 @@ int				racc4(t_ppvr a, char ***environ, t_dolor *t, char *path, int **token, t_r
 				i = a.x;
 			}
 			else if (a.ppvr[i] == -3 || a.ppvr[i] == -2)
-				usered(a.arg[i], token[i], environ, &string_heredoc);
-			else if (racco1(a.arg[i], environ) && racco3(a.arg[i], environ) && a.arg[i][0])
+				usered(a.arg[i], token[i], env, &string_heredoc);
+			else if (racco1(a.arg[i], env) && racco3(a.arg[i], env)
+				&& a.arg[i][0])
 			{
 				g_pid_cmd = fork();
 				if (g_pid_cmd == 0)
 				{
-					if (ft_strequ(a.arg[i][0], "cat") || ft_strequ(a.arg[i][0], "wc"))
+					if (ft_strequ(a.arg[i][0], "cat") ||
+							ft_strequ(a.arg[i][0], "wc"))
 						ft_defult_term();
-					if (!execve2(a.arg[i], *environ, path))
+					if (!execve2(a.arg[i], *env, path))
 						return (1);
 				}
 				else
@@ -163,7 +165,7 @@ static t_quotis	nbr_quote(char *arg, int *bs)
 		else if (mark && *arg && *arg == 34 && ft_parite(nbrs.s))
 			(nbrs.d)++;
 		else if (mark && *arg && ft_parite(nbrs.d) && ft_parite(nbrs.s))
-			(nbrs.n)+=2;
+			nbrs.n += 2;
 		arg++;
 	}
 	return (nbrs);
@@ -182,20 +184,19 @@ int				main(void)
 	int			*tmpbs;
 	t_read		insert;
 	char		*try;
-	// pid_t		pid;
 
-	// pid = fork();
-	// if (pid == 0)
-	// {
 	environ = aloc(environ);
 	ft_setterm();
 	insert.indexfor_history = 0;
 	t.i = 0;
 	try = NULL;
 	g_ctrl_dsig = 0;
+	a.arg = NULL;
 	insert.topast = ft_memalloc(LINE_MAX);
 	while (1)
 	{
+		if (a.arg)
+			tfree(a.arg);
 		g_is_pipe = 1;
 		g_pid_cmd = 0;
 		g_herdoc_sig = 1;
@@ -227,11 +228,5 @@ int				main(void)
 		}
 		free(try);
 	}
-	// }
-	// else
-	// {
-	// 	wait(NULL);
-	// }
-
 	return (0);
 }

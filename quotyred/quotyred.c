@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes.c                                           :+:      :+:    :+:   */
+/*   quotyred.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/24 21:56:01 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 19:15:57 by hessabra         ###   ########.fr       */
+/*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
+/*   Updated: 2019/10/05 19:08:34 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "quotyred.h"
 
-static int			zaapi(char *str, int *i, int **bs, char c)
+void				zaapi(char *str, int *i, int **bs, char c)
 {
 	(*i)++;
 	while (str[*i] && str[*i] != c)
@@ -25,10 +25,8 @@ static int			zaapi(char *str, int *i, int **bs, char c)
 		}
 		(*i)++;
 	}
-	return (1);
 }
-
-static void			zaapin(char *str, int *i, int **bs)
+void				zaapin(char *str, int *i, int **bs)
 {
 	while (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != '\n'
 			&& str[*i] != '>' && str[*i] != 34 && str[*i] != 39
@@ -44,56 +42,31 @@ static void			zaapin(char *str, int *i, int **bs)
 	}
 }
 
-static int			lenthargs(char *arg, int *bs, int m)
-{
-	static int		start = 0;
-	int				i;
-	int				hd;
-	int				mixed;
-
-	mixed = 1;
-	(m == 0) ? start = 0 : start;
-	i = 0;
-	hd = 1;
-	while (arg[i] && arg[i] != ' ' && arg[i] != '\t' && arg[i] != '\n'
-			&& arg[i] != '>' && !ft_strnequ(arg + i, "&>", 2) && arg[i] != '<')
-	{
-		if ((i == 0 || arg[i - 1] > 32) && (arg[i] == 34 || arg[i] == 39))
-		{
-			hd = -1;
-			(i > 0) ? mixed = -1 : mixed;
-			(zaapi(arg, &i, &bs, arg[i])) ? i++ : i;
-		}
-		else
-		{
-			(i > 0) ? mixed = -1 : mixed;
-			zaapin(arg, &i, &bs);
-		}
-	}
-	return (i * mixed);
-}
-
-static void			allocatequote(char *arg, char ***args, char **env, int **bs)
+static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 {
 	int				i;
 	int				nbr_ar;
 	int				len_ar;
+	int				*token;
 
 	while (*arg && *arg < 33)
 		arg++;
-	nbr_ar = nbr_arg(arg, *bs);
+	nbr_ar = nbr_arg2(arg, *bs);
+	token = (int *)malloc(sizeof(int) * (nbr_ar + 1));
 	*args = (char **)malloc(sizeof(char *) * (nbr_ar + 1));
 	i = 0;
 	while (*arg && i < nbr_ar)
 	{
 		while (*arg && *arg < 33)
 			arg++;
-		len_ar = lenthargs(arg, *bs, i);
+		len_ar = len_arg2(arg, *bs, i, &token);
 		(*args)[i] = (char *)malloc(sizeof(char) * (len_ar + 1));
 		if (len_ar > 0 && (*arg == 34 || *arg == 39))
 			(*args)[i] = ft_strsub(arg, 1, len_ar - 2);
 		else
 			(*args)[i] = ft_strsub(arg, 0, ft_entier(len_ar));
+		if (token[i] == 1 && (len_ar < 0 || *arg == 34 || *arg == 39))
+			token[i] = 0;
 		if (len_ar < 0)
 			(*args)[i] = mixed((*args)[i], bs, env);
 		else
@@ -109,23 +82,15 @@ static void			allocatequote(char *arg, char ***args, char **env, int **bs)
 		arg += ft_entier(len_ar);
 	}
 	(*args)[i] = NULL;
+	token[i] = -1;
+	return (token);
 }
 
-char				**quotyline(char *arg, int **bs, char **env, t_quotis nbr_quot)
+char				**quotyred(char *arg, int **bs, char **env, t_quotis nbr_quot, int **token)
 {
-	char		**args;
+	char			**args;
 
-	if (nbr_quot.s == 0 && nbr_quot.d == 0)
-	{
-		args = ft_splitbs(arg, *bs);
-		while (args[nbr_quot.s])
-		{
-			args[nbr_quot.s] = line(args[nbr_quot.s], env, bs, 0);
-			nbr_quot.s++;
-		}
-		nbr_quot.s = 0;
-	}
-	else
-		allocatequote(arg, &args, env, bs);
+	nbr_quot.d = 0;
+	*token = alloc_args(arg, &args, env, bs);
 	return (args);
 }

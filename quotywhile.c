@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotywhile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:25:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/04 00:19:17 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/05 18:40:26 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 {
 	t_quotis	help;
 	char		*buff;
-    int			*tmbs;
+	int			*tmbs;
 
 	*arg = ft_jandf(*arg, "\n", 1, 0);
 	g_ctrl_dsig = 1;
@@ -71,7 +71,7 @@ int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 		else
 			ft_printf("\nQuote>>\n");
 		buff = ft_readline(buff, insert);
-        effectornot(&tmbs, buff);
+		effectornot(&tmbs, buff);
 		if (buff && g_ctrl_dsig)
 		{
 			help = nbr_quote2(buff, tmbs, (!ft_parite(last.s)) ? 39 : 34);
@@ -82,7 +82,7 @@ int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 				buff = ft_jandf(buff, "\n", 1, 0);
 			*arg = ft_jandf(*arg, buff, 0, 1);
 		}
-        *bs = jointetoile(*bs, tmbs);
+		*bs = jointetoile(*bs, tmbs);
 	}
 	return (1);
 }

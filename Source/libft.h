@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 11:23:16 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 19:22:32 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/05 18:41:11 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ typedef struct	s_splitbs
 	int			j;
 }				t_splitbs;
 
-int         	ft_entier(int x);
-int         	ft_parite(int x);
+void			tfree(char ***array);
+int				ft_entier(int x);
+int				ft_parite(int x);
 int				ft_max(int i, int j);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_bzero(void *s, size_t n);
@@ -124,7 +125,7 @@ int				ft_precision(const char *format, int *i, int r);
 t_need			ft_pourcent(const char *format, int *i);
 int				get_next_line(const int fd, char **line);
 char			*ft_sub2char(char *str, int c);
-char        	*ft_freesub(char *str, unsigned int start, size_t lenth);
-char   			 **ft_addtotab(char **table, char *line);
-int             ft_tablen(char **table);
+char			*ft_freesub(char *str, unsigned int start, size_t lenth);
+char			**ft_addtotab(char **table, char *line);
+int				ft_tablen(char **table);
 #endif

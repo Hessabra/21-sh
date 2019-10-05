@@ -6,13 +6,13 @@
 #    By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 22:24:42 by hessabra          #+#    #+#              #
-#    Updated: 2019/10/01 22:56:07 by hessabra         ###   ########.fr        #
+#    Updated: 2019/10/05 19:10:20 by hessabra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = 21sh
 
-SRC = *.c Source/*.c readline/*.c
+SRC = *.c Source/*.c readline/*.c quotyred/*.c usetoken/*.c
 OBJ = x.o
 
 all: $(NAME)

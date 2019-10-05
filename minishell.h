@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 03:55:41 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 19:24:30 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ typedef struct	s_ppvr
 	int		x;
 	t_quotis    nbr_quot;
 }				t_ppvr;
+
+typedef struct	s_heredoc
+{
+	int		nbr;
+	int		token;
+}				t_heredoc;
 
 int			len_arg2(char *arg, int *bs, int m, int **tok);
 int			nbr_arg2(char *str, int *bs);
