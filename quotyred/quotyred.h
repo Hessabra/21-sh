@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotyred.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 01:06:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 19:06:22 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 21:57:12 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct		s_len_arg
 {
 	int             i;
 	int             j;
+	int				k;
 	int             hd;
 	int             mixed;
 }					t_len_arg;

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 19:08:34 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 21:07:04 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	}
 	(*args)[i] = NULL;
 	token[i] = -1;
+	
 	return (token);
 }
 

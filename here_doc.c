@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 19:25:39 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 22:00:56 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			stop_heredoc(int *token, char **arg, char **stop_heredo)
 	int		i;
 
 	i = 0;
-	while (ft_entier(token[i]) != 12)
+	while (ft_entier(token[i]) != 12 && token[i] != -1)
 		i++;
 	*stop_heredo = arg[i];
 	return (token[i]);
@@ -92,7 +92,9 @@ char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read inse
 		while (g_herdoc_sig && i < h.nbr)
 		{
 			while (ppvr[j] > -1)
+			{
 				j++;
+			}
 			h.token = stop_heredoc(token[j], arg[j], &stop_heredo);
 			strings[i] = here_doc(h.token, stop_heredo, env, insert);
 			j++;

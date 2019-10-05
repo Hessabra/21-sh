@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 19:27:31 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 20:45:23 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,10 @@ int				racc4(t_ppvr a, char ***env, t_dolor *t, char *path, int **token, t_read 
 			i++;
 		}
 	}
+	g_herdoc_sig = 1;
 	return (0);
 }
+
 static t_quotis	nbr_quote(char *arg, int *bs)
 {
 	t_quotis	nbrs;
@@ -172,7 +174,7 @@ static t_quotis	nbr_quote(char *arg, int *bs)
 }
 
 int				main(void)
-{ 
+{
 	t_ppvr		a;
 	char		**arg;
 	char		*path;

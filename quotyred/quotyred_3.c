@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotyred_3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 02:38:10 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 04:09:50 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 22:00:38 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,13 @@ static int		first_if_lenarg(t_len_arg *la, int **tok, char *arg, int m)
 
 static void		first_if_lenarg_2(t_len_arg *la, int **tok, char *arg, int m)
 {
-	if (arg[la->i] == '&')
+	if (la->k)
 	{
-		(*tok)[m] = 3;
-		la->i += 2;
+		if (arg[la->i] == '&')
+		{
+			(*tok)[m] = 3;
+			la->i += 2;
+		}
 	}
 	la->j = la->i;
 	while (arg[la->j] && arg[la->j] < 33)
@@ -78,8 +81,9 @@ static void		second_while_lenarg(t_len_arg *la, char *arg, int *bs)
 
 static void		second_if_lenarg_2(int **tok, int m, t_len_arg la)
 {
+	la.i = 0;
 	((*tok)[m - 1] == 6) ? (*tok)[m] = 11 : m;
-	((*tok)[m - 1] == 7) ? (*tok)[m] = 12 * la.hd : m;
+	((*tok)[m - 1] == 7) ? (*tok)[m] = 12 : m;
 	if ((*tok)[m - 1] == 1 || (*tok)[m - 1] == 3 || (*tok)[m - 1] == 4)
 		(*tok)[m] = 11;
 	else if ((*tok)[m - 1] == 2 || (*tok)[m - 1] == 8)
@@ -96,8 +100,8 @@ int				len_arg2(char *arg, int *bs, int m, int **tok)
 	la.i = 0;
 	if (arg[la.i] == '<' || arg[la.i] == '>' || ft_strnequ(arg, "&>", 2))
 	{
-		if (first_if_lenarg(&la, tok, arg, m))
-			first_if_lenarg_2(&la, tok, arg, m);
+		la.k = first_if_lenarg(&la, tok, arg, m);
+		first_if_lenarg_2(&la, tok, arg, m);
 		(arg[la.j] > 32) ? mark = 1 : mark;
 	}
 	else
