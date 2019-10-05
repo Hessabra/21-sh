@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 20:31:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 00:40:09 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 00:55:37 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	fill_usetok(t_usetok *u, int **token, char **args, int cas)
 	{
 		u->fd = 1;
 		zappi(*token, &(u->i));
-		(*token[u->i] >= 6 && *token[u->i] <= 8) ? (u->fd = 0) : u->fd;
-		if (*token[u->i] == 9)
+		((*token)[u->i] >= 6 && (*token)[u->i] <= 8) ? (u->fd = 0) : u->fd;
+		if ((*token)[u->i] == 9)
 		{
 			u->fd = ft_atoi(args[u->i]);
 			(u->i)++;
@@ -88,7 +88,9 @@ void		usered(char **args, int *token, char ***env, char ***string_heredoc)
 	fill_usetok(&u, &token, args, 0);
 	while (args[u.i])
 	{
+		dprintf(2, "HERE");
 		fill_usetok(&u, &token, args, 1);
+		dprintf(2, "HERE");
 		elif_usetoken(&u, token, args, string_heredoc);
 		(u.i)++;
 	}
