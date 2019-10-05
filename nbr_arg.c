@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/18 18:13:48 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 05:54:20 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 05:27:25 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			nbr_arg(char *str, int *bs)
 		if (str[j] == 39 || str[j] == 34)
 			marq = racc(marq, str[j], i);
 		(i && str[j] && (str[j] == ' ' && marq) && str[j + 1] &&
-		 str[j + 1] > 32) ? result++ : result;
+				str[j + 1] > 32) ? result++ : result;
 		j++;
 	}
 	(i != -1) ? result++ : result;

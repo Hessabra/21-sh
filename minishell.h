@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 23:57:13 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 03:55:41 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct	s_ppvr
 	t_quotis    nbr_quot;
 }				t_ppvr;
 
+int			len_arg2(char *arg, int *bs, int m, int **tok);
+int			nbr_arg2(char *str, int *bs);
 int			ft_makesure(int *ppvr, int **token, int start, int index_now);
 int         *applyint(int **tabe, int x);
 char        **quotyred(char *arg, int **bs, char **env, t_quotis nbr_quot, int **token);

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:41:50 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:49:01 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/05 05:25:57 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ static int			lenab(int *a)
 int					*jointetoile(int *a, int *b)
 {
 	int				lena;
-	int				lenb;
 	int				i;
 	int				*c;
 	int				*tmp;
 
 	i = 0;
 	lena = lenab(a);
-	lenb = lenab(b);
-	c = (int *)malloc(sizeof(int) * (lena + lenb + 1));
+	c = (int *)malloc(sizeof(int) * (lena + lenab(b) + 1));
 	tmp = a;
 	while (*a && (c[i] = *a))
 	{
