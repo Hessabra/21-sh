@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   usetoken_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 20:17:27 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 00:38:14 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 00:19:07 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void				getnresetfd(int i)
 
 	if (i == 0)
 	{
-		fd[0] = dup(0);
-		fd[1] = dup(1);
-		fd[2] = dup(2);
+		fd[0] = dup2(0, 100);
+		fd[1] = dup2(1, 101);
+		fd[2] = dup2(2, 102);
 	}
 	else if (i == 1)
 	{
@@ -70,7 +70,11 @@ static void			little_usetoken(t_usetok *u, int *token, char **args)
 			dup2(u->fdw, 2);
 		}
 		if (token[u->i] == 5)
+		{
+			dprintf(2, " %d ", u->fd);
+			sleep(5);
 			close(u->fd);
+		}
 	}
 }
 
