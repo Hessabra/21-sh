@@ -6,39 +6,17 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 20:57:21 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 05:13:25 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 05:40:49 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "mixed.h"
 
 static int	lenpart(char *str, int **bs)
 {
 	int		i;
 
-	i = 0;
-	if (str[i] != 34 && str[i] != 39)
-	{
-		while (str[i] && str[i] != 34 && str[i] != 39)
-		{
-			if (str[i] == 92)
-			{
-				i += ft_entier(**bs);
-				(**bs > 0) ? i++ : i;
-				(*bs)++;
-			}
-			else
-				i++;
-		}
-	}
-	else if (str[i] == 39)
-	{
-		i++;
-		while (str[i] && str[i] != 39)
-			i++;
-		i++;
-	}
-	else
+	if (firstif_lenpart(&i, str, bs) && secondif_lenpart(&i, str))
 	{
 		i++;
 		while (str[i] && str[i] != 34)
