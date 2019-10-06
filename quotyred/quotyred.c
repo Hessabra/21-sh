@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 02:18:27 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 03:49:52 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,49 +45,35 @@ void				zaapin(char *str, int *i, int **bs)
 
 static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 {
-	int				i;
-	int				nbr_ar;
-	int				len_ar;
+	t_alloc_args	aa;
 	int				*token;
 
-	while (*arg && *arg < 33)
-		arg++;
-	nbr_ar = nbr_arg2(arg, *bs);
-	token = (int *)malloc(sizeof(int) * (nbr_ar + 1));
-	*args = (char **)malloc(sizeof(char *) * (nbr_ar + 1));
-	i = 0;
-	while (*arg && i < nbr_ar)
+	alloc_args_2(&aa, &arg, &token, *bs);
+	*args = (char **)malloc(sizeof(char *) * (aa.nbr_ar + 1));
+	while (++(aa.i) < aa.nbr_ar && *arg)
 	{
-		while (*arg && *arg < 33)
-			arg++;
-		len_ar = len_arg2(arg, *bs, i, &token);
-		(*args)[i] = (char *)malloc(sizeof(char) * (len_ar + 1));
-		if (len_ar > 0 && (*arg == 34 || *arg == 39))
-			(*args)[i] = ft_strsub(arg, 1, len_ar - 2);
-		else
-			(*args)[i] = ft_strsub(arg, 0, ft_entier(len_ar));
-		if (token[i] == 1 && (len_ar < 0 || *arg == 34 || *arg == 39))
-			token[i] = 0;
-		if (len_ar < 0)
-			(*args)[i] = mixed((*args)[i], bs, env);
+		alloc_args_3(&aa, &arg, &token, *bs);
+		alloc_args_4(&aa, arg, args, &token);
+		if (aa.len_ar < 0)
+			(*args)[aa.i] = mixed((*args)[aa.i], bs, env);
 		else
 		{
 			if (*arg == 34)
-				line((*args)[i], env, bs, 2);
+				line((*args)[aa.i], env, bs, 2);
 			else if (*arg == 39)
-				line(((*args))[i], env, bs, 1);
+				line(((*args))[aa.i], env, bs, 1);
 			else
-				line((*args)[i], env, bs, 0);
+				line((*args)[aa.i], env, bs, 0);
 		}
-		i++;
-		arg += ft_entier(len_ar);
+		arg += ft_entier(aa.len_ar);
 	}
-	(*args)[i] = NULL;
-	token[i] = -1;
+	(*args)[aa.i] = NULL;
+	token[aa.i] = -1;
 	return (token);
 }
 
-char				**quotyred(t_triplp *tp, t_triplp2 *tp2, char **env, t_quotis nbr_quot)
+char				**quotyred(t_triplp *tp, t_triplp2 *tp2, char **env,
+					t_quotis nbr_quot)
 {
 	char			**args;
 

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 01:06:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 21:57:12 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 03:22:32 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void				alloc_args_2(t_alloc_args *aa, char **arg, int **token,
 					int *bs);
 void				alloc_args_3(t_alloc_args *aa, char **arg, int **token,
 					int *bs);
-int					alloc_args_4(t_alloc_args *aa, char *arg, char ***args,
+void				alloc_args_4(t_alloc_args *aa, char *arg, char ***args,
 					int **token);
 int					len_arg2(char *arg, int *bs, int m, int **tok);
 int					nbr_arg2(char *str, int *bs);

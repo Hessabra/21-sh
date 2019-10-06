@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 01:37:04 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 02:29:36 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,13 +177,9 @@ int				main(void)
 {
 	t_ppvr		a;
 	t_triplp	tp;
-	// char		**arg;
-	// char		*path;
 	t_dolor		t;
 	extern char	**environ;
-	// int			*bs;
 	int			j;
-	// int			**token;
 	int			*tmpbs;
 	t_read		insert;
 	char		*try;
