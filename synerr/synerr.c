@@ -6,11 +6,11 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:31:07 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:15:52 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 06:17:15 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "synerr.h"
 
 static int			counred(char **str)
 {
@@ -30,26 +30,11 @@ static int			counred(char **str)
 			out++;
 		else if (**str == '<')
 			in++;
-		if ((in && out) || ((in == 2 || out == 2) && x > 1) || in > 2 || out > 2)
-		{
-			ft_putstr_fd("\nSyntax error near unexpected token `", 2);
-			ft_putchar_fd(**str, 2);
-			ft_putstr_fd("'\n", 2);
+		if (!(counred_2(in, out, x, **str)))
 			return (0);
-		}
 		(*str)++;
-		if ((in || out) && **str == '\0')
-		{
-			ft_putstr_fd("\nSyntax error near unexpected token `newline'\n", 2);
+		if (!counred_3(in, out, **str))
 			return (0);
-		}
-		if ((in || out) && (**str == ';' || **str == '|'))
-		{
-			ft_putstr_fd("\nSyntax error near unexpected token `", 2);
-			ft_putchar_fd(**str, 2);
-			ft_putstr_fd("'\n", 2);
-			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -75,30 +60,12 @@ int					synerr(char *str, int *bs)
 	int					i;
 
 	i = 0;
-	while (*str == ' ' || *str == '\t' || *str == '\n')
-		str++;
-	if (*str == '|' || *str == ';')
-	{
-		ft_putstr_fd("\nSyntax error near unexpected token `", 2);
-		ft_putchar_fd(*str, 2);
-		ft_putstr_fd("'\n", 2);
+	if (!(synerr_2(&str)))
 		return (0);
-	}
 	while (*str)
 	{
-		if (*str == 59)
-		{
-			str++;
-			while (*str == ' ' || *str == '\t' || *str == '\n')
-				str++;
-			if (*str == '>' || *str == '<' || *str == '|')
-			{
-				ft_putstr_fd("\nSyntax error near unexpected token `", 2);
-				ft_putchar_fd(*str, 2);
-				ft_putstr_fd("'\n", 2);
-				return (0);
-			}
-		}
+		if (!(synerr_3(&str)))
+			return (0);
 		if (*str == '|' && !counpi(&str))
 			return (0);
 		if ((*str == '>' || *str == '<') && !counred(&str))
