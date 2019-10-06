@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 05:08:25 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 06:33:22 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,8 +194,8 @@ int				main(void)
 	insert.topast = ft_memalloc(LINE_MAX);
 	while (1)
 	{
-		if (a.arg)
-			tfree(a.arg);
+		// if (a.arg)
+		// 	tfree(a.arg);
 		g_is_pipe = 1;
 		g_pid_cmd = 0;
 		g_herdoc_sig = 1;

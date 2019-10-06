@@ -6,7 +6,7 @@
 #    By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 22:24:42 by hessabra          #+#    #+#              #
-#    Updated: 2019/10/06 05:43:19 by hessabra         ###   ########.fr        #
+#    Updated: 2019/10/06 06:22:05 by hessabra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = *.c	Source/*.c\
 			usetoken/*.c\
     		dolo/*.c\
 			here_doc/*.c\
+			synerr/*.c\
 			mixed/*.c
 OBJ = x.o
 

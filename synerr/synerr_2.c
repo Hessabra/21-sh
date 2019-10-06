@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 05:49:04 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 06:18:09 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 06:28:45 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			counred_3(int in, int out, char c)
 
 int			synerr_2(char **str)
 {
-	while (**str == ' ' || **str == '\t' || **str == '\n')
+	while (**str && **str < 33)
 		(*str)++;
 	if (**str == '|' || **str == ';')
 	{
@@ -60,7 +60,7 @@ int			synerr_3(char **str)
 	if (**str == 59)
 	{
 		(*str)++;
-		while (**str == ' ' || **str == '\t' || **str == '\n')
+		while (**str && **str < 33)
 			(*str)++;
 		if (**str == '>' || **str == '<' || **str == '|')
 		{
