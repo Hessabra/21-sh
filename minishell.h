@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 23:42:46 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/06 02:14:07 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,28 @@ typedef struct s_quotis
 	int     s;
 	int     d;
 	int     n;
-
 }				t_quotis;
+
+typedef struct s_triplp2
+{
+	int		i;
+	int		*bs;
+}				t_triplp2;
+
+typedef struct s_triplp
+{
+	char	**arg;
+	int		*bs;
+	int		**token;
+	char	*path;
+}				t_triplp;
 
 typedef struct	s_ppvr
 {
 	char	***arg;
 	int		*ppvr;
 	int		x;
-	t_quotis    nbr_quot;
+	t_quotis	nbr_quot;
 }				t_ppvr;
 
 typedef struct	s_heredoc
@@ -65,7 +78,7 @@ int			len_arg2(char *arg, int *bs, int m, int **tok);
 int			nbr_arg2(char *str, int *bs);
 int			ft_makesure(int *ppvr, int **token, int start, int index_now);
 int         *applyint(int **tabe, int x);
-char        **quotyred(char *arg, int **bs, char **env, t_quotis nbr_quot, int **token);
+char        **quotyred(t_triplp *tp, t_triplp2 *tp2, char **env, t_quotis nbr_quot);
 int         *jointetoile(int *a, int *b);
 int     	isint(char *str);
 int         nbrope(char *str, int j);
@@ -94,7 +107,7 @@ char		*line(char *arg, char **env, int **bs, int quot);
 char        **quotyline(char *arg, int **bs, char **env, t_quotis nbr_quot);
 char        *mixed(char *str, int **bs, char **env);
 char		**ft_ppvr(char *str, int *bs, int **ppvr);
-char        ***triplp(char **arg, int *bs, char **env, t_ppvr a, int ***token);
+char        ***triplp(t_triplp *tp, int *bs, char **env, t_ppvr a);
 int         counpi(char **str);
 int			execve2(char **arg, char **environ, char *path);
 int			pipey(int nbr_pipe, char ***arg, char **env);

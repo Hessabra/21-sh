@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 20:45:23 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 01:37:04 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,13 +176,14 @@ static t_quotis	nbr_quote(char *arg, int *bs)
 int				main(void)
 {
 	t_ppvr		a;
-	char		**arg;
-	char		*path;
+	t_triplp	tp;
+	// char		**arg;
+	// char		*path;
 	t_dolor		t;
 	extern char	**environ;
-	int			*bs;
+	// int			*bs;
 	int			j;
-	int			**token;
+	// int			**token;
 	int			*tmpbs;
 	t_read		insert;
 	char		*try;
@@ -203,27 +204,27 @@ int				main(void)
 		g_pid_cmd = 0;
 		g_herdoc_sig = 1;
 		j = 1;
-		path = NULL;
+		tp.path = NULL;
 		prompt();
 		try = ft_readline(try, &insert);
 		if (try)
 		{
-			effectornot(&bs, try);
-			a.nbr_quot = nbr_quote(try, bs);
+			effectornot(&(tp.bs), try);
+			a.nbr_quot = nbr_quote(try, tp.bs);
 			if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
-				j = quotiwhile(a.nbr_quot, &try, &bs, &insert);
+				j = quotiwhile(a.nbr_quot, &try, &(tp.bs), &insert);
 			ft_add_history(try, &insert);
-			if (j && synerr(try, bs))
+			if (j && synerr(try, tp.bs))
 			{
-				arg = ft_ppvr(try, bs, &a.ppvr);
-				tmpbs = bs;
-				token = NULL;
-				a.arg = triplp(arg, bs, environ, a, &token);
+				tp.arg = ft_ppvr(try, tp.bs, &a.ppvr);
+				tmpbs = tp.bs;
+				tp.token = NULL;
+				a.arg = triplp(&tp, tp.bs, environ, a);
 				ft_putstr("\n");
 				if (a.arg)
 				{
 					t.i = 1;
-					if (racc4(a, &environ, &t, path, token, insert))
+					if (racc4(a, &environ, &t, tp.path, tp.token, insert))
 						return (1);
 				}
 			}

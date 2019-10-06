@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 20:31:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 00:55:37 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 01:01:16 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ void		usered(char **args, int *token, char ***env, char ***string_heredoc)
 	fill_usetok(&u, &token, args, 0);
 	while (args[u.i])
 	{
-		dprintf(2, "HERE");
 		fill_usetok(&u, &token, args, 1);
-		dprintf(2, "HERE");
 		elif_usetoken(&u, token, args, string_heredoc);
 		(u.i)++;
 	}

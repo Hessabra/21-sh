@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotyred.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 00:22:30 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/06 02:18:27 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void				zaapi(char *str, int *i, int **bs, char c)
 		(*i)++;
 	}
 }
+
 void				zaapin(char *str, int *i, int **bs)
 {
 	while (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != '\n'
@@ -83,17 +84,14 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	}
 	(*args)[i] = NULL;
 	token[i] = -1;
-	int	j = 0;
-	while (token[j] != -1)
-		j++;
 	return (token);
 }
 
-char				**quotyred(char *arg, int **bs, char **env, t_quotis nbr_quot, int **token)
+char				**quotyred(t_triplp *tp, t_triplp2 *tp2, char **env, t_quotis nbr_quot)
 {
 	char			**args;
 
 	nbr_quot.d = 0;
-	*token = alloc_args(arg, &args, env, bs);
+	(tp->token)[tp2->i] = alloc_args((tp->arg)[tp2->i], &args, env, &(tp2->bs));
 	return (args);
 }
