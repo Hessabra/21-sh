@@ -6,11 +6,11 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:19:00 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 03:57:53 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 04:43:25 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static int	ft_aln(char str)
 {
