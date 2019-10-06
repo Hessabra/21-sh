@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 05:05:33 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 00:31:55 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <fcntl.h>
+#include <dirent.h>
 # define PIPE_WRITE 1
 # define PIPE_READ 0
 
@@ -74,6 +75,7 @@ typedef struct	s_heredoc
 	int		token;
 }				t_heredoc;
 
+void        open_fds(void);
 int			len_arg2(char *arg, int *bs, int m, int **tok);
 int			nbr_arg2(char *str, int *bs);
 int			ft_makesure(int *ppvr, int **token, int start, int index_now);

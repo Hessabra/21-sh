@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 06:33:22 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 00:32:09 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int				racc4(t_ppvr a, char ***env, t_dolor *t, char *path, int **token, t_read 
 		i = 0;
 		while (a.arg[i])
 		{
+			open_fds();
 			g_is_pipe = 1;
 			if (ft_entier(a.ppvr[i]) == 1 || a.ppvr[i] == -4)
 			{

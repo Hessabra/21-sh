@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 20:31:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 23:49:23 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 00:34:57 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static void	exec_usetoken_2(t_usetok u, char **env)
 	}
 	else
 	{
-		dprintf(2, "%d %d", (u.fd_p)[PIPE_READ], (u.fd_p)[PIPE_WRITE]);
 		close((u.fd_p)[PIPE_READ]);
 		ft_putstr_fd(u.new, (u.fd_p)[PIPE_WRITE]);
 		close((u.fd_p)[PIPE_WRITE]);

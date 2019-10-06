@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 20:17:27 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 00:19:07 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 00:34:49 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,7 @@ static void			little_usetoken(t_usetok *u, int *token, char **args)
 			dup2(u->fdw, 2);
 		}
 		if (token[u->i] == 5)
-		{
-			dprintf(2, " %d ", u->fd);
-			sleep(5);
 			close(u->fd);
-		}
 	}
 }
 
