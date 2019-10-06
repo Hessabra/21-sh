@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 00:22:19 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/06 05:22:29 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "here_doc.h"
 
 int			how_many_heredoc(int *ppvr, int **token)
 {
@@ -98,37 +98,28 @@ char		*here_doc(int token, char *end, char **env, t_read insert)
 	return (new);
 }
 
-
-
-char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read insert)
+char		**use_heredoc(t_ppvr a, int **token, char **env, t_read insert)
 {
 	t_heredoc	h;
-	char	**strings;
-	char	*stop_heredo;
-	int		i;
-	int		j;
+	char		**strings;
+	char		*stop_heredo;
+	int			i;
+	int			j;
 
-	h.nbr = how_many_heredoc(ppvr, token);
+	h.nbr = how_many_heredoc(a.ppvr, token);
 	if (h.nbr)
 	{
 		strings = (char **)malloc(sizeof(char *) * (h.nbr + 1));
 		strings[h.nbr] = NULL;
-		i = 0;
-		j = 0;
-		h.fct = 0;
+		init_here_doc(&i, &j, &(h.fct));
 		while (g_herdoc_sig && i < h.nbr)
 		{
-			while (ppvr[j] > -1)
+			while ((a.ppvr)[j] > -1)
 				j++;
 			h.fct++;
-			h.token = stop_heredoc(token[j], arg[j], &stop_heredo, h.fct);
+			h.token = stop_heredoc(token[j], (a.arg)[j], &stop_heredo, h.fct);
 			strings[i] = here_doc(h.token, stop_heredo, env, insert);
-			if (h.fct == nbr_heredocppvr(token[j]))
-			{
-				h.fct = 0;
-				j++;
-			}
-			i++;
+			lastif_here_doc(&(h.fct), &i, &j, token[j]);
 		}
 		return (strings);
 	}

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 02:14:07 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 05:05:33 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int			execve2(char **arg, char **environ, char *path);
 int			pipey(int nbr_pipe, char ***arg, char **env);
 int			racco1(char **arg, char ***env);
 int			racco3(char **arg, char ***env);
-char		**use_heredoc(int *ppvr, int **token, char ***arg, char **env, t_read insert);
+char		**use_heredoc(t_ppvr a, int **token, char **env, t_read insert);
 int         spaceornot(char *str);
 char        *mixed2(char *str, int **bs, char **env);
 void		mainpipe(t_ppvr a, char **env, int i, int **token, char ***string_heredoc);

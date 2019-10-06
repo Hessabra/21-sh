@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 02:29:36 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/06 05:08:25 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int				racc4(t_ppvr a, char ***env, t_dolor *t, char *path, int **token, t_read 
 	int			i;
 	char		**string_heredoc;
 
-	string_heredoc = use_heredoc(a.ppvr, token, a.arg, *env, insert);
+	string_heredoc = use_heredoc(a, token, *env, insert);
 	if (g_herdoc_sig)
 	{
 		i = 0;

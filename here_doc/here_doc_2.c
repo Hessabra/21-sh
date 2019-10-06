@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredocsuite.c                                     :+:      :+:    :+:   */
+/*   here_doc_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/02 00:26:56 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:08:06 by hessabra         ###   ########.fr       */
+/*   Created: 2019/10/06 05:12:07 by hessabra          #+#    #+#             */
+/*   Updated: 2019/10/06 05:20:21 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "here_doc.h"
 
-int				ft_makesure(int *ppvr, int **token, int start, int index_now)
+void		lastif_here_doc(int *fct, int *i, int *j, int *token)
 {
-	int			i;
-	int			j;
-	int			count;
-
-	i = start;
-	count = 0;
-	while (i < index_now)
+	if (*fct == nbr_heredocppvr(token))
 	{
-		if (ppvr[i] < -1 && ppvr[i] > -5)
-		{
-			j = 0;
-			while (token[i][j] > -1)
-			{
-				if (token[i][j] == 7)
-					count++;
-				j++;
-			}
-		}
-		i++;
+		*fct = 0;
+		(*j)++;
 	}
-	return (count);
+	(*i)++;
+}
+
+void		init_here_doc(int *i, int *j, int *fct)
+{
+	*i = 0;
+	*j = 0;
+	*fct = 0;
 }
