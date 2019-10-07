@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 21:11:35 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:31:24 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ typedef struct	s_dolor
 	int			i;
 	int			x;
 }				t_dolor;
+
+typedef struct	s_racc4_p
+{
+	int			i;
+	char		**string_heredoc;
+}				t_racc4_p;
 
 typedef struct s_quotis
 {
@@ -130,7 +136,7 @@ int			racco3(char **arg, char ***env);
 char		**use_heredoc(t_ppvr a, int **token, char **env, t_read insert);
 int         spaceornot(char *str);
 char        *mixed2(char *str, int **bs, char **env);
-void		mainpipe(t_ppvr a, char **env, int i, int **token, char ***string_heredoc);
+void		mainpipe(t_racc4_p *rp, t_ppvr a, char **env, int **token);
 int			quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert);
 void        getnresetfd(int i);
 void        usered(char **args, int *token, char ***env, char ***string_heredoc);

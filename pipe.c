@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/03 23:38:51 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/07 22:34:17 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "pipe.h"
 
 void			close_all(int ***fd, int x)
@@ -26,67 +25,31 @@ void			close_all(int ***fd, int x)
 	}
 }
 
-void			mainpipe(t_ppvr a, char **env, int start, int **token, char ***string_heredoc)
+void			mainpipe(t_racc4_p *rp, t_ppvr a, char **env, int **token)
 {
 	pid_t		exec_pid;
-	int 		i;
+	int			i;
 	int			status;
 	int			**fd;
-	char		*path;
 
-	path = NULL;
-	i = start;
-	fd = (int **)malloc(sizeof(int *) * (a.x - start));
 	getnresetfd(0);
-	while (i < a.x)
-	{
-		fd[i - start] = (int *)malloc(sizeof(int) * 2);
-		if (pipe(fd[i - start]) < 0)
-		{
-			ft_putendl_fd("Fail to pipe", 2);
-			exit(0);
-		}
-		i++;
-	}
-	i = start;
+	init_pipe(&i, rp->i, a.x, &fd);
 	while (i <= a.x)
-	{
-		exec_pid = fork();
-		if (exec_pid == 0)
+		if ((exec_pid = fork()) == 0)
 		{
-			if (i > start)
-			{
-				if (dup2(fd[i - start - 1][0], 0) < 0)
-				{
-					ft_putendl_fd("Fail to dup2", 2);
-					exit(0);
-				}
-			}
-			if (i < a.x)
-				if (dup2(fd[i - start][1], 1) < 0)
-				{
-					ft_putendl_fd("Fail to dup2", 2);
-					exit(0);
-				}
-			close_all(&fd, a.x - start);
+			dupnclose_pipe(&fd, i, rp->i, a.x);
 			if (a.ppvr[i] == -4 || a.ppvr[i] == -3 || a.ppvr[i] == -2)
 			{
-				*string_heredoc += ft_makesure(a.ppvr, token, start, i);
-				usered(a.arg[i], token[i], &env, string_heredoc);
+				rp->string_heredoc += ft_makesure(a.ppvr, token, rp->i, i);
+				usered(a.arg[i], token[i], &env, &(rp->string_heredoc));
 			}
 			else
-			{
-				if (ft_strequ(a.arg[i][0], "cat") || ft_strequ(a.arg[i][0], "wc"))
-						ft_defult_term();
-				if (!(ft_strequ(a.arg[i][0], "exit") || ft_strequ(a.arg[i][0], "cd") ||
-					ft_strequ(a.arg[i][0], "setenv") || ft_strequ(a.arg[i][0], "unsetenv")))
-						execve2(a.arg[i], env, path);
-			}
+				exec_pipe(a.arg[i], env);
 			exit(0);
 		}
 		else
 			i++;
-	}
-	close_all(&fd, a.x - start);
+	close_all(&fd, a.x - rp->i);
 	waitpid(exec_pid, &status, 0);
+	getnresetfd(1);
 }

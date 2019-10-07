@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 20:20:48 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:28:38 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,55 +91,54 @@ int		execve2(char **arg, char **environ, char *path)
 
 int				racc4(t_ppvr a, char ***env, t_dolor *t, char *path, int **token, t_read insert)
 {
-	int			i;
-	char		**string_heredoc;
+	t_racc4_p	rp;
 
-	string_heredoc = use_heredoc(a, token, *env, insert);
+	rp.string_heredoc = use_heredoc(a, token, *env, insert);
 	if (g_herdoc_sig)
 	{
-		i = 0;
-		while (a.arg[i])
+		rp.i = 0;
+		while (a.arg[rp.i])
 		{
 			open_fds();
 			g_is_pipe = 1;
-			if (ft_entier(a.ppvr[i]) == 1 || a.ppvr[i] == -4)
+			if (ft_entier(a.ppvr[rp.i]) == 1 || a.ppvr[rp.i] == -4)
 			{
 				g_is_pipe = 0;
-				a.x = i;
+				a.x = rp.i;
 				while (ft_entier(a.ppvr[a.x]) == 1 || a.ppvr[a.x] == -4)
 					a.x++;
 				g_pid_cmd = fork();
 				if (g_pid_cmd == 0)
 				{
-					mainpipe(a, *env, i, token, &string_heredoc);
+					mainpipe(&rp, a, *env, token);
 					wait(NULL);
 					exit(0);
 				}
 				else
 				{
 					waitpid(g_pid_cmd, NULL, 0);
-					string_heredoc += ft_makesure(a.ppvr, token, i, a.x + 1);
+					rp.string_heredoc += ft_makesure(a.ppvr, token, rp.i, a.x + 1);
 				}
-				i = a.x;
+				rp.i = a.x;
 			}
-			else if (a.ppvr[i] == -3 || a.ppvr[i] == -2)
-				usered(a.arg[i], token[i], env, &string_heredoc);
-			else if (racco1(a.arg[i], env) && racco3(a.arg[i], env)
-				&& a.arg[i][0])
+			else if (a.ppvr[rp.i] == -3 || a.ppvr[rp.i] == -2)
+				usered(a.arg[rp.i], token[rp.i], env, &(rp.string_heredoc));
+			else if (racco1(a.arg[rp.i], env) && racco3(a.arg[rp.i], env)
+				&& a.arg[rp.i][0])
 			{
 				g_pid_cmd = fork();
 				if (g_pid_cmd == 0)
 				{
-					if (ft_strequ(a.arg[i][0], "cat") ||
-							ft_strequ(a.arg[i][0], "wc"))
+					if (ft_strequ(a.arg[rp.i][0], "cat") ||
+							ft_strequ(a.arg[rp.i][0], "wc"))
 						ft_defult_term();
-					if (!execve2(a.arg[i], *env, path))
+					if (!execve2(a.arg[rp.i], *env, path))
 						return (1);
 				}
 				else
 					wait(&(t->x));
 			}
-			i++;
+			(rp.i)++;
 		}
 	}
 	g_herdoc_sig = 1;
