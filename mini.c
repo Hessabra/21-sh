@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 01:01:10 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 04:15:32 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ int				main(void)
 		tp.path = NULL;
 		prompt();
 		try = ft_readline(try, &insert);
+		dprintf(2, "\n %d \n ", g_pid_cmd);
 		if (try)
 		{
 			effectornot(&(tp.bs), try);
@@ -217,6 +218,7 @@ int				main(void)
 				tmpbs = tp.bs;
 				tp.token = NULL;
 				a.arg = triplp(&tp, tp.bs, environ, a);
+				free(tp.bs);
 				ft_putstr("\n");
 				if (a.arg)
 				{
