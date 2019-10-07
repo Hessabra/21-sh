@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 18:21:45 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 01:03:09 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 02:50:40 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	erro(char c)
 {
-	ft_putstr_fd( "I GOT HERE",2);
 	ft_putstr_fd("\nSyntax error near unexpected token `", 2);
 	ft_putchar_fd(c, 2);
 	ft_putstr_fd("'\n", 2);

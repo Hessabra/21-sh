@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 01:06:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 03:22:32 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 01:08:36 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 
 typedef struct		s_len_arg
 {
-	int             i;
-	int             j;
+	int				i;
+	int				j;
 	int				k;
-	int             hd;
-	int             mixed;
+	int				hd;
+	int				mixed;
 }					t_len_arg;
 
 typedef struct		s_nbr_arg
 {
-	int             result;
-	int             marq;
-	int             j;
-	int             i;
+	int				result;
+	int				marq;
+	int				j;
+	int				i;
 }					t_nbr_arg;
 
 typedef struct		s_alloc_args
