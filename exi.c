@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 22:11:15 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 20:57:12 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 23:24:57 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	racc(int i, char ***env, char **arg)
 	ft_putstr("\e[35;1m\x1B[100mNooo don't leave me TT-TT\e[0m\n");
 	dfre(*env);
 	dfre(arg);
+	ft_defult_term();
 	exit(i);
 }
 

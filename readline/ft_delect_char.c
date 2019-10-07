@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_delect_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:58 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/04 00:19:17 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/07 23:27:16 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	ft_delete_onechar(t_read *insert)
 		g_ctrl_dsig = 0;
 	}
 	else if (insert->linelen == 0 && g_ctrl_dsig == 0)
+	{
+		ft_defult_term();
 		exit(0);
+	}
 	if (insert->index >= 0 && insert->index < insert->linelen)
 	{
 		ft_remove_line(insert);
