@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 04:15:32 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 20:20:48 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,6 @@ int				main(void)
 		tp.path = NULL;
 		prompt();
 		try = ft_readline(try, &insert);
-		dprintf(2, "\n %d \n ", g_pid_cmd);
 		if (try)
 		{
 			effectornot(&(tp.bs), try);

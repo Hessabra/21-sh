@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:06:18 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 05:21:06 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 20:36:07 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,42 +81,43 @@ static int		ft_size(char *str, int p, int **bs, int *ppvr)
 	return (i - p - 1);
 }
 
+static void		ft_ppvr_2(int *p, int *ppvr, int *ippvr, t_splitbs *ij)
+{
+	if (ft_entier(ppvr[*ippvr]) == 1 ||
+		ft_entier(ppvr[*ippvr]) == 2 ||
+		ppvr[*ippvr] == -3 || ppvr[*ippvr] == -4)
+		(*p)++;
+	else if (ft_entier(ppvr[*ippvr]) == 4)
+		*p += 2;
+	(ij->i)++;
+	(*ippvr)++;
+}
+
 char			**ft_ppvr(char *str, int *bs, int **ppvr)
 {
+	t_ppvrf		pf;
 	t_splitbs	ij;
-	int			len;
-	int			lenarg;
 	int			p[1];
 	char		**tab_str;
-	int			ippvr;
 
 	ij.i = 0;
 	*p = 0;
-	lenarg = ft_count(str, bs);
-	tab_str = (char **)malloc(sizeof(char *) * (lenarg + 1));
-	*ppvr = (int *)malloc(sizeof(char *) * (lenarg + 1));
-	if (tab_str)
+	pf.lenarg = ft_count(str, bs);
+	tab_str = (char **)malloc(sizeof(char *) * (pf.lenarg + 1));
+	*ppvr = (int *)malloc(sizeof(char *) * (pf.lenarg + 1));
+	if (tab_str && !(pf.ippvr = 0))
 	{
-		ippvr = 0;
-		while (ij.i < lenarg)
+		while (ij.i < pf.lenarg && !(ij.j = 0))
 		{
-			ij.j = 0;
-			len = ft_size(str, *p, &bs, &((*ppvr)[ippvr])) + 1;
-			tab_str[ij.i] = (char *)malloc(sizeof(char) * (len + 1));
-			while (ij.j < len)
+			pf.len = ft_size(str, *p, &bs, &((*ppvr)[pf.ippvr])) + 1;
+			tab_str[ij.i] = (char *)malloc(sizeof(char) * (pf.len + 1));
+			while (ij.j < pf.len)
 				tab_str[ij.i][(ij.j)++] = str[(*p)++];
 			tab_str[ij.i][ij.j] = '\0';
-			if (ft_entier((*ppvr)[ippvr]) == 1 ||
-					ft_entier((*ppvr)[ippvr]) == 2 ||
-					(*ppvr)[ippvr] == -3 || (*ppvr)[ippvr] == -4)
-				(*p)++;
-			else if (ft_entier((*ppvr)[ippvr]) == 4)
-				*p += 2;
-			(ij.i)++;
-			ippvr++;
+			ft_ppvr_2(&(*p), *ppvr, &(pf.ippvr), &ij);
 		}
-		(*ppvr)[ippvr] = 9;
-		tab_str[lenarg] = 0;
+		(*ppvr)[pf.ippvr] = 9;
+		tab_str[pf.lenarg] = 0;
 	}
 	return (tab_str);
 }

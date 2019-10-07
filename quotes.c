@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:56:01 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 03:57:27 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:11:15 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void			zaapin(char *str, int *i, int **bs)
 	}
 }
 
-static int			lenthargs(char *arg, int *bs, int m)
+int					lenthargs_4(char *arg, int *bs, int m)
 {
 	static int		start = 0;
 	int				i;
@@ -79,21 +79,12 @@ static void			allocatequote(char *arg, char ***args, char **env, int **bs)
 	int				nbr_ar;
 	int				len_ar;
 
-	while (*arg && *arg < 33)
-		arg++;
-	nbr_ar = nbr_arg(arg, *bs);
+	allocatequote_4(&arg, &nbr_ar, *bs, &i);
 	*args = (char **)malloc(sizeof(char *) * (nbr_ar + 1));
-	i = 0;
 	while (*arg && i < nbr_ar)
 	{
-		while (*arg && *arg < 33)
-			arg++;
-		len_ar = lenthargs(arg, *bs, i);
-		(*args)[i] = (char *)malloc(sizeof(char) * (len_ar + 1));
-		if (len_ar > 0 && (*arg == 34 || *arg == 39))
-			(*args)[i] = ft_strsub(arg, 1, len_ar - 2);
-		else
-			(*args)[i] = ft_strsub(arg, 0, ft_entier(len_ar));
+		allocatequote_3(&arg, &len_ar, *bs, i);
+		allocatequote_2(args, i, len_ar, arg);
 		if (len_ar < 0)
 			(*args)[i] = mixed((*args)[i], bs, env);
 		else
@@ -111,7 +102,8 @@ static void			allocatequote(char *arg, char ***args, char **env, int **bs)
 	(*args)[i] = NULL;
 }
 
-char				**quotyline(char *arg, int **bs, char **env, t_quotis nbr_quot)
+char				**quotyline(char *arg, int **bs, char **env,
+					t_quotis nbr_quot)
 {
 	char		**args;
 

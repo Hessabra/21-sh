@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 00:31:55 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:11:35 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ typedef struct	s_ppvr
 	t_quotis	nbr_quot;
 }				t_ppvr;
 
+typedef struct s_ppvrf
+{
+	int			len;
+	int			lenarg;
+	int			ippvr;
+}				t_ppvrf;
+
+
 typedef struct	s_heredoc
 {
 	int		nbr;
@@ -75,6 +83,10 @@ typedef struct	s_heredoc
 	int		token;
 }				t_heredoc;
 
+int			lenthargs_4(char *arg, int *bs, int m);
+void		allocatequote_2(char ***args, int i, int len_ar, char *arg);
+void		allocatequote_3(char **arg, int *len_ar, int *bs, int i);
+void		allocatequote_4(char **arg, int *nbr_ar, int *bs, int *i);
 void        open_fds(void);
 int			len_arg2(char *arg, int *bs, int m, int **tok);
 int			nbr_arg2(char *str, int *bs);
