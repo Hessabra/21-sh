@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 21:31:24 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 03:00:18 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_triplp
 	int		*bs;
 	int		**token;
 	char	*path;
+	t_read	insert;
 }				t_triplp;
 
 typedef struct	s_ppvr
@@ -89,6 +90,14 @@ typedef struct	s_heredoc
 	int		token;
 }				t_heredoc;
 
+typedef struct	s_main
+{
+	int			j;
+	int			*tmpbs;
+	char		*try;
+}				t_main;
+
+void		unknown_cmd(char *cmd);
 int			lenthargs_4(char *arg, int *bs, int m);
 void		allocatequote_2(char ***args, int i, int len_ar, char *arg);
 void		allocatequote_3(char **arg, int *len_ar, int *bs, int i);
@@ -131,8 +140,8 @@ char        ***triplp(t_triplp *tp, int *bs, char **env, t_ppvr a);
 int         counpi(char **str);
 int			execve2(char **arg, char **environ, char *path);
 int			pipey(int nbr_pipe, char ***arg, char **env);
-int			racco1(char **arg, char ***env);
-int			racco3(char **arg, char ***env);
+int			builtin_1(char **arg, char ***env);
+int			builtin_2(char **arg, char ***env);
 char		**use_heredoc(t_ppvr a, int **token, char **env, t_read insert);
 int         spaceornot(char *str);
 char        *mixed2(char *str, int **bs, char **env);
@@ -140,5 +149,7 @@ void		mainpipe(t_racc4_p *rp, t_ppvr a, char **env, int **token);
 int			quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert);
 void        getnresetfd(int i);
 void        usered(char **args, int *token, char ***env, char ***string_heredoc);
+void		pipe_main(t_ppvr *a, t_racc4_p *rp, int **token, char **env);
+void		nexec_main(char **env, char *path, char **arg);
 
 #endif

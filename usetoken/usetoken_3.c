@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 20:31:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 00:34:57 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/07 23:36:01 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static int	exec_usetoken_1(t_usetok u, char ***env)
 		ft_defult_term();
 	if ((ft_strequ(u.cmd[0], "exit") || ft_strequ(u.cmd[0], "cd") ||
 			ft_strequ(u.cmd[0], "setenv") || ft_strequ(u.cmd[0], "unsetenv"))
-			&& racco1(u.cmd, env))
+			&& builtin_1(u.cmd, env))
 	{
-		racco3(u.cmd, env);
+		builtin_2(u.cmd, env);
 		return (0);
 	}
 	return (1);

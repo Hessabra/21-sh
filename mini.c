@@ -6,58 +6,13 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 21:28:38 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 03:01:25 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		racco1(char **arg, char ***env)
-{
-	int		i;
-
-	i = 1;
-	if (ft_strequ(arg[0], "bye") || ft_strequ("exit", arg[0]))
-		i = exi(arg, env);
-	else if (ft_strequ(arg[0], "setenv"))
-	{
-		stenv(arg, env);
-		return (0);
-	}
-	else if (ft_strequ(arg[0], "unsetenv"))
-	{
-		*env = unstenv(arg, env);
-		return (0);
-	}
-	else if (ft_strequ(arg[0], "echo"))
-		i = ech(arg);
-	return (i);
-}
-
-int		racco3(char **arg, char ***env)
-{
-	int			i;
-
-	if (ft_strequ(arg[0], "cd"))
-	{
-		cdi(arg, env);
-		return (0);
-	}
-	else if (ft_strequ(arg[0], "env"))
-	{
-		i = 0;
-		while ((*env)[i])
-		{
-			ft_putstr((*env)[i]);
-			ft_putchar('\n');
-			i++;
-		}
-		return (0);
-	}
-	return (1);
-}
-
-int		execve2(char **arg, char **environ, char *path)
+int				execve2(char **arg, char **environ, char *path)
 {
 	int			x;
 	char		*tmp;
@@ -65,14 +20,12 @@ int		execve2(char **arg, char **environ, char *path)
 	x = ft_know(environ, "PATH");
 	if (!(path = checking(arg[0], (environ[x]) + 5, x)) && arg[0])
 	{
-		ft_putstr_fd(arg[0], 2);
-		ft_putstr_fd("?! Sadly, I don't know this...\n", 2);
+		unknown_cmd(arg[0]);
 		return (0);
 	}
 	else if (ft_strequ(path, arg[0]) && (execve(arg[0], arg, environ) == -1))
 	{
-		ft_putstr_fd(arg[0], 2);
-		ft_putstr_fd("?! Sadly, I don't know this...\n", 2);
+		unknown_cmd(arg[0]);
 		return (0);
 	}
 	else
@@ -80,8 +33,7 @@ int		execve2(char **arg, char **environ, char *path)
 		tmp = ft_jandf(ft_strjoin(path, "/"), arg[0], 1, 0);
 		if (execve(tmp, arg, environ) == -1)
 		{
-			ft_putstr_fd(arg[0], 2);
-			ft_putstr_fd("?! Sadly, I don't know this...\n", 2);
+			unknown_cmd(arg[0]);
 			exit(0);
 		}
 		free(tmp);
@@ -89,11 +41,11 @@ int		execve2(char **arg, char **environ, char *path)
 	return (1);
 }
 
-int				racc4(t_ppvr a, char ***env, t_dolor *t, char *path, int **token, t_read insert)
+static int		racc4(t_ppvr a, char ***env, t_triplp tp)
 {
 	t_racc4_p	rp;
 
-	rp.string_heredoc = use_heredoc(a, token, *env, insert);
+	rp.string_heredoc = use_heredoc(a, tp.token, *env, tp.insert);
 	if (g_herdoc_sig)
 	{
 		rp.i = 0;
@@ -102,42 +54,13 @@ int				racc4(t_ppvr a, char ***env, t_dolor *t, char *path, int **token, t_read 
 			open_fds();
 			g_is_pipe = 1;
 			if (ft_entier(a.ppvr[rp.i]) == 1 || a.ppvr[rp.i] == -4)
-			{
-				g_is_pipe = 0;
-				a.x = rp.i;
-				while (ft_entier(a.ppvr[a.x]) == 1 || a.ppvr[a.x] == -4)
-					a.x++;
-				g_pid_cmd = fork();
-				if (g_pid_cmd == 0)
-				{
-					mainpipe(&rp, a, *env, token);
-					wait(NULL);
-					exit(0);
-				}
-				else
-				{
-					waitpid(g_pid_cmd, NULL, 0);
-					rp.string_heredoc += ft_makesure(a.ppvr, token, rp.i, a.x + 1);
-				}
-				rp.i = a.x;
-			}
+				pipe_main(&a, &rp, tp.token, *env);
 			else if (a.ppvr[rp.i] == -3 || a.ppvr[rp.i] == -2)
-				usered(a.arg[rp.i], token[rp.i], env, &(rp.string_heredoc));
-			else if (racco1(a.arg[rp.i], env) && racco3(a.arg[rp.i], env)
+				usered(a.arg[rp.i], (tp.token)[rp.i], env,
+					&(rp.string_heredoc));
+			else if (builtin_1(a.arg[rp.i], env) && builtin_2(a.arg[rp.i], env)
 				&& a.arg[rp.i][0])
-			{
-				g_pid_cmd = fork();
-				if (g_pid_cmd == 0)
-				{
-					if (ft_strequ(a.arg[rp.i][0], "cat") ||
-							ft_strequ(a.arg[rp.i][0], "wc"))
-						ft_defult_term();
-					if (!execve2(a.arg[rp.i], *env, path))
-						return (1);
-				}
-				else
-					wait(&(t->x));
-			}
+				nexec_main(*env, tp.path, a.arg[rp.i]);
 			(rp.i)++;
 		}
 	}
@@ -179,19 +102,16 @@ int				main(void)
 	t_triplp	tp;
 	t_dolor		t;
 	extern char	**environ;
-	int			j;
-	int			*tmpbs;
-	t_read		insert;
-	char		*try;
+	t_main		m;
 
 	environ = aloc(environ);
 	ft_setterm();
-	insert.indexfor_history = 0;
+	tp.insert.indexfor_history = 0;
 	t.i = 0;
-	try = NULL;
+	m.try = NULL;
 	g_ctrl_dsig = 0;
 	a.arg = NULL;
-	insert.topast = ft_memalloc(LINE_MAX);
+	tp.insert.topast = ft_memalloc(LINE_MAX);
 	while (1)
 	{
 		// if (a.arg)
@@ -199,21 +119,21 @@ int				main(void)
 		g_is_pipe = 1;
 		g_pid_cmd = 0;
 		g_herdoc_sig = 1;
-		j = 1;
+		m.j = 1;
 		tp.path = NULL;
 		prompt();
-		try = ft_readline(try, &insert);
-		if (try)
+		m.try = ft_readline(m.try, &(tp.insert));
+		if (m.try)
 		{
-			effectornot(&(tp.bs), try);
-			a.nbr_quot = nbr_quote(try, tp.bs);
+			effectornot(&(tp.bs), m.try);
+			a.nbr_quot = nbr_quote(m.try, tp.bs);
 			if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
-				j = quotiwhile(a.nbr_quot, &try, &(tp.bs), &insert);
-			ft_add_history(try, &insert);
-			if (j && synerr(try, tp.bs))
+				m.j = quotiwhile(a.nbr_quot, &(m.try), &(tp.bs), &(tp.insert));
+			ft_add_history(m.try, &(tp.insert));
+			if (m.j && synerr(m.try, tp.bs))
 			{
-				tp.arg = ft_ppvr(try, tp.bs, &a.ppvr);
-				tmpbs = tp.bs;
+				tp.arg = ft_ppvr(m.try, tp.bs, &a.ppvr);
+				m.tmpbs = tp.bs;
 				tp.token = NULL;
 				a.arg = triplp(&tp, tp.bs, environ, a);
 				free(tp.bs);
@@ -221,12 +141,12 @@ int				main(void)
 				if (a.arg)
 				{
 					t.i = 1;
-					if (racc4(a, &environ, &t, tp.path, tp.token, insert))
+					if (racc4(a, &environ, tp))
 						return (1);
 				}
 			}
 		}
-		free(try);
+		free(m.try);
 	}
 	return (0);
 }

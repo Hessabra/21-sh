@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_manage_history.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:00:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/02 02:32:16 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/08 01:15:57 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ void	ft_add_history(char *line, t_read *insert)
 	int		i;
 
 	i = 0;
-	if (insert->indexfor_history == ft_tablen(insert->history)
+	if (insert->history &&
+	insert->indexfor_history == ft_tablen(insert->history)
 	&& !ft_strcmp(line, ""))
 		return ;
-	if (insert->indexfor_history < ft_tablen(insert->history)
+	if (insert->history &&
+	insert->indexfor_history < ft_tablen(insert->history)
 	&& !ft_strcmp(line, ""))
 		insert->indexfor_history = ft_tablen(insert->history);
 	else
