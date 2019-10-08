@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 20:43:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char			*ft_itoa(int i)
 	z = signz(i);
 	if (i < 0)
 		i = i * (-1);
-	ret = (char *)ft_memalloc(sizeof(char) * n);
+	ret = (char *)ft_mema(sizeof(char) * n);
 	if (ret == NULL)
 		return (NULL);
 	ft_bzero(ret, (size_t)n);

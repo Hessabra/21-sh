@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 12:18:51 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	ft_racc1(t_need a, t_need5 r, char **new, char *tmp)
 {
 	if (r.i > a.precision && (r.i > a.width))
 	{
-		*new = (char *)ft_memalloc(sizeof(char) * (r.i + 1));
+		*new = (char *)ft_mema(sizeof(char) * (r.i + 1));
 		*new = ft_memset(*new, ' ', r.i);
 		if (a.flag[3] == 4 || r.c < 0)
 			(*new)[0] = sign(r.c);

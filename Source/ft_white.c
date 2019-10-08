@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 04:06:05 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**ft_split_whitespaces(char *str)
 
 	i = 0;
 	*p = 0;
-	tab_str = (char**)ft_memalloc(sizeof(char*) * (ft_count(str) + 1));
+	tab_str = (char**)ft_mema(sizeof(char*) * (ft_count(str) + 1));
 	if (tab_str)
 	{
 		while (i < ft_count(str))
@@ -80,7 +80,7 @@ char	**ft_split_whitespaces(char *str)
 			j = 0;
 			ft_pos(str, p);
 			len = ft_size(str, *p);
-			tab_str[i] = (char*)ft_memalloc(sizeof(char) * (len + 1));
+			tab_str[i] = (char*)ft_mema(sizeof(char) * (len + 1));
 			while (j < len)
 				tab_str[i][j++] = str[(*p)++];
 			tab_str[i][j] = '\0';

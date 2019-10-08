@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 	int				*token;
 
 	alloc_args_2(&aa, &arg, &token, *bs);
-	*args = (char **)ft_memalloc(sizeof(char *) * (aa.nbr_ar + 1));
+	*args = (char **)ft_mema(sizeof(char *) * (aa.nbr_ar + 1));
 	while (++(aa.i) < aa.nbr_ar && *arg)
 	{
 		alloc_args_3(&aa, &arg, &token, *bs);

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 20:19:31 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	i = 0;
 	if (s == NULL || f == NULL)
 		return (NULL);
-	fraiche = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s) + 1));
+	fraiche = (char *)ft_mema(sizeof(char) * (ft_strlen(s) + 1));
 	if (fraiche == NULL)
 		return (NULL);
 	while (s[i])

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 21:35:46 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void		exec_pipe(char **arg, char **env)
 void		init_pipe(int *i, int start, int end, int ***fd)
 {
 	*i = start;
-	*fd = (int **)ft_memalloc(sizeof(int *) * (end - start));
+	*fd = (int **)ft_mema(sizeof(int *) * (end - start));
 	while (*i < end)
 	{
-		(*fd)[*i - start] = (int *)ft_memalloc(sizeof(int) * 2);
+		(*fd)[*i - start] = (int *)ft_mema(sizeof(int) * 2);
 		protected_pipe((*fd)[*i - start]);
 		(*i)++;
 	}

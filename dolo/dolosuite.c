@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:19:00 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	racc1(char **fin, char **env, char *s, t_dolor *t)
 	int		j;
 
 	(t->i)++;
-	var = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s) + 1));
+	var = (char *)ft_mema(sizeof(char) * (ft_strlen(s) + 1));
 	k = 0;
 	while (s[t->i] && ft_aln(s[t->i]))
 	{
@@ -59,7 +59,7 @@ static int	racc2(char **fin, char **env, char *s, t_dolor t)
 				*fin = ft_jandf(*fin, env[j] + 7, 1, 0);
 			else
 			{
-				var = (char *)ft_memalloc(sizeof(char) * 1000);
+				var = (char *)ft_mema(sizeof(char) * 1000);
 				getcwd(var, 1000);
 				*fin = ft_jandf(*fin, var, 1, 1);
 				free(var);

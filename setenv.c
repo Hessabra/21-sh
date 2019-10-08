@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:02:17 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	racc1(char ***env, char *tmp, int x)
 {
 	int		j;
 
-	(*env)[x] = (char *)ft_memalloc(sizeof(char) * ft_strlen(tmp) + 1);
+	(*env)[x] = (char *)ft_mema(sizeof(char) * ft_strlen(tmp) + 1);
 	j = 0;
 	while (tmp[j])
 	{

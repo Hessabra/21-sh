@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:31:41 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_need		ft_pourcent(const char *format, int *i)
 	if (ft_racc(format, &a, &s, &(*i)))
 		return (a);
 	c = -1;
-	f = (int *)ft_memalloc(sizeof(int) * 5);
+	f = (int *)ft_mema(sizeof(int) * 5);
 	while ((++c) < 5)
 		f[c] = 0;
 	s = ((*i) - s) / 2;

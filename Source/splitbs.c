@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 13:56:11 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ char			**ft_splitbs(char *str, int *bs)
 	ij.i = 0;
 	*p = 0;
 	lenarg = ft_count(str, bs);
-	tab_str = (char**)ft_memalloc(sizeof(char*) * (lenarg + 1));
+	tab_str = (char**)ft_mema(sizeof(char*) * (lenarg + 1));
 	if (tab_str)
 	{
 		while (ij.i < lenarg && !(ij.j = 0))
 		{
 			ft_pos(str, p);
 			len = ft_size(str, *p, &bs);
-			tab_str[ij.i] = (char*)ft_memalloc(sizeof(char) * (len + 1));
+			tab_str[ij.i] = (char*)ft_mema(sizeof(char) * (len + 1));
 			while (ij.j < len)
 				tab_str[ij.i][(ij.j)++] = str[(*p)++];
 			tab_str[ij.i][ij.j] = '\0';

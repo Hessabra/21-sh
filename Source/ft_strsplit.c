@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 20:10:59 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char				**ft_strsplit(char const *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	chaine = (char **)ft_memalloc(sizeof(char *) * (nbr_wrd(s, c) + 1));
+	chaine = (char **)ft_mema(sizeof(char *) * (nbr_wrd(s, c) + 1));
 	if (chaine == NULL)
 		return (NULL);
 	i = 0;
@@ -68,7 +68,7 @@ char				**ft_strsplit(char const *s, char c)
 			s++;
 		if (*s == '\0')
 			break ;
-		chaine[i] = (char *)ft_memalloc(sizeof(char) * (nbr_ltr((char *)s, c) + 1));
+		chaine[i] = (char *)ft_mema(sizeof(char) * (nbr_ltr((char *)s, c) + 1));
 		if (chaine == NULL)
 			return (NULL);
 		cpy(chaine, &s, c, i);

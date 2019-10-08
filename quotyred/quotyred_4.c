@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 04:13:42 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		alloc_args_2(t_alloc_args *aa, char **arg, int **token, int *bs)
 	while (**arg && **arg < 33)
 		(*arg)++;
 	aa->nbr_ar = nbr_arg2(*arg, bs);
-	*token = (int *)ft_memalloc(sizeof(int) * (aa->nbr_ar + 1));
+	*token = (int *)ft_mema(sizeof(int) * (aa->nbr_ar + 1));
 	aa->i = -1;
 }
 
@@ -30,7 +30,7 @@ void		alloc_args_3(t_alloc_args *aa, char **arg, int **token, int *bs)
 
 void		alloc_args_4(t_alloc_args *aa, char *arg, char ***args, int **token)
 {
-	(*args)[aa->i] = (char *)ft_memalloc(sizeof(char) * (aa->len_ar + 1));
+	(*args)[aa->i] = (char *)ft_mema(sizeof(char) * (aa->len_ar + 1));
 	if (aa->len_ar > 0 && (*arg == 34 || *arg == 39))
 		(*args)[aa->i] = ft_strsub(arg, 1, aa->len_ar - 2);
 	else

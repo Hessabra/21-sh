@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 17:22:02 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char			***triplp(t_triplp *tp, int *bs, char **env, t_ppvr a)
 	char		***tabe;
 
 	lentab = ft_tablen(tp->arg);
-	tabe = (char ***)ft_memalloc(sizeof(char **) * (lentab + 1));
+	tabe = (char ***)ft_mema(sizeof(char **) * (lentab + 1));
 	tp2.i = -1;
-	tp->token = (int **)ft_memalloc(sizeof(int *) * (lentab + 1));
+	tp->token = (int **)ft_mema(sizeof(int *) * (lentab + 1));
 	tp2.bs = bs;
 	while (++(tp2.i) < lentab)
 	{
@@ -29,7 +29,7 @@ char			***triplp(t_triplp *tp, int *bs, char **env, t_ppvr a)
 			tabe[tp2.i] = quotyred(tp, &tp2, env, a.nbr_quot);
 		else
 		{
-			(tp->token)[tp2.i] = (int *)ft_memalloc(sizeof(int));
+			(tp->token)[tp2.i] = (int *)ft_mema(sizeof(int));
 			(tp->token)[tp2.i][0] = -1;
 			tabe[tp2.i] = quotyline((tp->arg)[tp2.i], &(tp2.bs), env,
 			a.nbr_quot);
