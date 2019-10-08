@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 21:35:46 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 20:55:55 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void		exec_pipe(char **arg, char **env)
 	path = NULL;
 	if (ft_strequ(arg[0], "cat") ||
 		ft_strequ(arg[0], "wc") ||
-		ft_strequ(arg[0], "sort"))
+		ft_strequ(arg[0], "sort") ||
+		ft_strequ(arg[0], "head"))
 		ft_defult_term();
 	if (!(ft_strequ(arg[0], "exit") ||
 		ft_strequ(arg[0], "cd") ||
