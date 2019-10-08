@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:19:13 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 00:36:41 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ char			**usetoken(char **args, int **token)
 
 	chack(args, token);
 	len = cmdcl(args, *token, 0);
-	cmd = (char **)malloc(sizeof(char *) * (len + 1));
+	cmd = (char **)ft_memalloc(sizeof(char *) * (len + 1));
 	i = 0;
 	j = 0;
 	while (args[i])
 	{
 		if ((*token)[i] == 0)
 		{
-			cmd[j] = (char *)malloc(sizeof(char) * (ft_strlen(args[i]) + 1));
+			cmd[j] = (char *)ft_memalloc(sizeof(char) * (ft_strlen(args[i]) + 1));
 			ft_strcpy(cmd[j], args[i]);
 			j++;
 		}

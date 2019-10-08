@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 02:10:01 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:25:21 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void			mainpipe(t_racc4_p *rp, t_ppvr a, char **env, int **token)
 		else
 			i++;
 	close_all(&fd, a.x - rp->i);
-	waitpid(exec_pid, &status, 0);
 	getnresetfd(1);
+	waitpid(exec_pid, &status, 0);
 }

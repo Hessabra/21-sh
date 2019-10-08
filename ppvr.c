@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:06:18 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 20:36:07 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ char			**ft_ppvr(char *str, int *bs, int **ppvr)
 	ij.i = 0;
 	*p = 0;
 	pf.lenarg = ft_count(str, bs);
-	tab_str = (char **)malloc(sizeof(char *) * (pf.lenarg + 1));
-	*ppvr = (int *)malloc(sizeof(char *) * (pf.lenarg + 1));
+	tab_str = (char **)ft_memalloc(sizeof(char *) * (pf.lenarg + 1));
+	*ppvr = (int *)ft_memalloc(sizeof(char *) * (pf.lenarg + 1));
 	if (tab_str && !(pf.ippvr = 0))
 	{
 		while (ij.i < pf.lenarg && !(ij.j = 0))
 		{
 			pf.len = ft_size(str, *p, &bs, &((*ppvr)[pf.ippvr])) + 1;
-			tab_str[ij.i] = (char *)malloc(sizeof(char) * (pf.len + 1));
+			tab_str[ij.i] = (char *)ft_memalloc(sizeof(char) * (pf.len + 1));
 			while (ij.j < pf.len)
 				tab_str[ij.i][(ij.j)++] = str[(*p)++];
 			tab_str[ij.i][ij.j] = '\0';

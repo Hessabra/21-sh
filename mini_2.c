@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 23:31:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 03:39:18 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:21:51 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void		pipe_main(t_ppvr *a, t_racc4_p *rp, int **token, char **env)
 	a->x = rp->i;
 	while (ft_entier(a->ppvr[a->x]) == 1 || a->ppvr[a->x] == -4)
 		(a->x)++;
-	dprintf(2, "start == %d end == %d ", rp->i, a->x);
 	g_pid_cmd = fork();
 	if (g_pid_cmd == 0)
 	{

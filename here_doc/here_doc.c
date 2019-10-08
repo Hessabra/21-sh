@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 05:22:29 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char		**use_heredoc(t_ppvr a, int **token, char **env, t_read insert)
 	h.nbr = how_many_heredoc(a.ppvr, token);
 	if (h.nbr)
 	{
-		strings = (char **)malloc(sizeof(char *) * (h.nbr + 1));
+		strings = (char **)ft_memalloc(sizeof(char *) * (h.nbr + 1));
 		strings[h.nbr] = NULL;
 		init_here_doc(&i, &j, &(h.fct));
 		while (g_herdoc_sig && i < h.nbr)

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 13:03:25 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/28 22:11:29 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:54 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ void	*ft_memalloc(size_t size)
 	ptr = malloc(size);
 	if (ptr)
 		ft_bzero(ptr, size);
+	else
+		exit(1);
 	return (ptr);
 }

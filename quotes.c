@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:56:01 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 21:11:15 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void			allocatequote(char *arg, char ***args, char **env, int **bs)
 	int				len_ar;
 
 	allocatequote_4(&arg, &nbr_ar, *bs, &i);
-	*args = (char **)malloc(sizeof(char *) * (nbr_ar + 1));
+	*args = (char **)ft_memalloc(sizeof(char *) * (nbr_ar + 1));
 	while (*arg && i < nbr_ar)
 	{
 		allocatequote_3(&arg, &len_ar, *bs, i);

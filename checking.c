@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 08:12:26 by hessabra          #+#    #+#             */
-/*   Updated: 2019/04/30 00:25:06 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	racc2(char **paths)
 
 static int	racc3(char **pwd, char *command)
 {
-	*pwd = (char *)malloc(sizeof(char) * 1000);
+	*pwd = (char *)ft_memalloc(sizeof(char) * 1000);
 	*pwd = getcwd(*pwd, 1000);
 	if (command[0] != '.')
 		chdir("/");

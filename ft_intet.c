@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 18:07:51 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/02 04:06:54 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	*newinttab(int **tabe, int x)
 	int		*new;
 
 	new_len = lentabint(*tabe);
-	new = (int *)malloc(sizeof(int) * (new_len + 2));
+	new = (int *)ft_memalloc(sizeof(int) * (new_len + 2));
 	i = 0;
 	while (i < new_len)
 	{

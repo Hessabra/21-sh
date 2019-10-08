@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_addtotab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:09:17 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/02 01:10:51 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_addtotab(char **table, char *line)
 		len = ft_tablen(table) + 1;
 	else
 		len = 1;
-	if (!(new = (char**)malloc(sizeof(char*) * (len + 1))))
+	if (!(new = (char**)ft_memalloc(sizeof(char*) * (len + 1))))
 		return (NULL);
 	*(new + len) = 0;
 	i = 0;

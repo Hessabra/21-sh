@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 23:10:31 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 15:16:29 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ char			**aloc(char **env)
 
 	if (env)
 	{
-		envi = (char **)malloc(sizeof(char *) * (lentab(env) + 1));
+		envi = (char **)ft_memalloc(sizeof(char *) * (lentab(env) + 1));
 		i = 0;
 		while (env[i])
 		{
-			envi[i] = (char *)malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
+			envi[i] = (char *)ft_memalloc(sizeof(char) * (ft_strlen(env[i]) + 1));
 			envi[i] = ft_strcpy(envi[i], env[i]);
 			i++;
 		}

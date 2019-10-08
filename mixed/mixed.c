@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 20:57:21 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 03:54:08 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char		*mixed(char *str, int **bs, char **env)
 	int		nbr_pa;
 
 	nbr_pa = nbrparts(str, *bs);
-	tmp = (char **)malloc(sizeof(char *) * (nbr_pa + 1));
+	tmp = (char **)ft_memalloc(sizeof(char *) * (nbr_pa + 1));
 	splity(str, &tmp, bs, env);
 	tmp[nbr_pa] = NULL;
 	new = ft_strdup("");

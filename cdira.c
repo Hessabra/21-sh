@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 10:56:44 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 20:42:54 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void			envch(char ***env)
 	char		*var;
 	char		**cha;
 
-	var = (char *)malloc(sizeof(char) * 1000);
-	cha = (char **)malloc(sizeof(char *) * 4);
+	var = (char *)ft_memalloc(sizeof(char) * 1000);
+	cha = (char **)ft_memalloc(sizeof(char *) * 4);
 	cha[0] = ft_strdup("setenv");
 	cha[1] = ft_strdup("PWD");
 	var = getcwd(var, 100);
@@ -33,7 +33,7 @@ void			envech(char ***env, char *tmp)
 {
 	char		**cha;
 
-	cha = (char **)malloc(sizeof(char *) * 4);
+	cha = (char **)ft_memalloc(sizeof(char *) * 4);
 	cha[0] = ft_strdup("setenv");
 	cha[1] = ft_strdup("OLDPWD");
 	cha[2] = ft_strdup(tmp);

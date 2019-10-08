@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 05:07:26 by hessabra          #+#    #+#             */
-/*   Updated: 2019/02/02 22:32:36 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void			cpy(char **chaine, char *s, char *c)
 static void			ft_racc(char *str, char *s, int *len, char **chaine)
 {
 	*len = nbr_ltr((char *)str, s);
-	*chaine = (char *)malloc(sizeof(char) * (*len + 1));
+	*chaine = (char *)ft_memalloc(sizeof(char) * (*len + 1));
 	if (*chaine == NULL)
 		return ;
 	cpy(&(*chaine), str, s);
@@ -69,7 +69,7 @@ char				**ft_split(char *str, char *s)
 	if (s == NULL)
 		return (NULL);
 	wrd = nbr_wrd(str, s);
-	chaine = (char **)malloc(sizeof(char *) * (wrd + 1));
+	chaine = (char **)ft_memalloc(sizeof(char *) * (wrd + 1));
 	if (chaine == NULL)
 		return (NULL);
 	i = 0;

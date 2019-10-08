@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 02:29:53 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/26 20:56:35 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			cdi(char **arg, char ***env)
 	char		*tmp;
 
 	y = 1;
-	tmp = (char *)malloc(sizeof(char) * 1000);
+	tmp = (char *)ft_memalloc(sizeof(char) * 1000);
 	tmp = getcwd(tmp, 100);
 	if (!(arg[1]))
 		racc2(*env, &y);

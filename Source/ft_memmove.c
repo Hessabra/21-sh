@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:19:37 by hessabra          #+#    #+#             */
-/*   Updated: 2019/02/01 22:35:15 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	x = (char *)dest;
 	y = (const char *)src;
 	i = 0;
-	z = (char *)malloc(sizeof(char) * n);
+	z = (char *)ft_memalloc(sizeof(char) * n);
 	if (z == NULL)
 		return (NULL);
 	while (i < n)

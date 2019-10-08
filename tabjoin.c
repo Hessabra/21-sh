@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 23:31:10 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 15:45:14 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char			**ft_tabjoin(char ***tabe, char *el)
 	int		i;
 
 	inilen = lentab(*tabe);
-	new = (char **)malloc(sizeof(char *) * (inilen + 2));
+	new = (char **)ft_memalloc(sizeof(char *) * (inilen + 2));
 	i = 0;
 	while ((*tabe)[i])
 	{

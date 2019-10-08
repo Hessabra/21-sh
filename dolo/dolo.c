@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 21:53:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:14:20 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	racc2(char **fin, char **env, char *s, t_dolor t)
 				*fin = ft_jandf(*fin, env[j] + 7, 1, 0);
 			else
 			{
-				var = (char *)malloc(sizeof(char) * 1000);
+				var = (char *)ft_memalloc(sizeof(char) * 1000);
 				getcwd(var, 1000);
 				*fin = ft_jandf(*fin, var, 1, 1);
 				free(var);

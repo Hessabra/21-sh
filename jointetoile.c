@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:41:50 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 05:25:57 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int					*jointetoile(int *a, int *b)
 
 	i = 0;
 	lena = lenab(a);
-	c = (int *)malloc(sizeof(int) * (lena + lenab(b) + 1));
+	c = (int *)ft_memalloc(sizeof(int) * (lena + lenab(b) + 1));
 	tmp = a;
 	while (*a && (c[i] = *a))
 	{

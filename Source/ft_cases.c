@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/08 21:22:57 by hessabra          #+#    #+#             */
-/*   Updated: 2019/03/10 05:33:32 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:20:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	ft_racc1(t_need *a, int i, char **new)
 	if (a->precision == -2 || a->precision > i)
 	{
 		(i > a->width) ? (a->width = i) : i;
-		*new = (char *)malloc(sizeof(char) * (a->width + 1));
+		*new = (char *)ft_memalloc(sizeof(char) * (a->width + 1));
 		return (0);
 	}
 	return (1);
@@ -89,7 +89,7 @@ char		*ft_cases(t_need a, va_list ap)
 		new = c;
 		c = ft_strsub(c, 0, a.precision);
 		(a.width < a.precision) ? a.width = a.precision : a.width;
-		new = (char *)malloc(sizeof(char) * (a.width + 1));
+		new = (char *)ft_memalloc(sizeof(char) * (a.width + 1));
 		i = -1;
 	}
 	ft_racc(&new, a, c);
