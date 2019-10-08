@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 23:31:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 02:57:18 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 03:39:18 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,25 @@ void		nexec_main(char **env, char *path, char **arg)
 	}
 	else
 		wait(NULL);
+}
+
+void		init_main(t_read *insert, int *i, char **try, char ****arg)
+{
+	ft_setterm();
+	insert->indexfor_history = 0;
+	insert->topast = ft_memalloc(LINE_MAX);
+	g_ctrl_dsig = 0;
+	*i = 0;
+	*try = NULL;
+	*arg = NULL;
+}
+
+void		init_main2(int *j, char **path)
+{
+	g_is_pipe = 1;
+	g_pid_cmd = 0;
+	g_herdoc_sig = 1;
+	*j = 1;
+	*path = NULL;
+	prompt();
 }

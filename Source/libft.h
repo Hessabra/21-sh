@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 11:23:16 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 18:41:11 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/08 05:02:37 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@ typedef struct	s_splitbs
 	int			i;
 	int			j;
 }				t_splitbs;
+
+typedef struct	s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}				t_list;
+
+typedef struct	s_need
+{
+	int				*flag;
+	int				width;
+	int				precision;
+	int				lenth;
+	char			conv;
+	int				result;
+}				t_need;
 
 void			tfree(char ***array);
 int				ft_entier(int x);
@@ -84,25 +101,6 @@ char			*ft_searchnreplace(char *str, int s, int r);
 char			**ft_split(char *str, char *s);
 char			**ft_split_whitespaces(char *str);
 char			**ft_splitbs(char *str, int *bs);
-
-
-typedef struct	s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}				t_list;
-
-typedef struct		s_need
-{
-	int				*flag;
-	int				width;
-	int				precision;
-	int				lenth;
-	char			conv;
-	int				result;
-}					t_need;
-
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
