@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/10 20:38:07 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 22:42:33 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int				main(void)
 	extern char	**environ;
 	t_main		m;
 
-	environ = aloc(environ);
 	init_main(&(tp.insert), &(t.i), &(m.try), &(a.arg));
+	environ = aloc(environ);
 	while (1)
 	{
 		init_main2(&(m.j), &(tp.path));

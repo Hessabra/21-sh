@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:56:01 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 22:27:47 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 22:54:26 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void			allocatequote(char *arg, char ***args, char **env, int **bs)
 			if (*arg == 34)
 				(*args)[i] = line((*args)[i], env, bs, 2);
 			else if (*arg == 39)
-				line(((*args))[i], env, bs, 1);
+				(*args)[i] = line(((*args))[i], env, bs, 1);
 			else
 				(*args)[i] = line((*args)[i], env, bs, 0);
 		}

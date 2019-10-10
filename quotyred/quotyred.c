@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:27:09 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 22:51:29 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ static int			*alloc_args(char *arg, char ***args, char **env, int **bs)
 		else
 		{
 			if (*arg == 34)
-				line((*args)[aa.i], env, bs, 2);
+				(*args)[aa.i] = line((*args)[aa.i], env, bs, 2);
 			else if (*arg == 39)
-				line(((*args))[aa.i], env, bs, 1);
+				(*args)[aa.i] = line(((*args))[aa.i], env, bs, 1);
 			else
-				line((*args)[aa.i], env, bs, 0);
+				(*args)[aa.i] = line((*args)[aa.i], env, bs, 0);
 		}
 		arg += ft_entier(aa.len_ar);
 	}

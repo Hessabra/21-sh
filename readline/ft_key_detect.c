@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_detect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:57:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/10 19:03:30 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 22:05:19 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int		ft_key_detect(char *key, t_read *insert)
 	{
 		key = check_char(key);
 		ft_addtoline(key, insert);
+		ft_strdel(&key);
 		return (1);
 	}
 	else if (ft_keyfer_moves(key, insert))
