@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 21:35:46 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 20:55:55 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:35:50 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		exec_pipe(char **arg, char **env)
 		ft_strequ(arg[0], "setenv") ||
 		ft_strequ(arg[0], "unsetenv")))
 		execve2(arg, env, path);
+	exit (0);
 }
 
 void		init_pipe(int *i, int start, int end, int ***fd)

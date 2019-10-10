@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 23:31:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/10 15:13:15 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:36:59 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void		nexec_main(char **env, char *path, char **arg)
 	if (g_pid_cmd == 0)
 	{
 		if (ft_strequ(arg[0], "cat") ||
-				ft_strequ(arg[0], "wc"))
+		ft_strequ(arg[0], "wc") ||
+		ft_strequ(arg[0], "sort") ||
+		ft_strequ(arg[0], "head"))
 			ft_defult_term();
 		if (!execve2(arg, env, path))
 			exit(1);

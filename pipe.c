@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 13:12:40 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 22:32:33 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:37:38 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void			mainpipe(t_racc4_p *rp, t_ppvr a, char **env, int **token)
 {
 	pid_t		exec_pid;
 	int			i;
-	int			status;
 	int			**fd;
 
 	getnresetfd(0);
@@ -46,12 +45,11 @@ void			mainpipe(t_racc4_p *rp, t_ppvr a, char **env, int **token)
 			}
 			else
 				exec_pipe(a.arg[i], env);
-			exit(0);
 		}
 		else
 			i++;
 	}
 	close_all(&fd, a.x - rp->i);
 	getnresetfd(1);
-	waitpid(exec_pid, &status, 0);
+	waitpid(exec_pid, NULL, 0);
 }
