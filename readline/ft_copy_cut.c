@@ -6,27 +6,39 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:51:06 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/04 00:16:52 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:01:53 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_edit.h"
 
+void	allocc(t_read *insert)
+{
+	if (insert->topast == NULL)
+		insert->topast = ft_memalloc(LINE_MAX);
+	else if (insert->topast)
+	{
+		ft_strdel(&insert->topast);
+		insert->topast = ft_memalloc(LINE_MAX);
+	}
+}
+
 void	ft_copy(t_read *insert, char *key)
 {
-	ft_bzero(insert->topast, 4096);
+	allocc(insert);
 	if (COPY)
-		insert->topast = ft_strsub(insert->line, 0, insert->index);
+		insert->topast = ft_strncpy(insert->topast,
+		insert->line, insert->index);
 	else if (COPY2)
 		insert->topast = ft_strncpy(insert->topast, insert->line +
 		insert->index, insert->linelen - insert->index);
 	else if (COPY3)
-		insert->topast = ft_strdup(insert->line);
+		insert->topast = ft_strcpy(insert->topast, insert->line);
 }
 
 void	ft_cut(t_read *insert)
 {
-	ft_bzero(insert->topast, 4096);
+	allocc(insert);
 	insert->topast = ft_strncpy(insert->topast, insert->line + insert->index,
 			insert->linelen - insert->index);
 	ft_bzero(insert->line + insert->index, 4096 - insert->index);

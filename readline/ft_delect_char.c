@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_delect_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:58 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/07 23:27:16 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 14:42:40 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	ft_delete_char(t_read *insert, char *buf)
 	{
 		if (insert->linex == 0)
 			insert->tmplinex = ft_curlinelen(insert, insert->liney - 1);
+		if (insert->liney == 1 && insert->line[0] == '\n')
+			insert->a = 1;
+		else
+			insert->a = 0;
 		ft_remove_line(insert);
 		ft_remove_fromline(insert);
 		ft_putstr(insert->line);

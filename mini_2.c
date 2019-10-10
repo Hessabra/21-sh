@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 23:31:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:21:51 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 15:13:15 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void		init_main(t_read *insert, int *i, char **try, char ****arg)
 {
 	ft_setterm();
 	insert->indexfor_history = 0;
-	insert->topast = ft_memalloc(LINE_MAX);
+	insert->history = NULL;
+	insert->topast = NULL;
 	g_ctrl_dsig = 0;
 	*i = 0;
 	*try = NULL;

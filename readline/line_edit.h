@@ -6,7 +6,7 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:14:45 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/04 00:19:36 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 17:16:53 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <fcntl.h>
 # include "../Source/libft.h"
 # define BUFF_SIZE 4000
-# define LINE_MAX  9000
+# define LINE_MAX  200000
 # define ENTER_KEY 10
 # define MOVE_RIGHT (key[2] == 67 && key[1] == 91 && key[0] == 27)
 # define MOVE_LEFT (key[2] == 68 && key[1] == 91 && key[0] == 27)
@@ -67,6 +67,7 @@ typedef	struct	s_read
 	char	**history;
 	int		indexfor_history;
 	int		is_quote;
+	int		a;
 
 }				t_read;
 

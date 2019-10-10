@@ -6,13 +6,13 @@
 /*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:57:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/03 17:10:55 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:03:30 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_edit.h"
 
-int	ft_key_moves(char *key, t_read *insert)
+int		ft_key_moves(char *key, t_read *insert)
 {
 	if (MOVE_RIGHT)
 		ft_movecursor_right(insert);
@@ -35,7 +35,7 @@ int	ft_key_moves(char *key, t_read *insert)
 	return (1);
 }
 
-int	ft_keyfer_moves(char *key, t_read *insert)
+int		ft_keyfer_moves(char *key, t_read *insert)
 {
 	insert->curlinelen = ft_curlinelen(insert, insert->liney);
 	if (COPY || COPY2 || COPY3)
@@ -60,14 +60,38 @@ int	ft_keyfer_moves(char *key, t_read *insert)
 	return (1);
 }
 
-int	ft_key_detect(char *key, t_read *insert)
+char	*check_char(char *key)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	tmp = ft_strnew(ft_strlen(key));
+	i = 0;
+	j = 0;
+	while (key[i] != '\0')
+	{
+		if (key[i] != '\n' && !ft_isprint(key[i]))
+			i++;
+		else if (key[i - 1] == '[' && (key[i] == 'C' ||
+		key[i] == 'D' || key[i] == 'A' || key[i] == 'D'))
+			i++;
+		else
+			tmp[j++] = key[i];
+		i++;
+	}
+	return (tmp);
+}
+
+int		ft_key_detect(char *key, t_read *insert)
 {
 	if (ft_isprint(key[0]) || key[0] == '\n')
 	{
+		key = check_char(key);
 		ft_addtoline(key, insert);
 		return (1);
 	}
-	if (ft_keyfer_moves(key, insert))
+	else if (ft_keyfer_moves(key, insert))
 		return (1);
 	else if (ft_key_moves(key, insert))
 		return (1);
