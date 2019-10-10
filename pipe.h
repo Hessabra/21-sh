@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 14:23:48 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:05:59 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:12:09 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_pipe
 	char		***arg;
 }				t_pipe;
 
+void			closenreset(int ***fd, int x);
 void			close_all(int ***fd, int x);
 void			protected_dup2(int fd1, int fd2);
 void			protected_pipe(int *fd);
