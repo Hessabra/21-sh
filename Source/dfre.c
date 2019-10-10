@@ -1,51 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jointetoile.c                                      :+:      :+:    :+:   */
+/*   dfre.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/03 22:41:50 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/10 20:36:17 by hessabra         ###   ########.fr       */
+/*   Created: 2019/04/28 23:32:48 by hessabra          #+#    #+#             */
+/*   Updated: 2019/10/10 20:52:53 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-static int			lenab(int *a)
+void		dfre(char **tabe)
 {
-	int				i;
+	int		i;
 
 	i = 0;
-	while (a[i] != 0)
-		i++;
-	return (i);
-}
-
-int					*jointetoile(int *a, int *b)
-{
-	int				lena;
-	int				i;
-	int				*c;
-	int				*tmp;
-
-	i = 0;
-	lena = lenab(a);
-	c = (int *)ft_mema(sizeof(int) * (lena + lenab(b) + 1));
-	tmp = a;
-	while (*a && (c[i] = *a))
+	while (tabe[i])
 	{
-		a++;
+		ft_strdel(&(tabe[i]));
 		i++;
 	}
-	ft_nbrdel(&tmp);
-	tmp = b;
-	while (*b && (c[i] = *b))
+	if (tabe)
 	{
-		b++;
-		i++;
+		free(tabe);
+		tabe = NULL;
 	}
-	c[i] = 0;
-	ft_nbrdel(&tmp);
-	return (c);
 }

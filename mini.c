@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:00:34 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:38:07 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int				execve2(char **arg, char **environ, char *path)
 			unknown_cmd(arg[0]);
 			exit(0);
 		}
-		free(tmp);
+		ft_strdel(&tmp);
 	}
 	return (1);
 }
@@ -93,7 +93,7 @@ int				main(void)
 			if (exec_input(&m, &tp, &a, environ))
 				exec_input_2(&(t.i), a, &environ, tp);
 		}
-		free(m.try);
+		ft_strdel(&(m.try));
 	}
 	return (0);
 }

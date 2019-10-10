@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:04:56 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:49:44 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char			**unstenv(char **arg, char ***env)
 	if (!arg[1])
 	{
 		ft_putendl_fd("I need more arguments...", 2);
-		free(envi);
+		dfre(envi);
 		return (*env);
 	}
 	i = 0;

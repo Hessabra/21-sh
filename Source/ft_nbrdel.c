@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dfre.c                                             :+:      :+:    :+:   */
+/*   ft_nbrdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/28 23:32:48 by hessabra          #+#    #+#             */
-/*   Updated: 2019/09/22 15:22:10 by hessabra         ###   ########.fr       */
+/*   Created: 2019/10/10 20:33:51 by hessabra          #+#    #+#             */
+/*   Updated: 2019/10/10 20:35:23 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void		dfre(char **tabe)
+void		ft_nbrdel(int **nbr)
 {
-	int		i;
-
-	i = 0;
-	while (tabe[i])
+	if (nbr && *nbr)
 	{
-		free(tabe[i]);
-		i++;
+		free(*nbr);
+		*nbr = NULL;
 	}
-	free(tabe);
 }

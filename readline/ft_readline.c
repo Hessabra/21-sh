@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:21:08 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/10 19:37:25 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:51:46 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_readline(char *line, t_read *insert)
 		{
 			ft_moveend(insert);
 			line = ft_strdup(insert->line);
-			ft_strdel(&insert->line);
+			ft_strdel(&(insert->line));
 			return (line);
 		}
 		insert->curlinelen = ft_curlinelen(insert, insert->liney);

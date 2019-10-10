@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_cut.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:51:06 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/10 19:01:53 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:51:55 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	allocc(t_read *insert)
 		insert->topast = ft_memalloc(LINE_MAX);
 	else if (insert->topast)
 	{
-		ft_strdel(&insert->topast);
+		ft_strdel(&(insert->topast));
 		insert->topast = ft_memalloc(LINE_MAX);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 08:12:26 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:30:56 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,7 @@
 static void	racc1(char *pwd)
 {
 	chdir(pwd);
-	free(pwd);
-}
-
-static void	racc2(char **paths)
-{
-	int		i;
-
-	i = 0;
-	while (paths[i])
-	{
-		free(paths[i]);
-		i++;
-	}
-	free(paths);
+	ft_strdel(&pwd);
 }
 
 static int	racc3(char **pwd, char *command)
@@ -67,7 +54,7 @@ char		*checking(char *command, char *env, int x)
 			}
 			i++;
 		}
-		racc2(paths);
+		dfre(paths);
 	}
 	racc1(pwd);
 	return (NULL);

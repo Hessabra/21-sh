@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 18:15:51 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/05 18:18:51 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:44:48 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ void			tfree(char ***array)
 	while (array[i])
 	{
 		j = 0;
-		while (array[i][j])
-		{
-			free(array[i][j]);
-			j++;
-		}
-		free(array[i]);
+		dfre(array[i]);
 		i++;
 	}
-	free(array);
+	if (array)
+	{
+		free(array);
+		array = NULL;
+	}
 }

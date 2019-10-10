@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:19:37 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:43:07 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		x[i] = z[i];
 		i++;
 	}
-	free(z);
+	ft_strdel(&z);
 	return (x);
 }

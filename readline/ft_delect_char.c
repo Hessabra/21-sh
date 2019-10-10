@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_delect_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:58 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/10 14:42:40 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:39:01 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_remove_fromline(t_read *insert)
 	ft_bzero(insert->line, 4096);
 	insert->line = ft_strcpy(insert->line, tmp);
 	insert->line = ft_strcat(insert->line, tmp2);
-	free(tmp);
-	free(tmp2);
+	ft_strdel(&tmp);
+	ft_strdel(&tmp2);
 }
 
 void	ft_delete_char(t_read *insert, char *buf)
@@ -58,8 +58,8 @@ void	ft_remove_one(t_read *insert)
 	ft_bzero(insert->line, LINE_MAX);
 	insert->line = ft_strcpy(insert->line, tmp);
 	insert->line = ft_strcat(insert->line, tmp1);
-	free(tmp);
-	free(tmp1);
+	ft_strdel(&tmp);
+	ft_strdel(&tmp1);
 }
 
 void	ft_delete_onechar(t_read *insert)

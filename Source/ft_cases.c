@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/08 21:22:57 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:40:26 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*ft_strrv(char *dest, const char *src)
 		i--;
 		j--;
 	}
-	free(tmp);
+	ft_strdel(&tmp);
 	return (dest);
 }
 

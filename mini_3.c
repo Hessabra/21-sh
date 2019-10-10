@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 03:45:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 22:32:04 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:37:36 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		exec_input(t_main *m, t_triplp *tp, t_ppvr *a, char **environ)
 		m->tmpbs = tp->bs;
 		tp->token = NULL;
 		a->arg = triplp(tp, tp->bs, environ, *a);
-		free(tp->bs);
+		ft_nbrdel(&(tp->bs));
 		ft_putstr("\n");
 		return (1);
 	}

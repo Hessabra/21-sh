@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:00:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/08 01:15:57 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:39:30 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_add_history(char *line, t_read *insert)
 	{
 		temp = ft_strsub(line, 0, ft_strlen(line));
 		insert->history = ft_addtotab(insert->history, temp);
-		free(temp);
+		ft_strdel(&temp);
 		insert->indexfor_history = ft_tablen(insert->history);
 	}
 }

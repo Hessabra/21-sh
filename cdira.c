@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 10:56:44 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:26:13 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			envch(char ***env)
 	cha[3] = NULL;
 	stenv(cha, &(*env));
 	dfre(cha);
-	free(var);
+	ft_strdel(&var);
 }
 
 void			envech(char ***env, char *tmp)

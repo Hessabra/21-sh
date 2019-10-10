@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 23:31:10 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:51:26 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ char			**ft_tabjoin(char ***tabe, char *el)
 	while ((*tabe)[i])
 	{
 		new[i] = ft_strdup((*tabe)[i]);
-		free((*tabe)[i]);
+		ft_strdel(&((*tabe)[i]));
 		i++;
 	}
 	new[i] = ft_strdup(el);
 	new[i + 1] = NULL;
-	free(*tabe);
+	if (tabe && *tabe)
+	{
+		free(*tabe);
+		*tabe = NULL;
+	}
 	return (new);
 }

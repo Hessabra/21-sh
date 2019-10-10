@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:02:17 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:40:06 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	racc1(char ***env, char *tmp, int x)
 		j++;
 	}
 	(*env)[x][j] = '\0';
-	free(tmp);
+	ft_strdel(&tmp);
 }
 
 static int	racc2(char **arg)
@@ -64,7 +64,7 @@ void		stenv(char **arg, char ***env)
 		if (x == -1)
 		{
 			*env = ft_tabjoin(env, tmp);
-			free(tmp);
+			ft_strdel(&tmp);
 		}
 		else
 			racc1(&(*env), tmp, x);

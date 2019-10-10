@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:13:30 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:54:23 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ char			*ft_readline(char *line, t_read *insert);
 char			*ft_readlineh(char *line, t_read *insert, int fd);
 int				nbr_arg(char *str, int *bs);
 void			effectornot(int **n, char *s);
-void			dfre(char **tabe);
 char			**aloc(char **env);
 int				exi(char **arg, char ***env);
 void			pidh(void);

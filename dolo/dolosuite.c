@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:19:00 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:31:36 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	racc1(char **fin, char **env, char *s, t_dolor *t)
 		*fin = ft_jandf(*fin, env[j] + k + 1, 1, 0);
 	else
 		*fin = ft_jandf(*fin, "", 1, 0);
-	free(var);
+	ft_strdel(&var);
 }
 
 static int	racc2(char **fin, char **env, char *s, t_dolor t)
@@ -62,7 +62,7 @@ static int	racc2(char **fin, char **env, char *s, t_dolor t)
 				var = (char *)ft_mema(sizeof(char) * 1000);
 				getcwd(var, 1000);
 				*fin = ft_jandf(*fin, var, 1, 1);
-				free(var);
+				ft_strdel(&var);
 			}
 		}
 		return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line_manage.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 12:51:44 by helmanso          #+#    #+#             */
-/*   Updated: 2019/09/26 19:33:44 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:39:18 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_addinput(char *buf, t_read *insert)
 	ft_bzero(insert->line + insert->index, LINE_MAX - insert->index);
 	insert->line = ft_strcat(insert->line, buf);
 	insert->line = ft_strcat(insert->line, tmpline);
-	free(tmpline);
+	ft_strdel(&tmpline);
 	return (insert->line);
 }
 

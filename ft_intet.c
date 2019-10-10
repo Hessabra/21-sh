@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 18:07:51 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:32:29 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ static int	*newinttab(int **tabe, int x)
 	new[i] = x;
 	i++;
 	new[i] = -1;
-	free(*tabe);
+	if (tabe && *tabe)
+	{
+		free(*tabe);
+		*tabe = NULL;
+	}
 	return (new);
 }
 
