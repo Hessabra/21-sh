@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 11:23:16 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/11 00:53:11 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 03:12:26 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct	s_need
 	int				result;
 }				t_need;
 
+void			dfree_int(int **nbr);
 void			dfre(char **tabe);
 void			ft_nbrdel(int **nbr);
 void			tfree(char ***array);

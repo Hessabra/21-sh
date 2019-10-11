@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 20:31:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/07 23:36:01 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 02:55:01 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void		usered(char **args, int *token, char ***env, char ***string_heredoc)
 	if (!u.error && u.cmd != NULL && exec_usetoken_1(u, env))
 		exec_usetoken_2(u, *env);
 	getnresetfd(1);
+	dfre(u.cmd);
 }

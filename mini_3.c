@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 03:45:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/11 02:13:34 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 03:13:05 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ void	exec_input_2(int *i, t_ppvr a, char ***env, t_triplp tp)
 	{
 		*i = 1;
 		racc4(a, env, tp);
+		tfree(a.arg);
+		dfree_int(tp.token);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:00:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/10 20:39:30 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 03:19:31 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ void	ft_clear_screen(t_read *insert)
 void	ft_add_history(char *line, t_read *insert)
 {
 	char	*temp;
+	char	**tmp;
 	int		i;
 
+	tmp = NULL;
 	i = 0;
-	if (insert->history &&
-	insert->indexfor_history == ft_tablen(insert->history)
-	&& !ft_strcmp(line, ""))
+	if (insert->history && insert->indexfor_history ==
+	ft_tablen(insert->history) && !ft_strcmp(line, ""))
 		return ;
 	if (insert->history &&
 	insert->indexfor_history < ft_tablen(insert->history)
@@ -48,7 +49,9 @@ void	ft_add_history(char *line, t_read *insert)
 	else
 	{
 		temp = ft_strsub(line, 0, ft_strlen(line));
+		(insert->history) ? tmp = insert->history : 0;
 		insert->history = ft_addtotab(insert->history, temp);
+		(tmp) ? dfre(tmp) : 0;
 		ft_strdel(&temp);
 		insert->indexfor_history = ft_tablen(insert->history);
 	}
