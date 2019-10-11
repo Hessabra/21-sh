@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 20:31:20 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/11 02:55:01 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 03:47:13 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	exec_usetoken_2(t_usetok u, char **env)
 		if (pipe(u.fd_p) < 0)
 		{
 			ft_putstr_fd("\nOoupsy pipe c \n", 2);
-			// exit(1);
+			exit(1);
 		}
 	if ((u.pid_fork = fork()) == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 03:45:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/11 03:13:05 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 03:50:54 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void		racc4(t_ppvr a, char ***env, t_triplp tp)
 	tmp = rp.string_heredoc;
 	if (g_herdoc_sig)
 	{
-		rp.i = 0;
-		while (a.arg[rp.i])
+		rp.i = -1;
+		while (a.arg[++(rp.i)])
 		{
 			open_fds();
 			g_is_pipe = 1;
@@ -34,7 +34,6 @@ static void		racc4(t_ppvr a, char ***env, t_triplp tp)
 			else if (builtin_1(a.arg[rp.i], env) && builtin_2(a.arg[rp.i], env)
 				&& a.arg[rp.i][0])
 				nexec_main(*env, tp.path, a.arg[rp.i]);
-			(rp.i)++;
 		}
 	}
 	dfre(tmp);
@@ -42,7 +41,7 @@ static void		racc4(t_ppvr a, char ***env, t_triplp tp)
 	g_herdoc_sig = 1;
 }
 
-int		exec_input(t_main *m, t_triplp *tp, t_ppvr *a, char **environ)
+int				exec_input(t_main *m, t_triplp *tp, t_ppvr *a, char **environ)
 {
 	if (m->j && synerr(m->try, tp->bs))
 	{
@@ -57,7 +56,7 @@ int		exec_input(t_main *m, t_triplp *tp, t_ppvr *a, char **environ)
 	return (0);
 }
 
-void	exec_input_2(int *i, t_ppvr a, char ***env, t_triplp tp)
+void			exec_input_2(int *i, t_ppvr a, char ***env, t_triplp tp)
 {
 	if (a.arg)
 	{
