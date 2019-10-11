@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 20:57:21 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 03:43:34 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char		*mixed(char *str, int **bs, char **env)
 		new = ft_jandf(new, tmp[i], 1, 1);
 		i++;
 	}
-	//free error ''''''>''''
-	//    free(tmp);
+	ft_strdel(&str);
+	(tmp) ? free(tmp): 0;
 	return (new);
 }
