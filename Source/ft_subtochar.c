@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 20:09:56 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/10 23:50:32 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ char			*ft_sub2char(char *str, int c)
 	while (str[i] && str[i] != c)
 		i++;
 	bow = (char *)ft_mema(sizeof(char) * i + 1);
-	if (bow == NULL)
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != c)
+	if (bow)
 	{
-		bow[i] = str[i];
-		i++;
+		i = 0;
+		while (str[i] && str[i] != c)
+		{
+			bow[i] = str[i];
+			i++;
+		}
+		bow[i] = '\0';
 	}
-	bow[i] = '\0';
 	return (bow);
 }

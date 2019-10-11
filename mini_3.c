@@ -6,17 +6,19 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 03:45:52 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/10 20:37:36 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 02:13:34 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int		racc4(t_ppvr a, char ***env, t_triplp tp)
+static void		racc4(t_ppvr a, char ***env, t_triplp tp)
 {
 	t_racc4_p	rp;
+	char		**tmp;
 
 	rp.string_heredoc = use_heredoc(a, tp.token, *env, tp.insert);
+	tmp = rp.string_heredoc;
 	if (g_herdoc_sig)
 	{
 		rp.i = 0;
@@ -35,8 +37,9 @@ static int		racc4(t_ppvr a, char ***env, t_triplp tp)
 			(rp.i)++;
 		}
 	}
+	dfre(tmp);
+	ft_nbrdel(&(a.ppvr));
 	g_herdoc_sig = 1;
-	return (0);
 }
 
 int		exec_input(t_main *m, t_triplp *tp, t_ppvr *a, char **environ)

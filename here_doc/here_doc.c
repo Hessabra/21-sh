@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:45:35 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/08 05:29:58 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/11 01:43:53 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ char		*here_doc(int token, char *end, char **env, t_read insert)
 			ft_putstr_fd("\n>>\n", 2);
 	}
 	ft_putchar('\n');
-	//free(buff);
+	ft_strdel(&buff);
 	buff = new;
 	if (token == 12)
 		new = dolor2(new, env);
-	//free(buff);
+	ft_strdel(&buff);
 	return (new);
 }
 

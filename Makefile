@@ -6,7 +6,7 @@
 #    By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 22:24:42 by hessabra          #+#    #+#              #
-#    Updated: 2019/10/10 20:55:39 by hessabra         ###   ########.fr        #
+#    Updated: 2019/10/11 01:10:42 by hessabra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ = x.o
 all: $(NAME)
 
 $(NAME):
-	@gcc -ltermcap -Wall -Wextra -Werror $(SRC) -o $(NAME)
+	@gcc -ltermcap -Wall -Wextra -Werror -g $(SRC) -o $(NAME)
 
 clean:
 	@rm -f $(OBJ)
