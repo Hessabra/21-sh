@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotywhile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:25:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/14 17:08:05 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/14 18:42:14 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 			last.s += help.s;
 			if (!ft_parite(last.s) || !ft_parite(last.d))
 				buff = ft_jandf(buff, "\n", 1, 0);
-			*arg = ft_jandf(*arg, buff, 0, 1);
+			*arg = ft_jandf(*arg, buff, 1, 1);
 		}
 		*bs = jointetoile(*bs, tmbs);
 	}

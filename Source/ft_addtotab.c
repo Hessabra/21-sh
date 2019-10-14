@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_addtotab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:09:17 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/11 23:36:04 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/14 18:48:35 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 char	**ft_addtotab(char **table, char *line)
 {
 	char	**new;
+	char	**tmp;
 	int		len;
 	int		i;
 
+	tmp = table;
 	if (table)
 		len = ft_tablen(table) + 1;
 	else
@@ -31,5 +33,6 @@ char	**ft_addtotab(char **table, char *line)
 		i++;
 	}
 	*(new + i) = ft_strdup(line);
+	dfre(tmp);
 	return (new);
 }

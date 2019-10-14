@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mixed.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 20:57:21 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/11 23:28:17 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/14 18:37:24 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ char		*mixed(char *str, int **bs, char **env)
 		i++;
 	}
 	ft_strdel(&str);
-	(tmp) ? dfre(tmp) : 0;
+	(tmp) ? free(tmp): 0;
 	return (new);
 }
