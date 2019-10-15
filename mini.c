@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/10 22:42:33 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/15 10:49:33 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int				main(void)
 			ft_add_history(m.try, &(tp.insert));
 			if (exec_input(&m, &tp, &a, environ))
 				exec_input_2(&(t.i), a, &environ, tp);
+			else
+				ft_nbrdel(&(tp.bs));
 		}
 		ft_strdel(&(m.try));
 	}

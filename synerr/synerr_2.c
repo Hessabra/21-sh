@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 05:49:04 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 06:28:45 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/15 10:44:48 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,22 @@ int			counred_3(int in, int out, char c)
 	{
 		ft_putstr_fd("\nSyntax error near unexpected token `", 2);
 		ft_putchar_fd(c, 2);
+		ft_putstr_fd("'\n", 2);
+		return (0);
+	}
+	return (1);
+}
+
+int			counvi(char **str)
+{
+	(*str)++;
+	while (**str && **str < 33)
+		(*str)++;
+	if (**str && (**str == ';' || **str == '|' || **str == '>'
+		|| **str == '<' || **str == '&'))
+	{
+		ft_putstr_fd("\nSyntax error near unexpected token `", 2);
+		ft_putchar_fd(**str, 2);
 		ft_putstr_fd("'\n", 2);
 		return (0);
 	}

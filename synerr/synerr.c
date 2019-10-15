@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:31:07 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/06 06:30:28 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/15 10:45:13 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int					synerr(char *str, int *bs)
 		return (0);
 	while (*str)
 	{
-		if (!(synerr_3(&str)))
+		if (*str == ';' && !counvi(&str))
 			return (0);
 		if (*str == '|' && !counpi(&str))
 			return (0);
