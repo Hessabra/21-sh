@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unstenv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:04:56 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/11 00:53:02 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:54:17 by helmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,46 @@ static int		lentab(char **tabe)
 	return (j);
 }
 
-static char		**racc1(char **envi, char **env, char *arg)
+static void		racc1(char ***envi, char **env, char *arg)
 {
 	int		i;
 	int		k;
 	int		x;
+	char	*tmp;
 
 	i = 0;
 	k = 0;
-	if ((x = ft_know(env, arg)) > -1)
+	x = ft_know(env, arg);
+	while (env[i])
 	{
-		while (env[i])
+		if (i != x)
 		{
-			if (i != x)
-			{
-				envi[k] = ft_strdup(env[i]);
-				k++;
-			}
-			i++;
+			tmp = (*envi)[k];
+			(*envi)[k] = ft_strdup(env[i]);
+			ft_strdel(&tmp);
+			k++;
 		}
-		envi[k] = NULL;
-		return (envi);
+		i++;
 	}
-	return (env);
+	tmp = (*envi)[k];
+	(*envi)[k] = NULL;
+	ft_strdel(&tmp);
+}
+
+static int		nbr_deletedvar(char **arg, char **env)
+{
+	int			i;
+	int			result;
+
+	i = 0;
+	result = 0;
+	while (arg[i])
+	{
+		if (ft_know(env, arg[i]) > -1)
+			result++;
+		i++;
+	}
+	return (result);
 }
 
 char			**unstenv(char **arg, char ***env)
@@ -57,7 +74,8 @@ char			**unstenv(char **arg, char ***env)
 	int			i;
 	char		**envi;
 
-	envi = (char **)ft_mema(sizeof(char *) * (lentab(*env) + 1));
+	envi = (char **)ft_mema(sizeof(char *) * (lentab(*env) + 1
+			- nbr_deletedvar(arg, *env)));
 	if (!arg[1])
 	{
 		ft_putendl_fd("I need more arguments...", 2);
@@ -67,8 +85,9 @@ char			**unstenv(char **arg, char ***env)
 	i = 0;
 	while (arg[i])
 	{
-		envi = racc1(envi, *env, arg[i]);
+		racc1(&envi, *env, arg[i]);
 		i++;
 	}
+	dfre(*env);
 	return (envi);
 }
