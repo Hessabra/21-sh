@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_initialize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:27:17 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/03 16:50:46 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/15 20:40:06 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_syncwin_size(t_read *insert)
 
 void	ft_setting(t_read *insert)
 {
-	insert->line = ft_memalloc(LINE_MAX);
+	insert->line = ft_mema(LINE_MAX);
 	insert->linex = 0;
 	insert->liney = 0;
 	insert->linelen = 0;
