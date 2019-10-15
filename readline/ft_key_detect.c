@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_detect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helmanso <helmanso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 10:57:01 by helmanso          #+#    #+#             */
-/*   Updated: 2019/10/14 16:01:49 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/15 20:36:42 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		ft_keyfer_moves(char *key, t_read *insert)
 		ft_clear_screen(insert);
 	else if (key[0] == 4)
 		ft_delete_onechar(insert);
-	else if (PAST)
+	else if (PAST && insert->topast)
 	{
 		ft_addtoline(insert->topast, insert);
 		insert->curlinelen = ft_curlinelen(insert, insert->liney);
