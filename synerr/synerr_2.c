@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 05:49:04 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/15 11:47:08 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/15 16:40:02 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,14 @@ int			synerr_2(char **str)
 
 int			synerr_3(char **str)
 {
-	if (**str == 59)
-	{
+	while (**str && **str < 33)
 		(*str)++;
-		while (**str && **str < 33)
-			(*str)++;
-		if (**str == '>' || **str == '<' || **str == '|')
-		{
-			ft_putstr_fd("\nSyntax error near unexpected token `", 2);
-			ft_putchar_fd(**str, 2);
-			ft_putstr_fd("'\n", 2);
-			return (0);
-		}
+	if (**str == '|' || **str == ';')
+	{
+		ft_putstr_fd("\nSyntax error near unexpected token `", 2);
+		ft_putchar_fd(**str, 2);
+		ft_putstr_fd("'\n", 2);
+		return (0);
 	}
 	return (1);
 }

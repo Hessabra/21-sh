@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 22:11:15 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/11 23:21:41 by helmanso         ###   ########.fr       */
+/*   Updated: 2019/10/15 16:45:13 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	racc(int i)
 int			exi(char **arg, char ***env)
 {
 	int		i;
-	
+
 	env = NULL;
 	if (arg[1])
 	{

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/15 10:49:33 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/15 16:48:10 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ int				main(void)
 			if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
 				m.j = quotiwhile(a.nbr_quot, &(m.try), &(tp.bs), &(tp.insert));
 			ft_add_history(m.try, &(tp.insert));
-			if (exec_input(&m, &tp, &a, environ))
-				exec_input_2(&(t.i), a, &environ, tp);
-			else
-				ft_nbrdel(&(tp.bs));
+			(exec_input(&m, &tp, &a, environ)) ?
+				exec_input_2(&(t.i), a, &environ, tp) : ft_nbrdel(&(tp.bs));
 		}
 		ft_strdel(&(m.try));
 	}

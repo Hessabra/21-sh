@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:08:30 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/11 01:44:12 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:05:33 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct	s_main
 	char		*try;
 }				t_main;
 
+void			add_quotynbr(t_quotis *last, t_quotis help);
 void			init_main(t_read *insert, int *i, char **try, char ****arg);
 void			init_main2(int *j, char **path);
 void			unknown_cmd(char *cmd);

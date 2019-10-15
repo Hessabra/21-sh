@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:25:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/14 18:42:14 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:05:07 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ int				quotiwhile(t_quotis last, char **arg, int **bs, t_read *insert)
 		if (buff && g_ctrl_dsig)
 		{
 			help = nbr_quote2(buff, tmbs, (!ft_parite(last.s)) ? 39 : 34);
-			last.d += help.d;
-			last.n += help.n;
-			last.s += help.s;
+			add_quotynbr(&last, help);
 			if (!ft_parite(last.s) || !ft_parite(last.d))
 				buff = ft_jandf(buff, "\n", 1, 0);
 			*arg = ft_jandf(*arg, buff, 1, 1);
