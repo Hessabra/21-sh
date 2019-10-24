@@ -18,13 +18,16 @@ char			***triplp(t_triplp *tp, int *bs, char **env, t_ppvr a)
 	int			lentab;
 	char		***tabe;
 
+	dprintf(2, "hi1\b");
 	lentab = ft_tablen(tp->arg);
+	dprintf(2, "hi%d\b", lentab);
 	tabe = (char ***)ft_mema(sizeof(char **) * (lentab + 1));
 	tp2.i = -1;
 	tp->token = (int **)ft_mema(sizeof(int *) * (lentab + 1));
 	tp2.bs = bs;
 	while (++(tp2.i) < lentab)
 	{
+		dprintf(2,"hello");
 		if (a.ppvr[tp2.i] == -2 || a.ppvr[tp2.i] == -3 || a.ppvr[tp2.i] == -4)
 			tabe[tp2.i] = quotyred(tp, &tp2, env, a.nbr_quot);
 		else

@@ -48,7 +48,9 @@ int				exec_input(t_main *m, t_triplp *tp, t_ppvr *a, char **environ)
 		tp->arg = ft_ppvr(m->try, tp->bs, &(a->ppvr));
 		m->tmpbs = tp->bs;
 		tp->token = NULL;
+		dprintf(2, "hello4\n");
 		a->arg = triplp(tp, tp->bs, environ, *a);
+		dprintf(2, "hello5\n");
 		ft_nbrdel(&(tp->bs));
 		ft_putstr("\n");
 		return (1);

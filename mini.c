@@ -85,13 +85,18 @@ int				main(void)
 		m.try = ft_readline(m.try, &(tp.insert));
 		if (m.try)
 		{
+			dprintf(2, "read == |%s|", m.try);
 			effectornot(&(tp.bs), m.try);
 			a.nbr_quot = nbr_quote(m.try, tp.bs);
+			dprintf(2, "hello1\n");
 			if (!ft_parite((a.nbr_quot).d) || !ft_parite((a.nbr_quot).s))
 				m.j = quotiwhile(a.nbr_quot, &(m.try), &(tp.bs), &(tp.insert));
+			dprintf(2, "hello2\n");
 			ft_add_history(m.try, &(tp.insert));
+			dprintf(2, "hello3\n");
 			(exec_input(&m, &tp, &a, environ)) ?
 				exec_input_2(&(t.i), a, &environ, tp) : ft_nbrdel(&(tp.bs));
+			dprintf(2, "hello6\n");
 		}
 		ft_strdel(&(m.try));
 	}

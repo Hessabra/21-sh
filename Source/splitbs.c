@@ -14,7 +14,7 @@
 
 static int		ft_is_whitespace(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n')
+	if (c && c < 33)
 		return (1);
 	return (0);
 }
@@ -24,20 +24,19 @@ static int		ft_count(char *str, int *bs)
 	int			i;
 	int			nb;
 	int			flag;
-	int			mark;
 
 	i = 0;
 	nb = 0;
 	flag = 0;
-	while (str[i] && (mark = 1))
+	while (str[i])
 	{
 		if (str[i] == 92)
 		{
-			(*bs > 0) ? mark = 0 : mark;
+			(*bs > 0) ? i++ : 1;
 			i += ft_entier(*bs);
 			bs++;
 		}
-		(ft_is_whitespace(str[i]) && mark && flag == 1) ? flag = 0 : flag;
+		(ft_is_whitespace(str[i]) && flag == 1) ? flag = 0 : flag;
 		if (!ft_is_whitespace(str[i]) && flag == 0)
 		{
 			nb++;
@@ -51,15 +50,13 @@ static int		ft_count(char *str, int *bs)
 static int		ft_size(char *str, int p, int **bs)
 {
 	int			i;
-	int			mark;
 
 	i = p;
-	while (str[i] && (!ft_is_whitespace(str[i]) || !mark))
+	while (str[i] && !ft_is_whitespace(str[i]))
 	{
-		mark = 1;
 		if (str[i] == 92)
 		{
-			(**bs > 0) ? mark = 0 : mark;
+			(**bs > 0) ? i++ : 1;
 			i += ft_entier(**bs);
 			(*bs)++;
 		}
@@ -84,26 +81,23 @@ char			**ft_splitbs(char *str, int *bs)
 	t_splitbs	ij;
 	int			len;
 	int			lenarg;
-	int			p[1];
+	int			p;
 	char		**tab_str;
 
 	ij.i = 0;
-	*p = 0;
+	p = 0;
 	lenarg = ft_count(str, bs);
-	tab_str = (char**)ft_mema(sizeof(char*) * (lenarg + 1));
-	if (tab_str)
+	tab_str = (char**)ft_mema(sizeof(char *) * (lenarg + 1));
+	while (str[p] && ij.i < lenarg && !(ij.j = 0))
 	{
-		while (ij.i < lenarg && !(ij.j = 0))
-		{
-			ft_pos(str, p);
-			len = ft_size(str, *p, &bs);
-			tab_str[ij.i] = (char*)ft_mema(sizeof(char) * (len + 1));
-			while (ij.j < len)
-				tab_str[ij.i][(ij.j)++] = str[(*p)++];
-			tab_str[ij.i][ij.j] = '\0';
-			(ij.i)++;
-		}
-		tab_str[lenarg] = 0;
+		ft_pos(str, &p);
+		len = ft_size(str, p, &bs);
+		tab_str[ij.i] = (char*)ft_mema(sizeof(char) * (len + 1));
+		while (str[p] && ij.j < len)
+			tab_str[ij.i][(ij.j)++] = str[p++];
+		tab_str[ij.i][ij.j] = '\0';
+		(ij.i)++;
 	}
+	tab_str[lenarg] = 0;
 	return (tab_str);
 }
