@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:12:49 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/24 21:42:41 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/26 15:05:00 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static t_quotis	nbr_quote(char *arg, int *bs)
 			arg += ft_entier(*bs);
 			bs++;
 		}
-		if (*arg && *arg == 39 && ft_parite(nbrs.d))
+		if ((mark || !ft_parite(nbrs.s))
+			&& *arg && *arg == 39 && ft_parite(nbrs.d))
 			(nbrs.s)++;
 		else if (mark && *arg && *arg == 34 && ft_parite(nbrs.s))
 			(nbrs.d)++;

@@ -6,7 +6,7 @@
 /*   By: hessabra <hessabra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:25:38 by hessabra          #+#    #+#             */
-/*   Updated: 2019/10/15 17:05:07 by hessabra         ###   ########.fr       */
+/*   Updated: 2019/10/26 15:12:27 by hessabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int		nbr_quote2_2(char **arg, int *mark, int **bs)
 
 static void		nbr_quote2_3(char *arg, int mark, t_quotis *nbr, int start)
 {
-	if (start && *arg && *arg == 39 && ft_parite(nbr->d))
+	if (start && (mark || !ft_parite(nbr->s))
+		&& *arg && *arg == 39 && ft_parite(nbr->d))
 		(nbr->s)++;
 	else if (start && mark && *arg && *arg == 34 && ft_parite(nbr->s))
 		(nbr->d)++;
